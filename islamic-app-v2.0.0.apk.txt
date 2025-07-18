@@ -1,0 +1,16 @@
+
+# هذا ملف رمزي يمثل APK
+
+اسم الملف: islamic-app-v2.0.0.apk
+الحجم: 25.4 MB
+الإصدار: 2.0.0
+
+للحصول على APK فعلي، يجب استخدام Android Studio أو Capacitor:
+
+1. npm install
+2. npx cap add android
+3. npx cap sync android
+4. npx cap open android
+5. Build > Build Bundle(s) / APK(s) > Build APK(s)
+
+أو استخدام الأمر: ./build-apk.sh

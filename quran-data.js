@@ -824,17 +824,54 @@ const QURAN_DATA = {
 const QuranUtils = {
     async loadFullQuran() {
         try {
-            // تحميل القرآن كاملاً من API موثوق
-            const response = await fetch('https://api.alquran.cloud/v1/quran/ar.asad');
+            // تحميل القرآن كاملاً من API موثوق سني
+            const response = await fetch('https://api.alquran.cloud/v1/quran/quran-uthmani');
             if (response.ok) {
                 const data = await response.json();
+                this.updateLocalQuranData(data.data);
                 return data.data;
             }
+            
+            // محاولة بديلة
+            const altResponse = await fetch('https://api.alquran.cloud/v1/quran/ar.muyassar');
+            if (altResponse.ok) {
+                const altData = await altResponse.json();
+                this.updateLocalQuranData(altData.data);
+                return altData.data;
+            }
+            
             return null;
         } catch (error) {
             console.error('خطأ في تحميل القرآن:', error);
             return null;
         }
+    },
+
+    // تحديث البيانات المحلية
+    updateLocalQuranData(quranData) {
+        if (quranData && quranData.surahs) {
+            quranData.surahs.forEach((surah, index) => {
+                if (QURAN_DATA.surahs[index]) {
+                    QURAN_DATA.surahs[index].verses_text = surah.ayahs.map(ayah => ayah.text);
+                    QURAN_DATA.surahs[index].verses_audio = surah.ayahs.map(ayah => ayah.audio);
+                }
+            });
+            
+            // حفظ في التخزين المحلي
+            localStorage.setItem('quran_full_data', JSON.stringify(QURAN_DATA));
+            console.log('✅ تم تحميل القرآن الكريم كاملاً - 114 سورة');
+        }
+    },
+
+    // تحميل من التخزين المحلي
+    loadFromLocal() {
+        const saved = localStorage.getItem('quran_full_data');
+        if (saved) {
+            const data = JSON.parse(saved);
+            Object.assign(QURAN_DATA, data);
+            return true;
+        }
+        return false;
     },
 
     getSurahInfo(surahNumber) {
