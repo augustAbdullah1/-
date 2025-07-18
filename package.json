@@ -1,0 +1,88 @@
+{
+  "name": "islamic-app-comprehensive",
+  "version": "2.0.0",
+  "description": "تطبيق إسلامي شامل يحتوي على القرآن الكريم وأوقات الصلاة والقبلة والأذكار",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Building PWA...' && echo 'Build complete!'",
+    "android:prepare": "npx cap add android",
+    "android:build": "npx cap build android",
+    "android:open": "npx cap open android",
+    "android:run": "npx cap run android",
+    "android:sync": "npx cap sync android",
+    "ios:prepare": "npx cap add ios",
+    "ios:build": "npx cap build ios",
+    "ios:open": "npx cap open ios",
+    "ios:run": "npx cap run ios",
+    "ios:sync": "npx cap sync ios",
+    "capacitor:sync": "npx cap sync",
+    "capacitor:copy": "npx cap copy",
+    "electron:prepare": "npx cap add @capacitor-community/electron",
+    "electron:build": "npx cap build @capacitor-community/electron",
+    "electron:open": "npx cap open @capacitor-community/electron",
+    "serve": "python3 -m http.server 8000",
+    "install-deps": "npm install",
+    "generate-icons": "npx capacitor-assets generate",
+    "setup": "npm run install-deps && npm run capacitor:sync"
+  },
+  "keywords": [
+    "islamic",
+    "quran",
+    "prayer",
+    "qibla",
+    "dhikr",
+    "pwa",
+    "mobile",
+    "android",
+    "ios",
+    "arabic",
+    "muslim",
+    "religion"
+  ],
+  "author": "Islamic App Team",
+  "license": "MIT",
+  "homepage": "https://github.com/islamic-app/comprehensive-islamic-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/islamic-app/comprehensive-islamic-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/islamic-app/comprehensive-islamic-app/issues"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.5.1",
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/ios": "^5.5.1",
+    "@capacitor-community/electron": "^5.0.1",
+    "capacitor-assets": "^3.0.4"
+  },
+  "dependencies": {
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/haptics": "^5.0.6",
+    "@capacitor/keyboard": "^5.0.6",
+    "@capacitor/status-bar": "^5.0.6",
+    "@capacitor/splash-screen": "^5.0.6",
+    "@capacitor/geolocation": "^5.0.6",
+    "@capacitor/local-notifications": "^5.0.6",
+    "@capacitor/push-notifications": "^5.1.0",
+    "@capacitor/device": "^5.0.6",
+    "@capacitor/network": "^5.0.6",
+    "@capacitor/share": "^5.0.6",
+    "@capacitor/filesystem": "^5.1.4",
+    "@capacitor/preferences": "^5.0.6"
+  },
+  "capacitor": {
+    "android": {
+      "src": "android"
+    },
+    "ios": {
+      "src": "ios"
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

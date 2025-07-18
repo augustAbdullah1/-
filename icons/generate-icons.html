@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد أيقونات التطبيق الإسلامي</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        h1 {
+            color: #2c5aa0;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .icon-preview {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #2c5aa0 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 80px;
+            box-shadow: 0 10px 30px rgba(44, 90, 160, 0.3);
+        }
+        
+        .sizes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .size-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .size-item.generated {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #2c5aa0 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: right;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕌 مولد أيقونات التطبيق الإسلامي</h1>
+        
+        <div class="icon-preview" id="iconPreview">
+            🕌
+        </div>
+        
+        <div class="instructions">
+            <h3>📝 تعليمات الاستخدام:</h3>
+            <p>1. اضغط على "توليد الأيقونات" لإنشاء جميع الأحجام المطلوبة</p>
+            <p>2. سيتم حفظ الأيقونات في مجلد icons/</p>
+            <p>3. الأيقونات ستكون بتدرج لوني جميل مع رمز المسجد</p>
+            <p>4. يمكنك تخصيص الألوان والرمز حسب رغبتك</p>
+        </div>
+        
+        <div class="sizes">
+            <div class="size-item" data-size="72">72x72</div>
+            <div class="size-item" data-size="96">96x96</div>
+            <div class="size-item" data-size="128">128x128</div>
+            <div class="size-item" data-size="144">144x144</div>
+            <div class="size-item" data-size="152">152x152</div>
+            <div class="size-item" data-size="192">192x192</div>
+            <div class="size-item" data-size="384">384x384</div>
+            <div class="size-item" data-size="512">512x512</div>
+        </div>
+        
+        <button onclick="generateIcons()">🎨 توليد الأيقونات</button>
+        <button onclick="downloadSample()">📥 تحميل أيقونة نموذجية</button>
+        
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <script>
+        function generateIcon(size) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = size;
+            canvas.height = size;
+            
+            // خلفية متدرجة
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#2c5aa0');
+            gradient.addColorStop(1, '#764ba2');
+            
+            // رسم الخلفية مع حواف مدورة
+            const radius = size * 0.2;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            
+            // رسم رمز المسجد
+            ctx.fillStyle = 'white';
+            ctx.font = `${size * 0.4}px serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🕌', size / 2, size / 2);
+            
+            return canvas.toDataURL('image/png');
+        }
+        
+        function generateIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            
+            sizes.forEach(size => {
+                const dataUrl = generateIcon(size);
+                const link = document.createElement('a');
+                link.download = `icon-${size}x${size}.png`;
+                link.href = dataUrl;
+                link.click();
+                
+                // تحديث واجهة المستخدم
+                const sizeItem = document.querySelector(`[data-size="${size}"]`);
+                if (sizeItem) {
+                    sizeItem.classList.add('generated');
+                    sizeItem.innerHTML = `✅ ${size}x${size}`;
+                }
+            });
+            
+            alert('🎉 تم توليد جميع الأيقونات بنجاح!');
+        }
+        
+        function downloadSample() {
+            const dataUrl = generateIcon(192);
+            const link = document.createElement('a');
+            link.download = 'islamic-app-icon-sample.png';
+            link.href = dataUrl;
+            link.click();
+        }
+        
+        // إضافة دعم roundRect للمتصفحات القديمة
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+    </script>
+</body>
+</html>
