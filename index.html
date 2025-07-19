@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>آجر - تطبيق الذكر والأدعية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary-color-default:#2f363f;--secondary-color-default:#4a5568;--accent-color-default:#cbd5e0;--text-color-default:#e2e8f0;--counter-color-default:#a0aec0;--reset-color-default:#ef4444;--add-color-default:#3b82f6;--vibration-color-default:#f97316;--card-bg-default:rgba(255,255,255,.08);--border-color-default:rgba(255,255,255,.1);--modal-bg-default:rgba(0,0,0,.5);--dua-icon-color:#10b981;--completed-color:#10b981;--category-bg-default:rgba(255,255,255,.05);--light-primary-color:#f1f5f9;--light-secondary-color:#e2e8f0;--light-text-color:#1e293b;--light-accent-color:#334155;--light-card-bg:rgba(255,255,255,.8);--light-border-color:rgba(0,0,0,.1);--light-modal-bg:rgba(255,255,255,.7);--light-category-bg:#fff;--theme-primary:var(--primary-color-default);--theme-secondary:var(--secondary-color-default);--theme-counter:var(--counter-color-default);--theme-reset:var(--reset-color-default);--theme-add:var(--add-color-default);--theme-accent:var(--accent-color-default);--theme-text:var(--text-color-default);--theme-card-bg:var(--card-bg-default);--theme-border-color:var(--border-color-default);--theme-vibration:var(--vibration-color-default);--modal-bg:var(--modal-bg-default);--category-bg:var(--category-bg-default);--icon-size:24px}body{font-family:'Tajawal','Segoe UI',Tahoma,Geneva,Verdana,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:10px;transition:background-color .5s ease,color .5s ease;overflow-x:hidden;text-align:right;position:relative;background:linear-gradient(135deg,var(--theme-primary),var(--theme-secondary));color:var(--theme-text);-webkit-tap-highlight-color:transparent}body.light-mode{--theme-primary:var(--light-primary-color);--theme-secondary:var(--light-secondary-color);--theme-text:var(--light-text-color);--theme-accent:var(--light-accent-color);--theme-card-bg:var(--light-card-bg);--theme-border-color:var(--light-border-color);--modal-bg:var(--light-modal-bg);--category-bg:var(--light-category-bg)}body.zen-mode{justify-content:center;align-items:center;padding:0;overflow:hidden}body.zen-mode .container{width:100%;max-width:100%;height:100vh;border-radius:0;box-shadow:none;border:none;background-color:transparent;padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center}body.zen-mode .header,body.zen-mode .bottom-controls,body.zen-mode .charity-footer,body.zen-mode .themes-panel{display:none!important}body.zen-mode .counter-area{flex-grow:0;justify-content:center;align-items:center;height:100%;width:100%;position:absolute;top:0;left:0;z-index:1}body.zen-mode .counter-button{display:none}body.zen-mode .counter-display{font-size:8rem;margin-bottom:20px;text-shadow:0 0 20px rgba(255,255,255,.6),0 10px 30px rgba(0,0,0,.3)}body.zen-mode .dhikr-name{font-size:2rem;margin-bottom:10px}body.zen-mode .target-display{font-size:1.2rem}.zen-tap-area{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;cursor:pointer;display:none}body.zen-mode .zen-tap-area{display:block}body::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 10% 20%,rgba(255,255,255,.05) 0%,transparent 50%),radial-gradient(circle at 90% 80%,rgba(255,255,255,.05) 0%,transparent 50%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.02) 0%,transparent 80%);background-size:200% 200%;animation:moveBackground 25s linear infinite alternate;z-index:-2}@keyframes moveBackground{0%{background-position:0% 0%}100%{background-position:100% 100%}}.container{width:100%;max-width:420px;background-color:var(--theme-card-bg);backdrop-filter:blur(25px) saturate(1.5);-webkit-backdrop-filter:blur(25px) saturate(1.5);border-radius:25px;padding:20px;box-shadow:0 25px 50px rgba(0,0,0,.4);border:2px solid var(--theme-border-color);transition:all .5s ease;display:flex;flex-direction:column;gap:15px;margin-top:auto;margin-bottom:auto;position:relative}.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}h1{font-weight:900;font-size:1.8rem;color:var(--theme-accent)}.control-icons{display:flex;gap:6px;flex-direction:row;align-items:flex-start}.icon-button{background:none;border:none;cursor:pointer;padding:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .1s ease,opacity .2s ease,background-color .2s ease;opacity:.9;border-radius:12px;width:52px;height:auto;background-color:rgba(255,255,255,.1);padding-bottom:6px}.icon-button:hover{opacity:1;transform:scale(1.05);background-color:rgba(255,255,255,.2)}.icon-button:active{transform:scale(.95)}.icon{width:var(--icon-size);height:var(--icon-size);stroke:var(--theme-accent);transition:stroke .5s ease;margin-bottom:3px}.icon-label{font-size:.65rem;color:var(--theme-text);opacity:.8;transition:color .5s ease;white-space:nowrap}.icon-button.theme-icon .icon{stroke:var(--theme-counter)}.icon-button.dua-icon .icon{stroke:var(--dua-icon-color)}.vibration-toggle.muted .icon{opacity:.6;stroke:var(--theme-accent)}#settings-button-fixed{position:fixed;bottom:20px;left:20px;z-index:1000;background-color:var(--theme-add);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 15px rgba(0,0,0,.3);transition:transform .2s ease,background-color .2s ease;border:none;cursor:pointer}#settings-button-fixed:hover{transform:scale(1.05);background-color:var(--theme-add)}#settings-button-fixed:active{transform:scale(.95)}#settings-button-fixed .icon{width:24px;height:24px;stroke:#fff;margin:0}.counter-area{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:15px 0;min-height:280px;flex-grow:1}.counter-display{font-size:5.5rem;font-weight:900;color:var(--theme-counter);margin-bottom:10px;text-shadow:0 0 10px rgba(255,255,255,.4),0 5px 15px rgba(0,0,0,.2);transition:all .1s ease-out}.counter-display.legendary{background:linear-gradient(45deg,#ffd700,#ffed4e,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:legendary-glow 2s ease-in-out infinite alternate;text-shadow:0 0 20px rgba(255,215,0,.8),0 0 40px rgba(255,215,0,.6)}@keyframes legendary-glow{0%{filter:brightness(1)}100%{filter:brightness(1.3)}}@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}.counter-display.bounce{animation:bounce .3s ease-in-out}.dhikr-name{font-size:1.3rem;font-weight:700;margin-bottom:8px;color:var(--theme-accent);opacity:.95;min-height:1.3em;padding:0 10px}.target-display{font-size:.9rem;font-weight:600;color:var(--theme-accent);opacity:.8;margin-bottom:15px;min-height:.9em}.counter-button{width:160px;height:160px;border-radius:50%;background-color:var(--theme-counter);border:4px solid rgba(255,255,255,.3);color:var(--theme-primary);font-size:1.4rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 10px 20px rgba(0,0,0,.4),0 0 20px var(--theme-counter);text-align:center;padding:8px;user-select:none}.counter-button.legendary{background:radial-gradient(circle,#ffd700,#ffed4e,#ffa500);border:4px solid rgba(255,215,0,.8);box-shadow:0 0 30px rgba(255,215,0,.8),0 0 60px rgba(255,215,0,.4),0 15px 30px rgba(0,0,0,.6);animation:legendary-pulse 3s ease-in-out infinite;position:relative}.counter-button.legendary::before{content:'';position:absolute;top:-8px;left:-8px;right:-8px;bottom:-8px;border-radius:50%;background:conic-gradient(from 0deg,#ffd700,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#ffd700);z-index:-1;animation:legendary-rotate 4s linear infinite}@keyframes legendary-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}@keyframes legendary-rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}.counter-button:active{transform:scale(.92);box-shadow:0 3px 8px rgba(0,0,0,.3)}.counter-button.legendary:active{transform:scale(.95)}.bottom-controls{display:flex;flex-direction:column;gap:8px}.base-control{padding:10px 16px;border:none;border-radius:25px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s ease;box-shadow:0 3px 10px rgba(0,0,0,.1);text-align:center;color:var(--theme-text);background-color:rgba(255,255,255,.1);border:1px solid var(--theme-border-color);display:flex;align-items:center;justify-content:center;gap:6px;position:relative;text-decoration:none}.base-control:hover{background-color:rgba(255,255,255,.15);transform:translateY(-1px)}.reset-button{background-color:var(--theme-reset);color:#fff;animation:pulse-subtle 1.8s infinite ease-in-out}@keyframes pulse-subtle{0%,100%{transform:scale(1)}50%{transform:scale(1.01);opacity:.95}}.reset-button:hover{background-color:#dc2626}.control-row{display:flex;gap:8px;width:100%}.base-control.hidden{display:none!important}.dhikr-list-modal-content{display:flex;flex-direction:column;gap:15px;max-height:90vh}.dhikr-list-modal-search-input{width:100%;padding:10px 15px;border-radius:10px;border:1px solid var(--theme-border-color);background-color:rgba(0,0,0,.1);color:var(--theme-text);font-size:1rem;text-align:right;box-sizing:border-box;outline:none}.dhikr-list-modal-search-input:focus{box-shadow:0 0 0 3px var(--theme-counter);border-color:var(--theme-counter)}.dhikr-list-container{list-style:none;padding:0;margin:0;overflow-y:auto;flex-grow:1}.dhikr-list-item{padding:12px 15px;border-bottom:1px solid var(--theme-border-color);cursor:pointer;text-align:right;transition:background-color .2s ease;font-size:1rem}.dhikr-list-item:last-child{border-bottom:none}.dhikr-list-item:hover,.dhikr-list-item.selected{background-color:rgba(255,255,255,.15)}.themes-panel{display:none;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px;border-radius:15px;background-color:rgba(255,255,255,.05);box-shadow:inset 0 0 10px rgba(0,0,0,.1);margin-top:10px;border:1px solid var(--theme-border-color);animation:fadeIn .3s ease}@keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}.theme-button{width:40px;height:40px;border-radius:50%;padding:0;border:3px solid transparent;transition:all .2s ease;box-shadow:0 3px 8px rgba(0,0,0,.2);cursor:pointer;opacity:.9;position:relative}.theme-default{background:linear-gradient(135deg,#2f363f,#a0aec0)}.theme-navy{background:linear-gradient(135deg,#2a3d58,#8fa8c7)}.theme-forest{background:linear-gradient(135deg,#3a5e4a,#9ec2a8)}.theme-legendary{background:radial-gradient(circle,#ffd700,#ffed4e,#ffa500);position:relative}.theme-legendary::before{content:'👑';position:absolute;top:-5px;right:-5px;font-size:12px;z-index:1}.theme-legendary.locked{opacity:.3;filter:grayscale(1)}.theme-legendary.locked::after{content:'🔒';position:absolute;bottom:-5px;left:-5px;font-size:10px;background:rgba(0,0,0,.8);color:#fff;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center}.theme-button.active{border-color:var(--theme-accent);transform:scale(1.08);opacity:1;box-shadow:0 0 0 3px var(--theme-counter)}.theme-button:hover{transform:scale(1.08);opacity:1}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:var(--modal-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;justify-content:center;align-items:center;animation:fadeInModal .2s ease-out}.modal-content{background-color:var(--theme-secondary);padding:20px;border-radius:15px;width:90%;max-width:420px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.4);border:1px solid var(--theme-border-color);animation:slideInModal .3s ease-out;max-height:90vh;overflow-y:auto;display:flex;flex-direction:column}@keyframes fadeInModal{from{opacity:0}to{opacity:1}}@keyframes slideInModal{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-title{font-size:1.3rem;margin-bottom:15px;color:var(--theme-accent);font-weight:700}.modal-buttons{display:flex;justify-content:center;gap:10px;margin-top:15px}.modal-button{padding:8px 20px;border:none;border-radius:25px;font-weight:700;cursor:pointer;transition:all .2s ease;font-size:.9rem}.modal-confirm{background-color:#10b981;color:#fff}.modal-cancel{background-color:var(--theme-reset);color:#fff}.add-modal-input{width:100%;padding:10px 15px;margin-top:15px;border-radius:10px;border:1px solid var(--theme-border-color);background-color:rgba(0,0,0,.1);color:var(--theme-text);font-size:1rem;text-align:right;box-sizing:border-box}.toast{position:fixed;bottom:30px;right:50%;transform:translateX(50%);background-color:#10b981;color:#fff;padding:10px 20px;border-radius:25px;box-shadow:0 5px 15px rgba(0,0,0,.2);opacity:0;visibility:hidden;transition:opacity .3s ease,transform .3s ease;z-index:200;font-weight:600;text-align:center;direction:rtl}.toast.show{opacity:1;visibility:visible;transform:translateX(50%) translateY(-10px)}.duas-category-list{display:flex;flex-direction:column;gap:10px;padding:10px;overflow-y:auto;flex-grow:1;padding-bottom:20px}.dua-category-item{display:flex;align-items:center;justify-content:flex-end;padding:15px 20px;background-color:var(--category-bg);border-radius:15px;cursor:pointer;font-size:1.1rem;font-weight:600;transition:transform .2s ease,background-color .2s ease;box-shadow:0 4px 15px rgba(0,0,0,.1);gap:15px;text-align:right;border:1px solid var(--theme-border-color)}.dua-category-item:hover{transform:translateY(-3px);background-color:rgba(255,255,255,.1)}.dua-category-item .icon{stroke:var(--dua-icon-color)}.dua-category-item.completed{opacity:.8;background-color:rgba(16,185,129,.1)}.completion-status{color:var(--completed-color);font-size:.9rem;font-weight:700}.dua-reader-content{display:none;flex-direction:column;align-items:center;justify-content:center;flex-grow:1;text-align:center;padding:10px}.dua-reader-header{font-size:1.5rem;font-weight:700;color:var(--theme-counter);margin-bottom:20px}.dua-reader-text{font-size:1.4rem;line-height:2.2;color:var(--theme-text);margin-bottom:25px;font-weight:500;direction:rtl}.dua-reader-source{font-size:.9rem;color:var(--theme-accent);opacity:.7;margin-bottom:25px}.dua-counter-info{font-size:1rem;color:var(--theme-accent);margin-bottom:15px}.dua-reader-controls{display:flex;justify-content:center;gap:20px;margin-top:20px}.dua-nav-button{background-color:var(--theme-add);color:#fff;padding:12px 30px;border-radius:50px;border:none;cursor:pointer;font-weight:700;font-size:1rem;transition:background-color .2s ease,transform .1s ease}.dua-nav-button:disabled{background-color:var(--theme-secondary);cursor:not-allowed;opacity:.6}.dua-nav-button:active{transform:scale(.95)}.complete-button{background-color:var(--completed-color);padding:12px 30px;border-radius:50px;border:none;color:#fff;font-weight:700;cursor:pointer;transition:background-color .2s ease;display:none}.completed-mark{color:var(--completed-color);font-weight:900;font-size:1.5rem;margin-right:10px;display:none}.quran-surah-list,.quran-reader-view{display:none;flex-direction:column;gap:10px;padding:10px;overflow-y:auto;flex-grow:1;padding-bottom:20px}.quran-surah-item{display:flex;align-items:center;justify-content:flex-end;padding:15px 20px;background-color:var(--category-bg);border-radius:15px;cursor:pointer;font-size:1.1rem;font-weight:600;transition:transform .2s ease,background-color .2s ease;box-shadow:0 4px 15px rgba(0,0,0,.1);gap:15px;text-align:right;border:1px solid var(--theme-border-color)}.quran-surah-item:hover{transform:translateY(-3px);background-color:rgba(255,255,255,.1)}.quran-reader-header{font-size:1.6rem;font-weight:700;color:var(--theme-counter);margin-bottom:20px}.quran-ayat-list{list-style:none;padding:0;margin:0;text-align:right;font-size:1.3rem;line-height:2.2;color:var(--theme-text);font-weight:500;direction:rtl}.quran-ayat-list li{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed rgba(255,255,255,.05)}.quran-ayat-list li:last-child{border-bottom:none}.quran-ayat-number{font-size:.9em;color:var(--theme-accent);opacity:.8;margin-left:8px;font-weight:600}.quran-nav-buttons{display:flex;justify-content:center;gap:20px;margin-top:20px}.particle{position:fixed;background-color:var(--particle-color,var(--theme-counter));border-radius:50%;pointer-events:none;z-index:10;transform:translate(-50%,-50%);opacity:0;animation:sparkle-fade-out .8s ease-out forwards;box-shadow:0 0 5px var(--particle-color,var(--theme-counter))}@keyframes sparkle-fade-out{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}}.charity-footer{margin-top:20px;padding:10px;font-size:.75rem;text-align:center;color:var(--theme-accent);opacity:.6;font-weight:500;position:relative;z-index:5;width:100%}.statistics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:15px 0}.stat-card{background-color:rgba(255,255,255,.05);padding:15px;border-radius:12px;text-align:center;border:1px solid var(--theme-border-color)}.stat-value{font-size:1.4rem;font-weight:900;color:var(--theme-counter);margin-bottom:5px}.stat-label{font-size:.8rem;color:var(--theme-accent);opacity:.8}.daily-goal-section{background-color:rgba(255,255,255,.05);padding:15px;border-radius:12px;margin:15px 0;border:1px solid var(--theme-border-color)}.goal-progress{width:100%;height:8px;background-color:rgba(0,0,0,.2);border-radius:4px;margin:10px 0;overflow:hidden}.goal-progress-bar{height:100%;background:linear-gradient(90deg,var(--theme-add),var(--theme-counter));border-radius:4px;transition:width .3s ease}.achievement-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;background-color:var(--completed-color);color:#fff;border-radius:15px;font-size:.7rem;font-weight:600;margin:5px}.legendary-badge{background:linear-gradient(45deg,#ffd700,#ffed4e);color:#000;animation:legendary-glow 2s ease-in-out infinite alternate}@media (max-width:600px){.container{padding:15px;max-width:95%;gap:12px}h1{font-size:1.6rem}.counter-display{font-size:4.8rem}.counter-button{width:150px;height:150px;font-size:1.2rem}.dhikr-name{font-size:1.2rem}.themes-panel{gap:8px}.theme-button{width:35px;height:35px}.modal-content{padding:18px}.control-icons{gap:5px}.icon-button{width:48px;padding:5px}.statistics-grid{grid-template-columns:1fr;gap:10px}.control-row .base-control{font-size:.8rem;padding:8px 12px}body.zen-mode .counter-display{font-size:6rem}body.zen-mode .dhikr-name{font-size:1.6rem}body.zen-mode .target-display{font-size:1rem}#settings-button-fixed{width:45px;height:45px;bottom:15px;left:15px}#settings-button-fixed .icon{width:20px;height:20px}}
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <div class="header">
+            <h1>آجر</h1>
+            <div class="control-icons">
+                <button class="icon-button dua-button dua-icon" id="duas-button" aria-label="الأدعية">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--dua-icon-color);">
+                        <path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zM20 12a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2h-1a1 1 0 0 1-1-1zM4 12a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zM12 20a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zM18.36 5.64a1 1 0 0 1 .71-.29h.01a1 1 0 0 1 .7 1.7L18.36 6.7a1 1 0 0 1-1.41-1.41l1.41-1.41zM5.64 18.36a1 1 0 0 1-.71.29H4.9a1 1 0 0 1-.7-1.7l1.41-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.41zM18.36 18.36a1 1 0 0 1-.71.29H17.65a1 1 0 0 1-.7-1.7l1.41-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.41zM5.64 5.64a1 1 0 0 1 .71-.29h.01a1 1 0 0 1 .7 1.7L5.64 6.7a1 1 0 0 1-1.41-1.41l1.41-1.41z"/>
+                        <circle cx="12" cy="12" r="5" />
+                        <path d="M12 7.5V12h3" />
+                    </svg>
+                    <span class="icon-label">الأدعية</span>
+                </button>
+                <button class="icon-button theme-toggle theme-icon" id="theme-toggle" aria-label="اختر الثيم">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10c0-4.42-3.58-8-8-8s-8 3.58-8 8c0 6 8 10 8 10z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <span class="icon-label">الثيمات</span>
+                </button>
+                <button class="icon-button vibration-toggle" id="vibration-toggle" aria-label="تفعيل/كتم الاهتزاز">
+                    <svg class="icon" id="vibration-icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path id="vibration-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.899a9 9 0 010 12.728M12 6a6 6 0 00-6 6v3.586l-2-2L3.414 15l4.586 4.586A2 2 0 009 20h6a2 2 0 002-2v-6c0-3.313-2.687-6-6-6z" />
+                    </svg>
+                    <span class="icon-label">اهتزاز</span>
+                </button>
+                <button class="icon-button stats-button" id="stats-button" aria-label="الإحصائيات">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v18h18"/>
+                        <path d="m19 9-5 5-4-4-3 3"/>
+                    </svg>
+                    <span class="icon-label">إحصائيات</span>
+                </button>
+            </div>
+        </div>
+        <div class="themes-panel" id="themes-panel">
+            <button class="theme-button theme-default active" data-theme="default" aria-label="الثيم الافتراضي"></button>
+            <button class="theme-button theme-navy" data-theme="navy" aria-label="ثيم البحر"></button>
+            <button class="theme-button theme-forest" data-theme="forest" aria-label="ثيم الغابة"></button>
+            <button class="theme-button theme-legendary locked" data-theme="legendary" aria-label="الثيم الأسطوري" title="يُفتح عند الوصول لـ 5000 تسبيحة"></button>
+        </div>
+        <div class="counter-area" id="main-counter-area">
+            <div class="counter-display" id="counter">0</div>
+            <div class="dhikr-name" id="dhikr-name">استغفر الله</div>
+            <div class="target-display" id="target-display">الهدف: لا يوجد</div> 
+            <button class="counter-button" id="counter-button">آجر</button>
+        </div>
+        <div class="zen-tap-area" id="zen-tap-area"></div>
+        <div class="bottom-controls" id="main-controls">
+            <div class="control-row">
+                <button class="base-control" id="select-dhikr-button" style="flex: 1;" data-control-id="selectDhikr">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    <span>اختر ذكرًا</span>
+                </button>
+                <button class="base-control" id="set-target-button" style="flex: 1;" data-control-id="setTarget">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--theme-accent);">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4m0-4v-.5"></path>
+                        <path d="M12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+                    </svg>
+                    <span>تعيين الهدف</span>
+                </button>
+            </div>
+            <div class="control-row">
+                <button class="base-control add-dhikr-button" id="add-dhikr-button" style="flex: 1; background-color: var(--theme-add); color: white;" data-control-id="addDhikr">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>أضف ذكر</span>
+                </button>
+                <button class="base-control reset-button" id="reset-button" style="flex: 1;" data-control-id="reset">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+                        <path d="M20 12v-1c0-4.42-3.58-8-8-8S4 6.58 4 11s3.58 8 8 8c.7 0 1.39-.08 2.05-.24"/>
+                        <path d="M19 16l3 3-3 3"/>
+                        <path d="M22 19h-5"/>
+                    </svg>
+                    <span>تصفير العداد</span>
+                </button>
+            </div>
+            <!-- APK Download Button -->
+            <a href="https://www.mediafire.com/file/mo2k68b57bbyxpq/_آجر_18940342.apk/file" download class="base-control" style="background-color: #10b981; color: white; text-decoration: none;" target="_blank">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>تحميل تطبيق آجر (APK)</span>
+            </a>
+        </div>
+        <div class="charity-footer">
+            هذا التطبيق صدقة جارية لـ **عبدالله أبوشكير ووالديه واخوانه واخواته**
+        </div>
+    </div>
+    <button id="settings-button-fixed" aria-label="الإعدادات">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+    </button>
+
+    <!-- Statistics Modal -->
+    <div class="modal" id="statistics-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">📊 إحصائياتي اليومية</h3>
+            <div class="daily-goal-section">
+                <h4 style="color: var(--theme-accent); margin-bottom: 10px;">الهدف اليومي</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span id="daily-goal-text">لا يوجد هدف</span>
+                    <button class="modal-button modal-confirm" id="set-daily-goal-button" style="padding: 5px 15px; font-size: 0.8rem;">تعيين هدف</button>
+                </div>
+                <div class="goal-progress">
+                    <div class="goal-progress-bar" id="daily-progress-bar" style="width: 0%"></div>
+                </div>
+                <div style="text-align: center; font-size: 0.8rem; color: var(--theme-accent); opacity: 0.8;">
+                    <span id="daily-progress-text">0 / 0</span>
+                </div>
+            </div>
+            <div class="statistics-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="today-count">0</div>
+                    <div class="stat-label">تسبيحات اليوم</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-count">0</div>
+                    <div class="stat-label">إجمالي التسبيحات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="streak-days">0</div>
+                    <div class="stat-label">أيام متتالية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avg-daily">0</div>
+                    <div class="stat-label">المتوسط اليومي</div>
+                </div>
+            </div>
+            <div id="achievements-section">
+                <h4 style="color: var(--theme-accent); margin: 15px 0 10px;">🏆 الإنجازات</h4>
+                <div id="achievements-list"></div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button modal-cancel" id="close-statistics-modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Set Daily Goal Modal -->
+    <div class="modal" id="set-daily-goal-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">تعيين الهدف اليومي</h3>
+            <input type="number" id="daily-goal-input" class="add-modal-input" placeholder="أدخل الهدف اليومي..." min="1" dir="rtl">
+            <div class="modal-buttons">
+                <button class="modal-button modal-confirm" id="save-daily-goal">حفظ الهدف</button>
+                <button class="modal-button modal-cancel" id="cancel-daily-goal">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Modal -->
+    <div class="modal" id="reset-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">تغيير الذكر؟</h3>
+            <p>عند تغيير نوع الذكر، سيتم تصفير العداد الحالي تلقائيًا.</p>
+            <div class="modal-buttons">
+                <button class="modal-button modal-confirm" id="confirm-reset">نعم، تغيير</button>
+                <button class="modal-button modal-cancel" id="cancel-reset">إلغاء</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="manual-reset-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">هل أنت متأكد من التصفير؟</h3>
+            <p>سيتم تصفير العداد الحالي.</p>
+            <div class="modal-buttons">
+                <button class="modal-button modal-confirm" id="confirm-manual-reset">نعم، تصفير</button>
+                <button class="modal-button modal-cancel" id="cancel-manual-reset">إلغاء</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="add-dhikr-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">إضافة ذكر جديد</h3>
+            <input type="text" id="new-dhikr-input" class="add-modal-input" placeholder="اكتب الذكر هنا..." dir="rtl">
+            <div class="modal-buttons">
+                <button class="modal-button modal-confirm" id="save-new-dhikr">حفظ وإضافة</button>
+                <button class="modal-button modal-cancel" id="cancel-new-dhikr">إلغاء</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="select-dhikr-modal">
+        <div class="modal-content dhikr-list-modal-content">
+            <h3 class="modal-title">اختر ذكرًا</h3>
+            <input type="text" id="select-dhikr-modal-search-input" class="dhikr-list-modal-search-input" placeholder="ابحث عن ذكر..." dir="rtl">
+            <ul id="select-dhikr-list" class="dhikr-list-container"></ul>
+            <div class="modal-buttons">
+                <button class="modal-button modal-cancel" id="close-select-dhikr-modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="set-target-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">تعيين هدف الذكر</h3>
+            <input type="number" id="target-input" class="add-modal-input" placeholder="أدخل العدد المستهدف..." min="1" dir="rtl">
+            <div class="modal-buttons">
+                <button class="modal-button modal-confirm" id="save-target">حفظ الهدف</button>
+                <button class="modal-button modal-cancel" id="cancel-target">إلغاء</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="duas-modal">
+        <div class="modal-content">
+            <h3 class="modal-title" id="duas-modal-title">الأدعية المأثورة</h3>
+            <div id="duas-category-list" class="duas-category-list"></div>
+            <div id="dua-reader-view" class="dua-reader-content">
+                <div class="dua-reader-header" id="reader-category-title"></div>
+                <div class="dua-reader-text" id="dua-text"></div>
+                <div class="dua-reader-source" id="dua-source"></div>
+                <div id="dua-tally-area">
+                    <div id="dua-counter-info" class="dua-counter-info"></div>
+                    <div class="counter-display" id="dua-tally-counter">0</div>
+                    <button class="counter-button" id="dua-tally-button">عدّ</button>
+                </div>
+                <div class="dua-reader-controls">
+                    <button class="dua-nav-button" id="prev-dua-button" disabled>السابق</button>
+                    <button class="dua-nav-button" id="next-dua-button">التالي</button>
+                </div>
+                <div class="dua-reader-controls">
+                    <button class="complete-button" id="complete-category-button">أكملت الفئة</button>
+                </div>
+            </div>
+            <div id="quran-surah-list" class="quran-surah-list"></div>
+            <div id="quran-reader-view" class="quran-reader-view">
+                <div class="quran-reader-header" id="quran-surah-title"></div>
+                <ul id="quran-ayat-list" class="quran-ayat-list"></ul>
+                <div class="quran-nav-buttons">
+                    <button class="dua-nav-button" id="prev-surah-button" disabled>السورة السابقة</button>
+                    <button class="dua-nav-button" id="next-surah-button">السورة التالية</button>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button modal-cancel" id="duas-back-button" style="display: none;">العودة للفئات</button>
+                <button class="modal-button modal-cancel" id="quran-back-to-surahs-button" style="display: none;">العودة للسور</button>
+                <button class="modal-button modal-cancel" id="close-duas-modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">إعدادات التطبيق</h3>
+            <div style="text-align: right; margin-bottom: 20px;">
+                <h4 style="font-size: 1.1rem; color: var(--theme-accent); margin-bottom: 10px;">أزرار التحكم الرئيسية</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-selectDhikr" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>زر "اختر ذكرًا"</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-setTarget" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>زر "تعيين الهدف"</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-addDhikr" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>زر "أضف ذكر"</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-reset" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>زر "تصفير العداد"</span>
+                    </label>
+                </div>
+            </div>
+            <div style="text-align: right; margin-bottom: 20px;">
+                <h4 style="font-size: 1.1rem; color: var(--theme-accent); margin-bottom: 10px;">وضع الواجهة</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-zen-mode" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>تفعيل وضع التركيز (Zen Mode)</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-dark-mode" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>الوضع الليلي/النهاري</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--theme-text);">
+                        <input type="checkbox" id="toggle-arabic-numerals" class="settings-checkbox" style="width: 20px; height: 20px;">
+                        <span>استخدام الأرقام العربية (٠١٢٣)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button modal-confirm" id="close-settings-modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+    <div class="animation" id="animation"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --------------------------------------
+            //            DOM Elements
+            // --------------------------------------
+            const counterDisplay = document.getElementById('counter');
+            const counterButton = document.getElementById('counter-button');
+            const dhikrNameElement = document.getElementById('dhikr-name');
+            const targetDisplay = document.getElementById('target-display'); 
+            const zenTapArea = document.getElementById('zen-tap-area'); 
+            const selectDhikrButton = document.getElementById('select-dhikr-button'); 
+            const selectDhikrModal = document.getElementById('select-dhikr-modal'); 
+            const selectDhikrModalSearchInput = document.getElementById('select-dhikr-modal-search-input'); 
+            const selectDhikrList = document.getElementById('select-dhikr-list'); 
+            const closeSelectDhikrModalBtn = document.getElementById('close-select-dhikr-modal'); 
+            const animationContainer = document.getElementById('animation');
+            const dhikrResetModal = document.getElementById('reset-modal');
+            const manualResetModal = document.getElementById('manual-reset-modal');
+            const addDhikrModal = document.getElementById('add-dhikr-modal');
+            const newDhikrInput = document.getElementById('new-dhikr-input');
+            const saveNewDhikrBtn = document.getElementById('save-new-dhikr');
+            const themeToggle = document.getElementById('theme-toggle'); 
+            const themesPanel = document.getElementById('themes-panel');
+            const themeButtons = document.querySelectorAll('.theme-button');
+            const vibrationToggle = document.getElementById('vibration-toggle'); 
+            const vibrationIconPath = document.getElementById('vibration-icon-path'); 
+            const toastElement = document.getElementById('toast');
+            const body = document.body;
+            
+            // Dua Modal Elements
+            const duasButton = document.getElementById('duas-button');
+            const duasModal = document.getElementById('duas-modal');
+            const closeDuasModalBtn = document.getElementById('close-duas-modal');
+            const duasCategoryList = document.getElementById('duas-category-list');
+            const duasBackButton = document.getElementById('duas-back-button');
+            const duasModalTitle = document.getElementById('duas-modal-title');
+
+            // Dua Reader Elements
+            const duaReaderView = document.getElementById('dua-reader-view');
+            const readerCategoryTitle = document.getElementById('reader-category-title');
+            const duaTextElement = document.getElementById('dua-text');
+            const duaSourceElement = document.getElementById('dua-source');
+            const prevDuaButton = document.getElementById('prev-dua-button');
+            const nextDuaButton = document.getElementById('next-dua-button');
+            const completeCategoryButton = document.getElementById('complete-category-button');
+            const duaTallyArea = document.getElementById('dua-tally-area');
+            const duaTallyCounter = document.getElementById('dua-tally-counter');
+            const duaTallyButton = document.getElementById('dua-tally-button');
+            const duaCounterInfo = document.getElementById('dua-counter-info');
+
+            // Quran Section Elements
+            const quranSurahList = document.getElementById('quran-surah-list');
+            const quranReaderView = document.getElementById('quran-reader-view');
+            const quranSurahTitle = document.getElementById('quran-surah-title');
+            const quranAyatList = document.getElementById('quran-ayat-list');
+            const prevSurahButton = document.getElementById('prev-surah-button');
+            const nextSurahButton = document.getElementById('next-surah-button');
+            const quranBackToSurahsButton = document.getElementById('quran-back-to-surahs-button');
+
+            // Target Setting Elements
+            const setTargetButton = document.getElementById('set-target-button');
+            const setTargetModal = document.getElementById('set-target-modal');
+            const targetInput = document.getElementById('target-input');
+            const saveTargetButton = document.getElementById('save-target');
+            const cancelTargetButton = document.getElementById('cancel-target');
+
+            // Modal Buttons (Consolidated)
+            const confirmResetBtn = document.getElementById('confirm-reset');
+            const cancelResetBtn = document.getElementById('cancel-reset');
+            const confirmManualResetBtn = document.getElementById('confirm-manual-reset');
+            const cancelManualResetBtn = document.getElementById('cancel-manual-reset');
+            const cancelNewDhikrBtn = document.getElementById('cancel-new-dhikr');
+
+            // Bottom Controls (References for clarity)
+            const addDhikrButton = document.getElementById('add-dhikr-button'); 
+            const resetButton = document.getElementById('reset-button'); 
+
+            // Settings Modal
+            const settingsButtonFixed = document.getElementById('settings-button-fixed'); 
+            const settingsModal = document.getElementById('settings-modal');
+            const closeSettingsModalButton = document.getElementById('close-settings-modal');
+            const toggleSelectDhikrCheckbox = document.getElementById('toggle-selectDhikr');
+            const toggleSetTargetCheckbox = document.getElementById('toggle-setTarget');
+            const toggleAddDhikrCheckbox = document.getElementById('toggle-addDhikr');
+            const toggleResetCheckbox = document.getElementById('toggle-reset');
+            const toggleZenModeCheckbox = document.getElementById('toggle-zen-mode');
+            const toggleDarkModeCheckbox = document.getElementById('toggle-dark-mode'); 
+            const toggleArabicNumeralsCheckbox = document.getElementById('toggle-arabic-numerals'); 
+
+            // Statistics Modal Elements
+            const statsButton = document.getElementById('stats-button');
+            const statisticsModal = document.getElementById('statistics-modal');
+            const closeStatisticsModalButton = document.getElementById('close-statistics-modal');
+            const todayCountElement = document.getElementById('today-count');
+            const totalCountElement = document.getElementById('total-count');
+            const streakDaysElement = document.getElementById('streak-days');
+            const avgDailyElement = document.getElementById('avg-daily');
+            const dailyProgressBar = document.getElementById('daily-progress-bar');
+            const dailyProgressText = document.getElementById('daily-progress-text');
+            const dailyGoalText = document.getElementById('daily-goal-text');
+            const setDailyGoalButton = document.getElementById('set-daily-goal-button');
+            const setDailyGoalModal = document.getElementById('set-daily-goal-modal');
+            const dailyGoalInput = document.getElementById('daily-goal-input');
+            const saveDailyGoalButton = document.getElementById('save-daily-goal');
+            const cancelDailyGoalButton = document.getElementById('cancel-daily-goal');
+            const achievementsList = document.getElementById('achievements-list');
+
+            // --------------------------------------
+            //            Application State
+            // --------------------------------------
+            let count = 0;
+            let previousCount = 0; 
+            let currentDhikr = '';
+            let currentTheme = 'default';
+            let isDarkMode = true;
+            let isVibrationEnabled = true; 
+            let dhikrSelectionPending = null;
+            let targetCount = 0; 
+            let isZenMode = false; 
+            let useArabicNumerals = true; 
+            let dailyGoal = 0;
+            let statisticsData = {
+                dailyHistory: {},
+                totalCount: 0,
+                currentStreak: 0,
+                longestStreak: 0,
+                achievements: []
+            };
+
+            let controlButtonVisibility = { 
+                selectDhikr: true,
+                setTarget: true,
+                addDhikr: true,
+                reset: true
+            };
+
+            let duaReaderState = {
+                currentCategory: null,
+                currentIndex: 0,
+                completedToday: {}, 
+                duaCounters: {} 
+            };
+
+            let quranReaderState = {
+                currentSurahIndex: 0
+            };
+            
+            const targetCountsMilestones = [33, 100, 500, 1000]; 
+            
+            // Default Dhikr list
+            const defaultDhikrs = [
+                "استغفر الله",
+                "سبحان الله",
+                "سبحان الله وبحمده",
+                "سبحان الله العظيم",
+                "سبحان الله وبحمده سبحان الله العظيم",
+                "الحمد لله",
+                "الحمد لله رب العالمين",
+                "الله أكبر",
+                "الله أكبر كبيرا",
+                "لا إله إلا الله",
+                "لا إله إلا الله وحده لا شريك له",
+                "لا حول ولا قوة إلا بالله",
+                "أستغفر الله وأتوب إليه",
+                "اللهم صلي على محمد"
+            ];
+            let userDhikrs = []; 
+            
+            // Theme color definitions (Only 4 themes - removed 3 annoying ones)
+            const themes = {
+                'default': { primary: '#2f363f', secondary: '#4a5568', accent: '#cbd5e0', text: '#e2e8f0', counter: '#a0aec0', reset: '#ef4444', add: '#3b82f6', vibration: '#f97316' },
+                'navy': { primary: '#2a3d58', secondary: '#415a77', accent: '#a5b8d0', text: '#c8d4e5', counter: '#6a81a0', reset: '#e04f4f', add: '#4a7bbd', vibration: '#d48a4a' },
+                'forest': { primary: '#3a5e4a', secondary: '#537a66', accent: '#aed1b4', text: '#c7e0d0', counter: '#779982', reset: '#e04f4f', add: '#4a997b', vibration: '#d48a4a' },
+                'legendary': { primary: '#1a1a2e', secondary: '#16213e', accent: '#ffd700', text: '#ffffff', counter: '#ffd700', reset: '#ff6b6b', add: '#4ecdc4', vibration: '#ff9ff3' }
+            };
+
+            // Achievements definitions
+            const achievementDefinitions = [
+                { id: 'first_100', name: 'المبتدئ', description: 'أول 100 تسبيحة', requirement: 100, icon: '🌱' },
+                { id: 'first_500', name: 'المثابر', description: '500 تسبيحة', requirement: 500, icon: '🌿' },
+                { id: 'first_1000', name: 'المجتهد', description: '1000 تسبيحة', requirement: 1000, icon: '🌳' },
+                { id: 'first_5000', name: 'الأسطوري', description: '5000 تسبيحة - فتح الثيم الأسطوري', requirement: 5000, icon: '👑' },
+                { id: 'first_10000', name: 'الماسي', description: '10000 تسبيحة', requirement: 10000, icon: '💎' },
+                { id: 'daily_100', name: 'يوم مثمر', description: '100 تسبيحة في يوم واحد', requirement: 100, type: 'daily', icon: '☀️' },
+                { id: 'daily_500', name: 'يوم ذهبي', description: '500 تسبيحة في يوم واحد', requirement: 500, type: 'daily', icon: '🌟' },
+                { id: 'streak_7', name: 'أسبوع كامل', description: '7 أيام متتالية', requirement: 7, type: 'streak', icon: '📅' },
+                { id: 'streak_30', name: 'شهر كامل', description: '30 يوم متتالي', requirement: 30, type: 'streak', icon: '🗓️' }
+            ];
+
+            // --------------------------------------
+            //            Dua Data & Categories
+            // --------------------------------------
+            const duaCategories = [
+                {
+                    name: "أذكار الصباح",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M4.93 4.93l1.41 1.41M2 12h2M4.93 19.07l1.41-1.41M12 20v2M19.07 19.07l-1.41-1.41M22 12h-2M19.07 4.93l-1.41 1.41"></path><circle cx="12" cy="12" r="5"></circle></svg>`,
+                    duas: [
+                        { arabic: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور.", source: "صحيح البخاري" },
+                        { arabic: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير. رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده. رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.", source: "صحيح مسلم" },
+                        { arabic: "اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.", source: "سنن الترمذي" },
+                        { arabic: "اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.", source: "صحيح البخاري", count: 1 },
+                        { arabic: "اللهم فاطر السماوات والأرض، عالم الغيب والشهادة، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً أو أجره إلى مسلم.", source: "سنن الترمذي" },
+                        { arabic: "أصبحنا على فطرة الإسلام، وعلى كلمة الإخلاص، وعلى دين نبينا محمد صلى الله عليه وسلم، وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.", source: "صحيح مسلم" },
+                        { arabic: "رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً.", source: "سنن أبي داود", count: 3 },
+                        { arabic: "يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.", source: "صحيح الحاكم" },
+                        { arabic: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", source: "صحيح البخاري", count: 100 },
+                        { arabic: "سبحان الله وبحمده.", source: "صحيح مسلم", count: 100 }
+                    ]
+                },
+                {
+                    name: "أذكار المساء",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+                    duas: [
+                        { arabic: "أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير. رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها. رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.", source: "صحيح مسلم" },
+                        { arabic: "اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.", source: "سنن الترمذي" },
+                        { arabic: "اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.", source: "صحيح البخاري", count: 1 },
+                        { arabic: "اللهم فاطر السماوات والأرض، عالم الغيب والشهادة، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً أو أجره إلى مسلم.", source: "سنن الترمذي" },
+                        { arabic: "رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً.", source: "سنن أبي داود", count: 3 },
+                        { arabic: "يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.", source: "صحيح الحاكم" },
+                        { arabic: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", source: "صحيح البخاري", count: 100 },
+                        { arabic: "سبحان الله وبحمده.", source: "صحيح مسلم", count: 100 }
+                    ]
+                },
+                {
+                    name: "أذكار قبل النوم",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zM20 12a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2h-1a1 1 0 0 1-1-1zM4 12a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zM12 20a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zM18.36 5.64a1 1 0 0 1 .71-.29h.01a1 1 0 0 1 .7 1.7L18.36 6.7a1 1 0 0 1-1.41-1.41l1.41-1.41zM5.64 18.36a1 1 0 0 1-.71.29H4.9a1 1 0 0 1-.7-1.7l1.41-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.41zM18.36 18.36a1 1 0 0 1-.71.29H17.65a1 1 0 0 1-.7-1.7l1.41-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.41zM5.64 5.64a1 1 0 0 1 .71-.29h.01a1 1 0 0 1 .7 1.7L5.64 6.7a1 1 0 0 1-1.41-1.41l1.41-1.41z"/><circle cx="12" cy="12" r="5" /><path d="M12 7.5V12h3" /></svg>`,
+                    duas: [
+                        { arabic: "باسمك اللهم أموت وأحيا.", source: "صحيح البخاري" },
+                        { arabic: "اللهم رب السماوات ورب الأرض ورب العرش العظيم، ربنا ورب كل شيء، فالق الحب والنوى، ومنزل التوراة والإنجيل والفرقان، أعوذ بك من شر كل شيء أنت آخذ بناصيته، اللهم أنت الأول فليس قبلك شيء، وأنت الآخر فليس بعدك شيء، وأنت الظاهر فليس فوقك شيء، وأنت الباطن فليس دونك شيء، اقض عنا الدين وأغننا من الفقر.", source: "صحيح مسلم" },
+                        { arabic: "اللهم قني عذابك يوم تبعث عبادك.", source: "سنن الترمذي" },
+                        { arabic: "سُبْحَانَ اللَّهِ (33 مرة) وَالْحَمْدُ لِلَّهِ (33 مرة) وَاللَّهُ أَكْبَرُ (34 مرة).", source: "صحيح البخاري", count: 34 }
+                    ]
+                },
+                {
+                    name: "أدعية الاستيقاظ",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zM20 12a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2h-1a1 1 0 0 1-1-1zM4 12a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zM12 20a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zM18.36 5.64a1 1 0 0 1 .71-.29h.01a1 1 0 0 1 .7 1.7L18.36 6.7a1 1 0 0 1-1.41-1.41l1.41-1.41zM5.64 18.36a1 1 0 0 1-.71.29H4.9a1 1 0 0 1-.7-1.7l1.41-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.41zM18.36 18.36a1 1 0 0 1-.71.29H17.65a1 1 0 0 1-.7-1.7l1.41-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.41zM5.64 5.64a1 1 0 0 1 .71-.29h.01a1 1 0 0 1 .7 1.7L5.64 6.7a1 1 0 0 1-1.41-1.41l1.41-1.41z"/><circle cx="12" cy="12" r="5" /><path d="M12 7.5V12h3" /></svg>`,
+                    duas: [
+                        { arabic: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور.", source: "صحيح البخاري" },
+                        { arabic: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله.", source: "صحيح ابن ماجه" }
+                    ]
+                },
+                {
+                    name: "أدعية السفر",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 14.5 19.5 12 21 9.5 19.5 9.5 17.5"></polyline><path d="M14.5 17.5l-1.92-1.45a3.1 3.1 0 0 1-.58-.87L9.5 9.5"></path><path d="M16 11l-2.67-2.31a3 3 0 0 0-3.66 0L8 11"></path><path d="M12 15l1-4 2 2 4 4"></path><path d="M3 3l1-1"></path><path d="M12 5l-.5-1"></path><path d="M18.5 4.5l-1-1"></path><path d="M11 9l-1-1"></svg>`,
+                    duas: [
+                        { arabic: "الله أكبر، الله أكبر، سبحان الذي سخر لنا هذا وما كنا له مقرنين، وإنا إلى ربنا لمنقلبون. اللهم إنا نسألك في سفرنا هذا البر والتقوى، ومن العمل ما ترضى، اللهم هون علينا سفرنا هذا واطو عنا بعده، اللهم أنت الصاحب في السفر، والخليفة في الأهل، اللهم إني أعوذ بك من وعثاء السفر، وكآبة المنظر، وسوء المنقلب في المال والأهل.", source: "صحيح مسلم" },
+                        { arabic: "آيبون، تائبون، عابدون، لربنا حامدون.", source: "صحيح البخاري" }
+                    ]
+                },
+                {
+                    name: "أدعية الصيام (قبل وبعد)",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="2" ry="2"></rect><line x1="12" y1="12" x2="12" y2="16"></line><line x1="10" y1="14" x2="14" y2="14"></line></svg>`,
+                    duas: [
+                        { arabic: "ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله.", source: "سنن أبي داود" },
+                        { arabic: "اللهم إني لك صمت، وعلى رزقك أفطرت.", source: "سنن أبي داود" }
+                    ]
+                },
+                {
+                    name: "أدعية متفرقة",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10c0-4.42-3.58-8-8-8s-8 3.58-8 8c0 6 8 10 8 10z"/><circle cx="12" cy="12" r="3" /></svg>`,
+                    duas: [
+                        { arabic: "اللهم إني أعوذ بك من الهم والحزن، وأعوذ بك من العجز والكسل، وأعوذ بك من الجبن والبخل، وأعوذ بك من غلبة الدين وقهر الرجال.", source: "صحيح البخاري" },
+                        { arabic: "اللهم اجعل في قلبي نوراً، وفي بصري نوراً، وفي سمعي نوراً، وعن يميني نوراً، وعن يساري نوراً، وفوقي نوراً، وتحتي نوراً، وأمامي نوراً، وخلفي نوراً، واجعل لي نوراً.", source: "صحيح مسلم" },
+                        { arabic: "اللهم اكفني بحلالك عن حرامك، وأغنني بفضلك عمن سواك.", source: "سنن الترمذي" },
+                        { arabic: "اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت.", source: "سنن أبي داود" },
+                        { arabic: "لا إله إلا الله العظيم الحليم، لا إله إلا الله رب العرش العظيم، لا إله إلا الله رب السموات ورب الأرض ورب العرش الكريم.", source: "صحيح البخاري" },
+                        { arabic: "اللهم إني أعوذ بك من عذاب جهنم، ومن عذاب القبر، ومن فتنة المحيا والممات، ومن شر فتنة المسيح الدجال.", source: "صحيح مسلم" },
+                        { arabic: "يا مقلب القلوب ثبت قلبي على دينك.", source: "سنن الترمذي" },
+                        { arabic: "اللهم إني أسألك الجنة وما قرب إليها من قول أو عمل، وأعوذ بك من النار وما قرب إليها من قول أو عمل.", source: "سنن ابن ماجه" },
+                        { arabic: "الل اللهم إني أسألك الهدى والتقى والعفاف والغنى.", source: "صحيح مسلم" },
+                        { arabic: "اللهم إني أعوذ بك من شر ما عملت ومن شر ما لم أعمل.", source: "صحيح مسلم" },
+                        { arabic: "اللهم إني أعوذ بك من زوال نعمتك، وتحول عافيتك، وفجاءة نقمتك، وجميع سخطك.", source: "صحيح مسلم" },
+                        { title: "دعاء الكرب", arabic: "لا إله إلا أنت سبحانك إني كنت من الظالمين.", source: "سنن الترمذي" },
+                        { title: "دعاء الهم والحزن", arabic: "اللهم إني عبدك وابن عبدك، ابن أمتك، ناصيتي بيدك، ماض في حكمك، عدل في قضاؤك، أسألك بكل اسم هو لك سميت به نفسك، أو أنزلته في كتابك، أو علمته أحدا من خلقك، أو استأثرت به في علم الغيب عندك، أن تجعل القرآن العظيم ربيع قلبي، ونور صدري، وجلاء حزني، وذهاب همي.", source: "صحيح ابن حبان" },
+                        { title: "دعاء الاستغفار", arabic: "أستغفر الله الذي لا إله إلا هو الحي القيوم وأتوب إليه.", source: "سنن أبي داود" },
+                        { title: "دعاء سيد الاستغفار", arabic: "اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.", source: "صحيح البخاري" },
+                        { title: "دعاء المصيبة", arabic: "إنا لله وإنا إليه راجعون، اللهم أجرني في مصيبتي واخلف لي خيراً منها.", source: "صحيح مسلم" },
+                        { title: "دعاء زيارة المريض", arabic: "اللهم رب الناس، أذهب البأس، اشف أنت الشافي، لا شفاء إلا شفاؤك، شفاءً لا يغادر سقماً.", source: "صحيح البخاري" },
+                        { title: "دعاء عند رؤية المبتلى", arabic: "الحمد لله الذي عافاني مما ابتلاك به، وفضلني على كثير ممن خلق تفضيلاً.", source: "سنن الترمذي" },
+                        { title: "دعاء قضاء الدين", arabic: "اللهم اكفني بحلالك عن حرامك، وأغنني بفضلك عمن سواك.", source: "سنن الترمذي" },
+                        { title: "دعاء دخول السوق", arabic: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد، يحيي ويميت وهو حي لا يموت، بيده الخير، وهو على كل شيء قدير.", source: "سنن الترمذي" },
+                        { title: "دعاء المطر", arabic: "اللهم صيباً نافعاً.", source: "صحيح البخاري" },
+                        { title: "دعاء الريح", arabic: "اللهم إني أسألك خيرها، وأعوذ بك من شرها.", source: "سنن الترمذي" },
+                        { title: "دعاء الرعد", arabic: "سبحان الذي يسبح الرعد بحمده والملائكة من خيفته.", source: "الموطأ" },
+                        { title: "دعاء بعد الأذان", arabic: "اللهم رب هذه الدعوة التامة والصلاة القائمة، آت محمداً الوسيلة والفضيلة، وابعثه مقاماً محموداً الذي وعدته.", source: "صحيح البخاري" },
+                        { title: "دعاء دخول المسجد", arabic: "اللهم افتح لي أبواب رحمتك.", source: "صحيح مسلم" },
+                        { title: "دعاء الخروج من المسجد", arabic: "اللهم إني أسألك من فضلك.", source: "سنن أبي داود" },
+                        { title: "دعاء دخول المنزل", arabic: "باسم الله ولجنا، وباسم الله خرجنا، وعلى الله ربنا توكلنا.", source: "صحيح مسلم" },
+                        { title: "دعاء الخروج من المنزل", arabic: "باسم الله، توكلت على الله، ولا حول ولا قوة إلا بالله.", source: "سنن الترمذي" },
+                        { title: "دعاء دخول الخلاء", arabic: "اللهم إني أعوذ بك من الخبث والخبائث.", source: "صحيح البخاري" },
+                        { title: "دعاء الخروج من الخلاء", arabic: "غفرانك.", source: "سنن أبي داود" },
+                        { title: "دعاء الطعام", arabic: "باسم الله.", source: "صحيح البخاري" },
+                        { title: "دعاء بعد الطعام", arabic: "الحمد لله الذي أطعمني هذا ورزقنيه من غير حول مني ولا قوة.", source: "سنن أبي داود" },
+                        { title: "دعاء التعزية", arabic: "إن لله ما أخذ وله ما أعطى، وكل شيء عنده بأجل مسمى، فلتصبر ولتحتسب.", source: "صحيح البخاري" },
+                        { title: "دعاء للمتوفى", arabic: "اللهم اغفر له وارحمه، وعافه واعف عنه، وأكرم نزله، ووسع مدخله، واغسله بالماء والثلج والبرد، ونقه من الخطايا كما نقيت الثوب الأبيض من الدنس.", source: "صحيح مسلم" },
+                        { title: "دعاء عند الغضب", arabic: "أعوذ بالله من الشيطان الرجيم.", source: "صحيح البخاري" },
+                        { title: "دعاء عند العطاس", arabic: "الحمد لله.", source: "صحيح البخاري" },
+                        { title: "دعاء رؤية الهلال", arabic: "اللهم أهله علينا باليمن والإيمان والسلامة والإسلام، ربي وربك الله.", source: "سنن الترمذي" },
+                        { title: "دعاء ليلة القدر", arabic: "اللهم إنك عفو تحب العفو فاعف عني.", source: "سنن الترمذي" },
+                        { title: "دعاء الاستخارة", arabic: "اللهم إني أستخيرك بعلمك، وأستقدرك بقدرتك، وأسألك من فضلك العظيم، فإنك تقدر ولا أقدر، وتعلم ولا أعلم، وأنت علام الغيوب. اللهم إن كنت تعلم أن هذا الأمر (ويسمي حاجته) خير لي في ديني ومعاشي وعاقبة أمري، فاقدره لي ويسره لي، ثم بارك لي فيه، وإن كنت تعلم أن هذا الأمر شر لي في ديني ومعاشي وعاقبة أمري، فاصرفه عني واصرفني عنه، واقدر لي الخير حيث كان، ثم رضني به.", source: "صحيح البخاري" },
+                        { title: "دعاء تيسير الأمور", arabic: "اللهم لا سهل إلا ما جعلته سهلا، وأنت تجعل الحزن إذا شئت سهلاً.", source: "صحيح ابن حبان" },
+                        { title: "دعاء للوالدين", arabic: "رب ارحمهما كما ربياني صغيرا.", source: "القرآن الكريم" },
+                        { title: "دعاء للمتزوج", arabic: "اللهم بارك لهما وبارك عليهما واجمع بينهما في خير.", source: "سنن الترمذي" },
+                        { title: "دعاء لمن صنع لك معروفا", arabic: "جزاك الله خيرا.", source: "سنن الترمذي" },
+                        { title: "دعاء لمن أقرضك", arabic: "بارك الله لك في أهلك ومالك.", source: "صحيح ابن ماجه" },
+                        { title: "دعاء رؤية المطر", arabic: "اللهم صيباً هنيئاً.", source: "صحيح البخاري" },
+                        { title: "دعاء عند الكسوف", arabic: "اللهم إنا نستغفرك ونتوب إليك.", source: "صحيح البخاري" },
+                        { title: "دعاء عند الخوف من الظلم", arabic: "اللهم إني أعوذ بك من شرهم.", source: "سنن أبي داود" },
+                        { title: "دعاء الخوف من الشرك", arabic: "الل اللهم إني أعوذ بك أن أشرك بك وأنا أعلم، وأستغفرك لما لا أعلم.", source: "صحيح ابن ماجه" },
+                        { title: "دعاء عند الاستياء من القضاء", arabic: "لا حول ولا قوة إلا بالله.", source: "صحيح مسلم" },
+                        { title: "دعاء عند سماع نباح الكلب", arabic: "أعوذ بالله من الشيطان الرجيم.", source: "سنن الترمذي" },
+                        { title: "دعاء عند الدخول إلى المقابر", arabic: "السلام عليكم أهل الديار من المؤمنين والمسلمين، وإنا إن شاء الله بكم لاحقون، أسأل الله لنا ولكم العافية.", source: "صحيح مسلم" },
+                        { title: "دعاء السكينة", arabic: "اللهم إني أسألك السكينة والعافية في الدنيا والآخرة.", source: "سنن الترمذي" },
+                        { title: "دعاء العطاس", arabic: "الحمد لله.", source: "صحيح البخاري" },
+                        { title: "دعاء ركوب الدابة", arabic: "سبحان الذي سخر لنا هذا وما كنا له مقرنين وإنا إلى ربنا لمنقلبون.", source: "صحيح مسلم" },
+                        { title: "دعاء بعد الصلاة", arabic: "اللهم أعني على ذكرك وشكرك وحسن عبادتك.", source: "سنن أبي داود" },
+                        { title: "دعاء يوم عرفة", arabic: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", source: "صحيح الترمذي" },
+                        { title: "دعاء لطلب المغفرة", arabic: "رب اغفر لي وتب علي إنك أنت التواب الرحيم.", source: "صحيح ابن حبان" },
+                        { title: "دعاء لطلب الرزق", arabic: "اللهم اغفر لي وارحمني وعافني وارزقني.", source: "صحيح مسلم" },
+                        { title: "دعاء لوجع الرأس", arabic: "ضع يدك على الذي يألم من جسدك وقل بسم الله ثلاثًا، وقل سبع مرات أعوذ بالله وقدرته من شر ما أجد وأحاذر.", source: "صحيح مسلم" },
+                        { title: "دعاء قبل الجماع", arabic: "باسم الله، اللهم جنبنا الشيطان، وجنب الشيطان ما رزقتنا.", source: "صحيح البخاري" },
+                        { arabic: "اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي وأعوذ بعظمتك أن أغتال من تحتي.", source: "سنن أبي داود" },
+                        { arabic: "اللهم اجعلنا هادين مهتدين، غير ضالين ولا مضلين، سلماً لأوليائك، حرباً لأعدائك، نحب بحبك من أحبك، ونعادي بعداوتك من خالفك.", source: "سنن الترمذي" },
+                        { arabic: "اللهم إني أعوذ بك من الفقر إلا إليك، ومن الذل إلا لك، ومن الخوف إلا منك.", source: "صحيح ابن حبان" },
+                        { arabic: "اللهم زدنا ولا تنقصنا، وأكرمنا ولا تهنا، وأعطنا ولا تحرمنا، وآثرنا ولا تؤثر علينا، وأرضنا وارض عنا.", source: "سنن الترمذي" },
+                        { arabic: "اللهم إني أسألك من الخير كله عاجله وآجله، ما علمت منه وما لم أعلم، وأعوذ بك من الشر كله عاجله وآجله، ما علمت منه وما لم أعلم.", source: "صحيح ابن ماجه" },
+                        { arabic: "اللهم إني أسألك خير المسألة، وخير الدعاء، وخير النجاح، وخير العمل، وخير الثواب، وخير الحياة، وخير الممات، وثبتني، وثقل موازيني، وحقق إيماني، وارفع درجاتي، وتقبل صلاتي، واغفر خطيئتي، وأسألك الدرجات العلى من الجنة.", source: "المستدرك على الصحيحين" },
+                        { arabic: "اللهم إني أعوذ بك من قلب لا يخشع، ومن دعاء لا يسمع، ومن عين لا تدمع، ومن نفس لا تشبع.", source: "سنن الترمذي" },
+                        { arabic: "اللهم إني أعوذ بك من شر سمعي، ومن شر بصري، ومن شر لساني، ومن شر قلبي، ومن شر منيي.", source: "سنن أبي داود" },
+                        { arabic: "اللهم إني أسألك فعل الخيرات، وترك المنكرات، وحب المساكين، وأن تغفر لي وترحمني، وإذا أردت فتنة قوم فتوفني غير مفتون، وأسألك حبك، وحب من يحبك، وحب عمل يقربني إلى حبك.", source: "سنن الترمذي" },
+                        { arabic: "اللهم إني أسألك من فضلك ورحمتك، فإنه لا يملكها إلا أنت.", source: "صحيح مسلم" }
+                    ]
+                },
+                {
+                    name: "القرآن الكريم",
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V6.5A2.5 2.5 0 0 0 17.5 4H6.5A2.5 2.5 0 0 0 4 6.5v13z"></path></svg>`,
+                    duas: [] // This category will load Quran surahs dynamically
+                }
+            ];
+
+            // Simplified Quran Data (mock for demonstration)
+            const quranData = [
+                {
+                    name: "الفاتحة",
+                    arabic: [
+                        "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                        "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+                        "الرَّحْمَٰنِ الرَّحِيمِ",
+                        "مَالِكِ يَوْمِ الدِّينِ",
+                        "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+                        "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+                        "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ"
+                    ]
+                },
+                {
+                    name: "الإخلاص",
+                    arabic: [
+                        "قُلْ هُوَ اللَّهُ أَحَدٌ",
+                        "اللَّهُ الصَّمَدُ",
+                        "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+                        "وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ"
+                    ]
+                },
+                {
+                    name: "الفلق",
+                    arabic: [
+                        "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
+                        "مِن شَرِّ مَا خَلَقَ",
+                        "وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ",
+                        "وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ",
+                        "وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"
+                    ]
+                },
+                {
+                    name: "الناس",
+                    arabic: [
+                        "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
+                        "مَلِكِ النَّاسِ",
+                        "إِلَٰهِ النَّاسِ",
+                        "مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ",
+                        "الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ",
+                        "مِنَ الْجِنَّةِ وَالنَّاسِ"
+                    ]
+                },
+                {
+                    name: "الكافرون",
+                    arabic: [
+                        "قُلْ يَا أَيُّهَا الْكَافِرُونَ",
+                        "لَا أَعْبُدُ مَا تَعْبُدُونَ",
+                        "وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ",
+                        "وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ",
+                        "وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ",
+                        "لَكُمْ دِينُكُمْ وَلِيَ دِينِ"
+                    ]
+                },
+                {
+                    name: "النصر",
+                    arabic: [
+                        "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ",
+                        "وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا",
+                        "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا"
+                    ]
+                }
+            ];
+            
+            // --------------------------------------
+            //          Initialization & State
+            // --------------------------------------
+            function initApp() {
+                loadState();
+                setupEventListeners();
+                
+                renderDuaCategories();
+                
+                changeTheme(currentTheme, false);
+                setActiveThemeButton(currentTheme);
+                applyMode(isDarkMode, false); 
+                updateVibrationUI(false); 
+                updateDisplay();
+                updateDhikrName(currentDhikr);
+                updateTargetDisplay(); 
+                updateDocumentTitle(); 
+                updateStatistics();
+                
+                checkAndResetDuaCompletion();
+                updateMainControlsVisibility(); 
+                applyZenMode(isZenMode, false); 
+                checkLegendaryTheme();
+
+                // Set initial state of settings checkboxes
+                toggleDarkModeCheckbox.checked = isDarkMode;
+                toggleArabicNumeralsCheckbox.checked = useArabicNumerals;
+                toggleZenModeCheckbox.checked = isZenMode;
+                toggleSelectDhikrCheckbox.checked = controlButtonVisibility.selectDhikr;
+                toggleSetTargetCheckbox.checked = controlButtonVisibility.setTarget;
+                toggleAddDhikrCheckbox.checked = controlButtonVisibility.addDhikr;
+                toggleResetCheckbox.checked = controlButtonVisibility.reset;
+            }
+
+            function getAllDhikrs() {
+                const uniqueDhikrs = new Set(defaultDhikrs);
+                userDhikrs.forEach(dhikr => uniqueDhikrs.add(dhikr));
+                return Array.from(uniqueDhikrs);
+            }
+
+            function loadState() {
+                try {
+                    const savedState = localStorage.getItem('thikrAppState');
+                    const savedUserDhikrs = localStorage.getItem('userDhikrs');
+                    const savedDuaState = localStorage.getItem('duaReaderState');
+                    const savedControlsVisibility = localStorage.getItem('controlButtonVisibility');
+                    const savedZenMode = localStorage.getItem('isZenMode');
+                    const savedUseArabicNumerals = localStorage.getItem('useArabicNumerals');
+                    const savedDarkMode = localStorage.getItem('isDarkMode');
+                    const savedStatistics = localStorage.getItem('statisticsData');
+                    const savedDailyGoal = localStorage.getItem('dailyGoal');
+
+                    if (savedUserDhikrs) {
+                        userDhikrs = JSON.parse(savedUserDhikrs);
+                    }
+
+                    if (savedState) {
+                        const state = JSON.parse(savedState);
+                        count = state.count || 0;
+                        previousCount = state.previousCount || 0;
+                        
+                        const allDhikrs = getAllDhikrs();
+                        currentDhikr = allDhikrs.includes(state.currentDhikr) ? state.currentDhikr : allDhikrs[0];
+                        
+                        currentTheme = state.theme || 'default';
+                        isVibrationEnabled = state.isVibrationEnabled !== undefined ? state.isVibrationEnabled : true;
+                        targetCount = state.targetCount !== undefined ? state.targetCount : 0; 
+                    } else {
+                        currentDhikr = defaultDhikrs[0];
+                    }
+
+                    if (savedDuaState) {
+                        duaReaderState = JSON.parse(savedDuaState);
+                    }
+
+                    if (savedControlsVisibility) {
+                        controlButtonVisibility = JSON.parse(savedControlsVisibility);
+                    }
+
+                    if (savedZenMode) {
+                        isZenMode = JSON.parse(savedZenMode);
+                    }
+
+                    if (savedUseArabicNumerals !== null) {
+                        useArabicNumerals = JSON.parse(savedUseArabicNumerals);
+                    }
+
+                    if (savedDarkMode !== null) {
+                        isDarkMode = JSON.parse(savedDarkMode);
+                    }
+
+                    if (savedStatistics) {
+                        statisticsData = JSON.parse(savedStatistics);
+                    }
+
+                    if (savedDailyGoal) {
+                        dailyGoal = JSON.parse(savedDailyGoal);
+                    }
+
+                } catch (e) {
+                    console.error("Failed to load state from LocalStorage:", e);
+                    // Reset to default on error
+                    currentDhikr = defaultDhikrs[0];
+                    userDhikrs = [];
+                    duaReaderState = { currentCategory: null, currentIndex: 0, completedToday: {}, duaCounters: {} };
+                    targetCount = 0; 
+                    isZenMode = false;
+                    useArabicNumerals = true;
+                    isDarkMode = true;
+                    controlButtonVisibility = { selectDhikr: true, setTarget: true, addDhikr: true, reset: true };
+                    statisticsData = { dailyHistory: {}, totalCount: 0, currentStreak: 0, longestStreak: 0, achievements: [] };
+                    dailyGoal = 0;
+                }
+            }
+            
+            function saveState() {
+                const state = {
+                    count,
+                    previousCount,
+                    currentDhikr,
+                    isDarkMode,
+                    theme: currentTheme,
+                    isVibrationEnabled,
+                    targetCount 
+                };
+                localStorage.setItem('thikrAppState', JSON.stringify(state));
+                localStorage.setItem('userDhikrs', JSON.stringify(userDhikrs));
+                localStorage.setItem('duaReaderState', JSON.stringify(duaReaderState));
+                localStorage.setItem('controlButtonVisibility', JSON.stringify(controlButtonVisibility));
+                localStorage.setItem('isZenMode', JSON.stringify(isZenMode));
+                localStorage.setItem('useArabicNumerals', JSON.stringify(useArabicNumerals));
+                localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+                localStorage.setItem('statisticsData', JSON.stringify(statisticsData));
+                localStorage.setItem('dailyGoal', JSON.stringify(dailyGoal));
+            }
+
+            // Statistics Functions
+            function updateStatistics() {
+                const today = getTodayString();
+                const todayCount = statisticsData.dailyHistory[today] || 0;
+                
+                // Update display
+                todayCountElement.textContent = formatNumberDisplay(todayCount);
+                totalCountElement.textContent = formatNumberDisplay(statisticsData.totalCount);
+                streakDaysElement.textContent = formatNumberDisplay(statisticsData.currentStreak);
+                
+                // Calculate average
+                const historyLength = Object.keys(statisticsData.dailyHistory).length;
+                const average = historyLength > 0 ? Math.round(statisticsData.totalCount / historyLength) : 0;
+                avgDailyElement.textContent = formatNumberDisplay(average);
+                
+                // Update daily goal progress
+                updateDailyGoalProgress(todayCount);
+                
+                // Update achievements
+                updateAchievements();
+            }
+
+            function updateDailyGoalProgress(todayCount) {
+                if (dailyGoal > 0) {
+                    dailyGoalText.textContent = `${formatNumberDisplay(dailyGoal)} تسبيحة يومياً`;
+                    const progress = Math.min((todayCount / dailyGoal) * 100, 100);
+                    dailyProgressBar.style.width = `${progress}%`;
+                    dailyProgressText.textContent = `${formatNumberDisplay(todayCount)} / ${formatNumberDisplay(dailyGoal)}`;
+                } else {
+                    dailyGoalText.textContent = 'لا يوجد هدف';
+                    dailyProgressBar.style.width = '0%';
+                    dailyProgressText.textContent = '0 / 0';
+                }
+            }
+
+            function updateAchievements() {
+                achievementsList.innerHTML = '';
+                
+                achievementDefinitions.forEach(achievement => {
+                    if (isAchievementUnlocked(achievement)) {
+                        if (!statisticsData.achievements.includes(achievement.id)) {
+                            statisticsData.achievements.push(achievement.id);
+                            // Show achievement unlock notification
+                            if (achievement.id === 'first_5000') {
+                                showToast(`🎉 إنجاز جديد: ${achievement.name}! تم فتح الثيم الأسطوري!`, 5000);
+                            } else {
+                                showToast(`🎉 إنجاز جديد: ${achievement.name}!`, 3000);
+                            }
+                        }
+                        
+                        const badge = document.createElement('div');
+                        badge.className = `achievement-badge ${achievement.id === 'first_5000' ? 'legendary-badge' : ''}`;
+                        badge.innerHTML = `${achievement.icon} ${achievement.name}`;
+                        badge.title = achievement.description;
+                        achievementsList.appendChild(badge);
+                    }
+                });
+                
+                if (achievementsList.children.length === 0) {
+                    achievementsList.innerHTML = '<div style="color: var(--theme-accent); opacity: 0.6; font-size: 0.9rem;">لا توجد إنجازات بعد</div>';
+                }
+            }
+
+            function isAchievementUnlocked(achievement) {
+                const today = getTodayString();
+                const todayCount = statisticsData.dailyHistory[today] || 0;
+                
+                switch (achievement.type) {
+                    case 'daily':
+                        return todayCount >= achievement.requirement;
+                    case 'streak':
+                        return statisticsData.currentStreak >= achievement.requirement;
+                    default:
+                        return statisticsData.totalCount >= achievement.requirement;
+                }
+            }
+
+            function getTodayString() {
+                return new Date().toISOString().split('T')[0];
+            }
+
+            function recordDhikr() {
+                const today = getTodayString();
+                
+                // Update daily history
+                if (!statisticsData.dailyHistory[today]) {
+                    statisticsData.dailyHistory[today] = 0;
+                }
+                statisticsData.dailyHistory[today]++;
+                
+                // Update total count
+                statisticsData.totalCount++;
+                
+                // Update streak
+                updateStreak();
+                
+                // Save state
+                saveState();
+                
+                // Update display
+                updateStatistics();
+            }
+
+            function updateStreak() {
+                const today = getTodayString();
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayString = yesterday.toISOString().split('T')[0];
+                
+                const todayCount = statisticsData.dailyHistory[today] || 0;
+                const yesterdayCount = statisticsData.dailyHistory[yesterdayString] || 0;
+                
+                if (todayCount > 0) {
+                    if (yesterdayCount > 0) {
+                        // Continue streak only if we haven't counted this day yet
+                        if (todayCount === 1) {
+                            statisticsData.currentStreak++;
+                        }
+                    } else {
+                        // Start new streak
+                        statisticsData.currentStreak = 1;
+                    }
+                    
+                    // Update longest streak
+                    if (statisticsData.currentStreak > statisticsData.longestStreak) {
+                        statisticsData.longestStreak = statisticsData.currentStreak;
+                    }
+                }
+            }
+
+            function checkLegendaryTheme() {
+                const legendaryButton = document.querySelector('[data-theme="legendary"]');
+                if (statisticsData.totalCount >= 5000) {
+                    legendaryButton.classList.remove('locked');
+                    legendaryButton.style.opacity = '1';
+                    legendaryButton.removeAttribute('disabled');
+                    legendaryButton.title = 'الثيم الأسطوري - مفتوح';
+                } else {
+                    legendaryButton.classList.add('locked');
+                    legendaryButton.style.opacity = '0.3';
+                    legendaryButton.setAttribute('disabled', 'true');
+                    legendaryButton.title = `الثيم الأسطوري - يُفتح عند الوصول لـ 5000 تسبيحة (${formatNumberDisplay(statisticsData.totalCount)}/5000)`;
+                }
+            }
+
+            function applyLegendaryEffects() {
+                if (currentTheme === 'legendary' && statisticsData.totalCount >= 5000) {
+                    counterDisplay.classList.add('legendary');
+                    counterButton.classList.add('legendary');
+                } else {
+                    counterDisplay.classList.remove('legendary');
+                    counterButton.classList.remove('legendary');
+                }
+            }
+
+            // --------------------------------------
+            //             Dhikr Management
+            // --------------------------------------
+            
+            function openSelectDhikrModal() {
+                showModal(selectDhikrModal);
+                selectDhikrModalSearchInput.value = ''; 
+                populateDhikrListInModal(''); 
+            }
+
+            function populateDhikrListInModal(filter = '') {
+                selectDhikrList.innerHTML = '';
+                const allDhikrs = getAllDhikrs();
+                
+                const filteredDhikrs = allDhikrs.filter(dhikr => 
+                    dhikr.toLowerCase().includes(filter.toLowerCase())
+                );
+
+                if (filteredDhikrs.length === 0 && filter !== '') {
+                    const noResults = document.createElement('li');
+                    noResults.textContent = "لا توجد نتائج مطابقة";
+                    noResults.classList.add('dhikr-list-item');
+                    noResults.style.color = 'gray';
+                    noResults.style.cursor = 'default';
+                    selectDhikrList.appendChild(noResults);
+                    return;
+                }
+
+                filteredDhikrs.forEach(dhikr => {
+                    const li = document.createElement('li');
+                    li.textContent = dhikr;
+                    li.classList.add('dhikr-list-item');
+                    li.setAttribute('data-value', dhikr);
+                    
+                    if (dhikr === currentDhikr) {
+                        li.classList.add('selected');
+                    }
+                    
+                    li.addEventListener('click', () => handleDhikrSelection(dhikr));
+                    selectDhikrList.appendChild(li);
+                });
+            }
+
+            function handleDhikrSelection(newDhikr) {
+                if (newDhikr === currentDhikr) {
+                    hideModal(selectDhikrModal);
+                    return;
+                }
+
+                if (count > 0) {
+                    dhikrSelectionPending = newDhikr;
+                    showModal(dhikrResetModal);
+                } else {
+                    changeDhikr(newDhikr);
+                    hideModal(selectDhikrModal);
+                }
+            }
+
+            function changeDhikr(newDhikr) {
+                currentDhikr = newDhikr;
+                updateDhikrName(newDhikr);
+                resetCounter(false); 
+                dhikrSelectionPending = null;
+                saveState();
+                updateDocumentTitle();
+            }
+
+            function updateDhikrName(name) {
+                dhikrNameElement.textContent = name;
+            }
+
+            // --------------------------------------
+            //            Custom Dhikr Logic
+            // --------------------------------------
+
+            function openAddDhikrModal() {
+                showModal(addDhikrModal);
+                newDhikrInput.value = '';
+                newDhikrInput.focus();
+            }
+
+            function saveNewDhikr() {
+                const newDhikr = newDhikrInput.value.trim();
+                
+                if (newDhikr === '') {
+                    showToast("الرجاء كتابة الذكر أولاً.");
+                    return;
+                }
+
+                const allDhikrs = getAllDhikrs();
+
+                if (allDhikrs.includes(newDhikr)) {
+                    showToast("هذا الذكر موجود بالفعل.");
+                    hideModal(addDhikrModal);
+                    changeDhikr(newDhikr); 
+                    return;
+                }
+
+                userDhikrs.push(newDhikr);
+                hideModal(addDhikrModal);
+                changeDhikr(newDhikr);
+                showToast(`تم إضافة "${newDhikr}" بنجاح.`);
+            }
+
+            // --------------------------------------
+            //             Counter Logic
+            // --------------------------------------
+            
+            function handleCounterClick(event) {
+                // Ignore clicks if a modal is open, unless it's the zen-tap-area
+                if (document.querySelector('.modal[style*="display: flex"]') && event.target.id !== 'zen-tap-area') {
+                    return;
+                }
+
+                // If in Zen Mode, ensure the click originated from the zen-tap-area or the body itself
+                if (isZenMode && event.target.id !== 'zen-tap-area' && event.target.tagName !== 'BODY') {
+                    return;
+                }
+
+                // If not in Zen Mode, ensure the click is on the counter button
+                if (!isZenMode && event.target !== counterButton) {
+                    return;
+                }
+
+                previousCount = count; 
+                count++;
+                recordDhikr(); // Record in statistics
+                updateDisplay();
+                createSparkles(event.clientX, event.clientY); 
+                vibrate(50); 
+                updateDocumentTitle();
+
+                if (targetCountsMilestones.includes(count)) { 
+                    showToast(`ما شاء الله! لقد أكملت ${formatNumberDisplay(count)} تسبيحة.`, 4000); 
+                    vibrate(200); 
+                }
+
+                if (count === 5000 && !statisticsData.achievements.includes('first_5000')) {
+                    checkLegendaryTheme();
+                    applyLegendaryEffects();
+                }
+
+                if (targetCount > 0 && count === targetCount) { 
+                    showToast(`تهانينا! لقد وصلت إلى هدفك: ${formatNumberDisplay(targetCount)} تسبيحة!`, 5000);
+                    vibrate([200, 100, 200]); 
+                }
+                
+                saveState();
+            }
+            
+            function updateDisplay() {
+                counterDisplay.textContent = formatNumberDisplay(count);
+                counterDisplay.classList.add('bounce');
+                counterDisplay.addEventListener('animationend', () => {
+                    counterDisplay.classList.remove('bounce');
+                }, { once: true });
+                applyLegendaryEffects();
+            }
+
+            function resetCounter(showConfirmation = true) {
+                if (showConfirmation) {
+                    showModal(manualResetModal);
+                } else {
+                    count = 0;
+                    previousCount = 0; 
+                    updateDisplay();
+                    saveState();
+                    updateDocumentTitle();
+                }
+            }
+
+            // --------------------------------------
+            //               Modals
+            // --------------------------------------
+
+            function confirmDhikrChangeReset() {
+                if (dhikrSelectionPending) {
+                    changeDhikr(dhikrSelectionPending);
+                    hideModal(dhikrResetModal);
+                }
+            }
+
+            function cancelDhikrChange() {
+                dhikrSelectionPending = null;
+                hideModal(dhikrResetModal);
+            }
+
+            function confirmManualReset() {
+                count = 0;
+                previousCount = 0;
+                updateDisplay();
+                vibrate(100); 
+                showToast("تم تصفير العداد بنجاح.");
+                saveState();
+                hideModal(manualResetModal);
+                updateDocumentTitle();
+            }
+
+            function cancelManualReset() {
+                hideModal(manualResetModal);
+            }
+
+            function showModal(modal) {
+                modal.style.display = 'flex';
+                body.style.overflow = 'hidden'; 
+            }
+
+            function hideModal(modal) {
+                modal.style.display = 'none';
+                body.style.overflow = 'auto'; 
+            }
+
+            function showToast(message, duration = 3000) {
+                toastElement.textContent = message;
+                toastElement.classList.add('show');
+                setTimeout(() => {
+                    toastElement.classList.remove('show');
+                }, duration); 
+            }
+
+            // --------------------------------------
+            //            Dua Modal Logic
+            // --------------------------------------
+            
+            function openDuasModal() {
+                showModal(duasModal);
+                showDuaCategoryList();
+            }
+
+            function showDuaCategoryList() {
+                duaReaderView.style.display = 'none';
+                quranSurahList.style.display = 'none';
+                quranReaderView.style.display = 'none';
+
+                duasCategoryList.style.display = 'flex';
+                duasBackButton.style.display = 'none';
+                quranBackToSurahsButton.style.display = 'none';
+                closeDuasModalBtn.style.display = 'block';
+                duasModalTitle.textContent = 'الأدعية المأثورة';
+                renderDuaCategories();
+                
+                // Ensure main counter buttons are enabled when returning to Dua category list
+                counterButton.disabled = false;
+                selectDhikrButton.disabled = false; 
+                setTargetButton.disabled = false; 
+                addDhikrButton.disabled = false; 
+                resetButton.disabled = false; 
+            }
+
+            function renderDuaCategories() {
+                duasCategoryList.innerHTML = '';
+                duaCategories.forEach(category => {
+                    const categoryItem = document.createElement('div');
+                    categoryItem.classList.add('dua-category-item');
+                    categoryItem.setAttribute('data-category', category.name);
+                    
+                    const isCompleted = isCategoryCompletedToday(category.name);
+                    
+                    let completionMark = '';
+                    if (isCompleted && category.name !== "القرآن الكريم" && category.name !== "أدعية متفرقة") {
+                        categoryItem.classList.add('completed');
+                        completionMark = `<span class="completed-mark">✓</span>`;
+                    }
+
+                    categoryItem.innerHTML = `
+                        ${completionMark}
+                        ${category.name}
+                        <div class="category-icon">${category.icon}</div>
+                    `;
+
+                    categoryItem.addEventListener('click', () => {
+                        if (category.name === "القرآن الكريم") {
+                            showQuranSurahList();
+                        } else {
+                            startDuaReader(category.name);
+                        }
+                    });
+                    duasCategoryList.appendChild(categoryItem);
+                });
+            }
+
+            function isCategoryCompletedToday(categoryName) {
+                const today = new Date().toDateString();
+                const completionStatus = duaReaderState.completedToday[categoryName];
+                return completionStatus && completionStatus.date === today && completionStatus.status === true;
+            }
+
+            function markCategoryCompleted(categoryName) {
+                const today = new Date().toDateString();
+                duaReaderState.completedToday[categoryName] = { status: true, date: today };
+                saveState();
+            }
+
+            function checkAndResetDuaCompletion() {
+                const today = new Date().toDateString();
+                
+                let resetNeeded = false;
+                for (const categoryName in duaReaderState.completedToday) {
+                    if (duaReaderState.completedToday[categoryName].date !== today) {
+                        duaReaderState.completedToday[categoryName].status = false;
+                        duaReaderState.completedToday[categoryName].date = today;
+                        resetNeeded = true;
+                    }
+                }
+                
+                if (resetNeeded) {
+                    duaReaderState.duaCounters = {};
+                    saveState();
+                    console.log("Dua completion and counters reset for the new day.");
+                }
+            }
+
+            // --------------------------------------
+            //            Dua Reader View
+            // --------------------------------------
+            let currentDuaCategory = null;
+
+            function startDuaReader(categoryName) {
+                duaReaderState.currentCategory = categoryName;
+                duaReaderState.currentIndex = 0;
+                currentDuaCategory = duaCategories.find(cat => cat.name === categoryName);
+                
+                if (!currentDuaCategory) {
+                    showToast("حدث خطأ في تحميل الأدعية لهذه الفئة.");
+                    return;
+                }
+
+                duasCategoryList.style.display = 'none';
+                quranSurahList.style.display = 'none';
+                quranReaderView.style.display = 'none';
+                duaReaderView.style.display = 'flex';
+                duasBackButton.style.display = 'block';
+                closeDuasModalBtn.style.display = 'none';
+                duasModalTitle.textContent = currentDuaCategory.name;
+
+                displayCurrentDua();
+            }
+
+            function displayCurrentDua() {
+                const dua = currentDuaCategory.duas[duaReaderState.currentIndex];
+                
+                if (!dua) {
+                    showToast("لا يوجد دعاء في هذه الفئة.");
+                    showDuaCategoryList();
+                    return;
+                }
+
+                // Update UI elements for the current Dua
+                readerCategoryTitle.textContent = currentDuaCategory.name;
+                duaTextElement.textContent = dua.arabic;
+                duaSourceElement.textContent = `(${dua.source})`;
+
+                // Handle Dua-specific counters (Tally mode)
+                if (dua.count > 0) {
+                    duaTallyArea.style.display = 'block';
+                    duaCounterInfo.textContent = `تكرر ${formatNumberDisplay(dua.count)} مرات`;
+                    
+                    const duaKey = `${duaReaderState.currentCategory}_${duaReaderState.currentIndex}`;
+                    const currentTally = duaReaderState.duaCounters[duaKey] || 0;
+                    
+                    duaTallyCounter.textContent = formatNumberDisplay(currentTally);
+                    
+                    // Disable main counter and controls when in Dua Reader Tally mode
+                    counterButton.disabled = true; 
+                    selectDhikrButton.disabled = true; 
+                    setTargetButton.disabled = true; 
+                    addDhikrButton.disabled = true;
+                    resetButton.disabled = true;
+                } else {
+                    duaTallyArea.style.display = 'none';
+                }
+
+                // Logic for "Complete Category" button visibility
+                if (currentDuaCategory.name === "أدعية متفرقة" || currentDuaCategory.name === "القرآن الكريم") {
+                    completeCategoryButton.style.display = 'none'; 
+                } else {
+                    const isCompleted = isCategoryCompletedToday(currentDuaCategory.name);
+                    completeCategoryButton.style.display = isCompleted ? 'none' : 'block';
+                }
+                
+                prevDuaButton.disabled = duaReaderState.currentIndex === 0;
+                nextDuaButton.disabled = duaReaderState.currentIndex === currentDuaCategory.duas.length - 1;
+            }
+
+            function nextDua() {
+                if (duaReaderState.currentIndex < currentDuaCategory.duas.length - 1) {
+                    duaReaderState.currentIndex++;
+                    displayCurrentDua();
+                    saveState();
+                } else {
+                    // Only mark category complete if it's not "أدعية متفرقة" or "القرآن الكريم"
+                    if (currentDuaCategory.name !== "أدعية متفرقة" && currentDuaCategory.name !== "القرآن الكريم") {
+                        markCategoryCompleted(currentDuaCategory.name);
+                        showToast(`أحسنت! لقد أكملت فئة ${currentDuaCategory.name} لهذا اليوم.`);
+                    } else {
+                        showToast(`أكملت الأدعية في فئة ${currentDuaCategory.name}.`);
+                    }
+                    showDuaCategoryList();
+                }
+            }
+
+            function prevDua() {
+                if (duaReaderState.currentIndex > 0) {
+                    duaReaderState.currentIndex--;
+                    displayCurrentDua();
+                    saveState();
+                }
+            }
+
+            function handleDuaTallyClick() {
+                const duaKey = `${duaReaderState.currentCategory}_${duaReaderState.currentIndex}`;
+                const currentDua = currentDuaCategory.duas[duaReaderState.currentIndex];
+                const targetCount = currentDua.count || 0;
+
+                if (!duaReaderState.duaCounters[duaKey]) {
+                    duaReaderState.duaCounters[duaKey] = 0;
+                }
+
+                duaReaderState.duaCounters[duaKey]++;
+                vibrate(50);
+                const rect = duaTallyButton.getBoundingClientRect();
+                createSparkles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                
+                const newCount = duaReaderState.duaCounters[duaKey];
+                duaTallyCounter.textContent = formatNumberDisplay(newCount);
+                
+                saveState();
+
+                if (newCount === targetCount) {
+                    showToast(`أتممت هذا الذكر (${formatNumberDisplay(targetCount)} مرة).`, 2500);
+                    vibrate(300);
+                    setTimeout(nextDua, 1000);
+                } else if (newCount > targetCount) {
+                    showToast("لقد تجاوزت العدد المطلوب. استمر إن شئت.", 1500);
+                }
+            }
+
+            function handleCompleteCategory() {
+                if (currentDuaCategory.name !== "أدعية متفرقة" && currentDuaCategory.name !== "القرآن الكريم") { 
+                    markCategoryCompleted(currentDuaCategory.name);
+                    showToast(`أحسنت! لقد أكملت فئة ${currentDuaCategory.name} لهذا اليوم.`);
+                    showDuaCategoryList();
+                }
+            }
+
+            // --------------------------------------
+            //            Quran Section Logic
+            // --------------------------------------
+
+            function showQuranSurahList() {
+                duasCategoryList.style.display = 'none';
+                duaReaderView.style.display = 'none';
+                quranReaderView.style.display = 'none';
+
+                quranSurahList.style.display = 'flex';
+                duasBackButton.style.display = 'block'; 
+                quranBackToSurahsButton.style.display = 'none'; 
+                closeDuasModalBtn.style.display = 'block';
+                duasModalTitle.textContent = 'القرآن الكريم';
+                
+                renderQuranSurahList();
+            }
+
+            function renderQuranSurahList() {
+                quranSurahList.innerHTML = '';
+                quranData.forEach((surah, index) => {
+                    const surahItem = document.createElement('div');
+                    surahItem.classList.add('quran-surah-item');
+                    surahItem.innerHTML = `
+                        <span>${surah.name}</span>
+                        <div class="category-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V6.5A2.5 2.5 0 0 0 17.5 4H6.5A2.5 2.5 0 0 0 4 6.5v13z"></path>
+                            </svg>
+                        </div>
+                    `;
+                    surahItem.addEventListener('click', () => displayQuranSurah(index));
+                    quranSurahList.appendChild(surahItem);
+                });
+            }
+
+            function displayQuranSurah(surahIndex) {
+                quranReaderState.currentSurahIndex = surahIndex;
+                const surah = quranData[surahIndex];
+
+                if (!surah) {
+                    showToast("حدث خطأ في تحميل السورة.");
+                    showQuranSurahList();
+                    return;
+                }
+
+                duasCategoryList.style.display = 'none';
+                duaReaderView.style.display = 'none';
+                quranSurahList.style.display = 'none';
+
+                quranReaderView.style.display = 'flex';
+                duasBackButton.style.display = 'none'; 
+                quranBackToSurahsButton.style.display = 'block'; 
+                closeDuasModalBtn.style.display = 'block';
+                duasModalTitle.textContent = surah.name;
+
+                quranSurahTitle.textContent = surah.name;
+                quranAyatList.innerHTML = '';
+                surah.arabic.forEach((ayat, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${ayat} <span class="quran-ayat-number">(${formatNumberDisplay(index + 1)})</span>`;
+                    quranAyatList.appendChild(li);
+                });
+
+                prevSurahButton.disabled = quranReaderState.currentSurahIndex === 0;
+                nextSurahButton.disabled = quranReaderState.currentSurahIndex === quranData.length - 1;
+                saveState();
+            }
+
+            function nextQuranSurah() {
+                if (quranReaderState.currentSurahIndex < quranData.length - 1) {
+                    quranReaderState.currentSurahIndex++;
+                    displayQuranSurah(quranReaderState.currentSurahIndex);
+                }
+            }
+
+            function prevQuranSurah() {
+                if (quranReaderState.currentSurahIndex > 0) {
+                    quranReaderState.currentSurahIndex--;
+                    displayQuranSurah(quranReaderState.currentSurahIndex);
+                }
+            }
+
+            // --------------------------------------
+            //            Target Count Logic
+            // --------------------------------------
+
+            function openSetTargetModal() {
+                showModal(setTargetModal);
+                targetInput.value = targetCount > 0 ? targetCount : ''; 
+                targetInput.focus();
+            }
+
+            function saveTarget() {
+                const newTarget = parseInt(targetInput.value.trim());
+                if (isNaN(newTarget) || newTarget <= 0) {
+                    targetCount = 0; 
+                    showToast("تم إلغاء الهدف أو إدخال قيمة غير صالحة.");
+                } else {
+                    targetCount = newTarget;
+                    showToast(`تم تعيين الهدف إلى ${formatNumberDisplay(newTarget)}.`); 
+                }
+                updateTargetDisplay();
+                saveState();
+                hideModal(setTargetModal);
+            }
+
+            function cancelTarget() {
+                hideModal(setTargetModal);
+            }
+
+            function updateTargetDisplay() {
+                if (targetCount > 0) {
+                    targetDisplay.textContent = `الهدف: ${formatNumberDisplay(targetCount)}`;
+                } else {
+                    targetDisplay.textContent = 'الهدف: لا يوجد';
+                }
+            }
+
+            // Statistics Modal Functions
+            function openStatisticsModal() {
+                showModal(statisticsModal);
+                updateStatistics();
+            }
+
+            function openSetDailyGoalModal() {
+                showModal(setDailyGoalModal);
+                dailyGoalInput.value = dailyGoal > 0 ? dailyGoal : '';
+                dailyGoalInput.focus();
+            }
+
+            function saveDailyGoal() {
+                const newGoal = parseInt(dailyGoalInput.value.trim());
+                if (isNaN(newGoal) || newGoal <= 0) {
+                    dailyGoal = 0;
+                    showToast("تم إلغاء الهدف اليومي.");
+                } else {
+                    dailyGoal = newGoal;
+                    showToast(`تم تعيين الهدف اليومي إلى ${formatNumberDisplay(newGoal)}.`);
+                }
+                updateStatistics();
+                saveState();
+                hideModal(setDailyGoalModal);
+            }
+
+            function cancelDailyGoal() {
+                hideModal(setDailyGoalModal);
+            }
+
+            // --------------------------------------
+            //            Settings Modal
+            // --------------------------------------
+
+            function openSettingsModal() {
+                showModal(settingsModal);
+                toggleSelectDhikrCheckbox.checked = controlButtonVisibility.selectDhikr;
+                toggleSetTargetCheckbox.checked = controlButtonVisibility.setTarget;
+                toggleAddDhikrCheckbox.checked = controlButtonVisibility.addDhikr;
+                toggleResetCheckbox.checked = controlButtonVisibility.reset;
+                toggleZenModeCheckbox.checked = isZenMode;
+                toggleDarkModeCheckbox.checked = isDarkMode; 
+                toggleArabicNumeralsCheckbox.checked = useArabicNumerals; 
+            }
+
+            function handleSettingsCheckboxChange(event) {
+                const controlId = event.target.id.replace('toggle-', '');
+                if (controlId === 'zen-mode') {
+                    isZenMode = event.target.checked;
+                    applyZenMode(isZenMode, true);
+                } else if (controlId === 'dark-mode') {
+                    isDarkMode = event.target.checked;
+                    applyMode(isDarkMode, true);
+                } else if (controlId === 'arabic-numerals') {
+                    useArabicNumerals = event.target.checked;
+                    updateDisplay(); 
+                    updateTargetDisplay();
+                    updateStatistics();
+                    if (duaTallyArea.style.display === 'block') { 
+                        const duaKey = `${duaReaderState.currentCategory}_${duaReaderState.currentIndex}`;
+                        const currentTally = duaReaderState.duaCounters[duaKey] || 0;
+                        duaTallyCounter.textContent = formatNumberDisplay(currentTally);
+                        const currentDua = currentDuaCategory.duas[duaReaderState.currentIndex];
+                        if (currentDua && currentDua.count) {
+                            duaCounterInfo.textContent = `تكرر ${formatNumberDisplay(currentDua.count)} مرات`;
+                        }
+                    }
+                    if (quranReaderView.style.display === 'flex') { 
+                        displayQuranSurah(quranReaderState.currentSurahIndex);
+                    }
+                } else {
+                    controlButtonVisibility[controlId] = event.target.checked;
+                    updateMainControlsVisibility();
+                }
+                saveState();
+            }
+
+            function updateMainControlsVisibility() {
+                document.getElementById('select-dhikr-button').classList.toggle('hidden', !controlButtonVisibility.selectDhikr);
+                document.getElementById('set-target-button').classList.toggle('hidden', !controlButtonVisibility.setTarget);
+                document.getElementById('add-dhikr-button').classList.toggle('hidden', !controlButtonVisibility.addDhikr);
+                document.getElementById('reset-button').classList.toggle('hidden', !controlButtonVisibility.reset);
+            }
+
+            // --------------------------------------
+            //            Zen Mode Logic
+            // --------------------------------------
+            function applyZenMode(enable, save = true) {
+                if (enable) {
+                    body.classList.add('zen-mode');
+                    // Attach global click listener for counter
+                    document.body.addEventListener('click', handleCounterClick);
+                    // Hide counter button (it's covered by zen-tap-area, but good to hide explicitly)
+                    counterButton.style.display = 'none';
+                } else {
+                    body.classList.remove('zen-mode');
+                    // Remove global click listener
+                    document.body.removeEventListener('click', handleCounterClick);
+                    // Show counter button if not in dua reader mode
+                    if (duasModal.style.display !== 'flex') {
+                        counterButton.style.display = '';
+                    }
+                }
+                if (save) {
+                    saveState();
+                }
+            }
+
+            // --------------------------------------
+            //            Event Listeners
+            // --------------------------------------
+            function setupEventListeners() {
+                // Main Counter (only listen to counterButton in normal mode, body in zen mode)
+                counterButton.addEventListener('click', handleCounterClick);
+                zenTapArea.addEventListener('click', handleCounterClick); 
+
+                // Main Control Buttons
+                resetButton.addEventListener('click', () => resetCounter(true));
+                addDhikrButton.addEventListener('click', openAddDhikrModal);
+                selectDhikrButton.addEventListener('click', openSelectDhikrModal);
+                setTargetButton.addEventListener('click', openSetTargetModal);
+
+                // Statistics
+                statsButton.addEventListener('click', openStatisticsModal);
+                closeStatisticsModalButton.addEventListener('click', () => hideModal(statisticsModal));
+                setDailyGoalButton.addEventListener('click', openSetDailyGoalModal);
+                saveDailyGoalButton.addEventListener('click', saveDailyGoal);
+                cancelDailyGoalButton.addEventListener('click', cancelDailyGoal);
+
+                // Dhikr Selection Modal
+                selectDhikrModalSearchInput.addEventListener('input', (e) => populateDhikrListInModal(e.target.value));
+                closeSelectDhikrModalBtn.addEventListener('click', () => hideModal(selectDhikrModal));
+                
+                // Dua Modal interactions
+                duasButton.addEventListener('click', openDuasModal);
+                closeDuasModalBtn.addEventListener('click', () => {
+                    hideModal(duasModal);
+                    // Re-enable main counter buttons and controls
+                    counterButton.disabled = false;
+                    selectDhikrButton.disabled = false; 
+                    setTargetButton.disabled = false; 
+                    addDhikrButton.disabled = false;
+                    resetButton.disabled = false;
+                });
+                
+                // Dua Reader controls
+                duasBackButton.addEventListener('click', showDuaCategoryList);
+                prevDuaButton.addEventListener('click', prevDua);
+                nextDuaButton.addEventListener('click', nextDua);
+                completeCategoryButton.addEventListener('click', handleCompleteCategory);
+                duaTallyButton.addEventListener('click', handleDuaTallyClick);
+
+                // Quran Reader controls
+                quranBackToSurahsButton.addEventListener('click', showQuranSurahList);
+                prevSurahButton.addEventListener('click', prevQuranSurah);
+                nextSurahButton.addEventListener('click', nextQuranSurah);
+
+                // Target Setting Modal
+                saveTargetButton.addEventListener('click', saveTarget);
+                cancelTargetButton.addEventListener('click', cancelTarget);
+                targetInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        saveTarget();
+                    }
+                });
+
+                // Daily Goal Modal
+                dailyGoalInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        saveDailyGoal();
+                    }
+                });
+
+                // Add Dhikr Modal
+                saveNewDhikrBtn.addEventListener('click', saveNewDhikr);
+                cancelNewDhikrBtn.addEventListener('click', () => hideModal(addDhikrModal));
+                newDhikrInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        saveNewDhikr();
+                    }
+                });
+
+                // Reset Confirmation Modal
+                confirmManualResetBtn.addEventListener('click', confirmManualReset);
+                cancelManualResetBtn.addEventListener('click', cancelManualReset);
+                confirmResetBtn.addEventListener('click', confirmDhikrChangeReset);
+                cancelResetBtn.addEventListener('click', cancelDhikrChange);
+                
+                // Themes and Modes
+                themeToggle.addEventListener('click', toggleThemesPanel);
+                vibrationToggle.addEventListener('click', toggleVibration); 
+                
+                themeButtons.forEach(button => {
+                    button.addEventListener('click', handleThemeChange);
+                });
+
+                // Settings Modal
+                settingsButtonFixed.addEventListener('click', openSettingsModal); 
+                closeSettingsModalButton.addEventListener('click', () => hideModal(settingsModal));
+                toggleSelectDhikrCheckbox.addEventListener('change', handleSettingsCheckboxChange);
+                toggleSetTargetCheckbox.addEventListener('change', handleSettingsCheckboxChange);
+                toggleAddDhikrCheckbox.addEventListener('change', handleSettingsCheckboxChange);
+                toggleResetCheckbox.addEventListener('change', handleSettingsCheckboxChange);
+                toggleZenModeCheckbox.addEventListener('change', handleSettingsCheckboxChange);
+                toggleDarkModeCheckbox.addEventListener('change', handleSettingsCheckboxChange); 
+                toggleArabicNumeralsCheckbox.addEventListener('change', handleSettingsCheckboxChange); 
+
+                // Global Escape key listener for modals
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        if (dhikrResetModal.style.display === 'flex') hideModal(dhikrResetModal);
+                        if (manualResetModal.style.display === 'flex') hideModal(manualResetModal);
+                        if (addDhikrModal.style.display === 'flex') hideModal(addDhikrModal);
+                        if (selectDhikrModal.style.display === 'flex') hideModal(selectDhikrModal); 
+                        if (setTargetModal.style.display === 'flex') hideModal(setTargetModal); 
+                        if (duasModal.style.display === 'flex') hideModal(duasModal);
+                        if (settingsModal.style.display === 'flex') hideModal(settingsModal); 
+                        if (statisticsModal.style.display === 'flex') hideModal(statisticsModal);
+                        if (setDailyGoalModal.style.display === 'flex') hideModal(setDailyGoalModal);
+                    }
+                });
+            }
+
+            // --------------------------------------
+            //            Themes & Modes
+            // --------------------------------------
+
+            function toggleThemesPanel() {
+                themesPanel.style.display = themesPanel.style.display === 'flex' ? 'none' : 'flex';
+            }
+            
+            function handleThemeChange() {
+                const theme = this.dataset.theme;
+                
+                // Check if legendary theme is unlocked
+                if (theme === 'legendary' && statisticsData.totalCount < 5000) {
+                    showToast(`الثيم الأسطوري يُفتح عند الوصول لـ 5000 تسبيحة! (${formatNumberDisplay(statisticsData.totalCount)}/5000)`);
+                    return;
+                }
+                
+                currentTheme = theme;
+                changeTheme(theme);
+                setActiveThemeButton(theme);
+                applyLegendaryEffects();
+                saveState();
+            }
+            
+            function changeTheme(theme) {
+                const root = document.documentElement;
+                const themeColors = themes[theme];
+                
+                if (themeColors) {
+                    if (isDarkMode) {
+                        root.style.setProperty('--theme-primary', themeColors.primary);
+                        root.style.setProperty('--theme-secondary', themeColors.secondary);
+                        root.style.setProperty('--theme-text', themeColors.text);
+                        root.style.setProperty('--theme-card-bg', 'var(--card-bg-default)');
+                        root.style.setProperty('--theme-border-color', 'var(--border-color-default)');
+                        root.style.setProperty('--category-bg', 'var(--category-bg-default)');
+                        root.style.setProperty('--modal-bg', 'var(--modal-bg-default)');
+                    } else {
+                        root.style.setProperty('--theme-primary', 'var(--light-primary-color)');
+                        root.style.setProperty('--theme-secondary', 'var(--light-secondary-color)');
+                        root.style.setProperty('--theme-text', 'var(--light-text-color)');
+                        root.style.setProperty('--theme-card-bg', 'var(--light-card-bg)');
+                        root.style.setProperty('--theme-border-color', 'var(--light-border-color)');
+                        root.style.setProperty('--category-bg', 'var(--light-category-bg)');
+                        root.style.setProperty('--modal-bg', 'var(--light-modal-bg)');
+                    }
+
+                    root.style.setProperty('--theme-counter', themeColors.counter);
+                    root.style.setProperty('--theme-reset', themeColors.reset);
+                    root.style.setProperty('--theme-add', themeColors.add);
+                    root.style.setProperty('--theme-vibration', themeColors.vibration);
+                    root.style.setProperty('--theme-accent', themeColors.accent); 
+                }
+            }
+            
+            function setActiveThemeButton(theme) {
+                themeButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.theme === theme);
+                });
+            }
+
+            function applyMode(dark, save = true) {
+                if (dark) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                }
+                
+                changeTheme(currentTheme); 
+
+                if (save) {
+                    saveState();
+                }
+            }
+
+            // --------------------------------------
+            //            Vibration Control
+            // --------------------------------------
+
+            function toggleVibration() {
+                isVibrationEnabled = !isVibrationEnabled;
+                updateVibrationUI(true);
+                saveState();
+                if (isVibrationEnabled) {
+                    vibrate(50); 
+                    showToast("تم تفعيل الاهتزاز.");
+                } else {
+                    showToast("تم كتم الاهتزاز.");
+                }
+            }
+
+            function updateVibrationUI() {
+                if (isVibrationEnabled) {
+                    vibrationToggle.classList.remove('muted');
+                    vibrationToggle.classList.add('enabled');
+                    vibrationIconPath.setAttribute('d', 'M15.536 8.464a5 5 0 010 7.072m2.828-9.899a9 9 0 010 12.728M12 6a6 6 0 00-6 6v3.586l-2-2L3.414 15l4.586 4.586A2 2 0 009 20h6a2 2 0 002-2v-6c0-3.313-2.687-6-6-6z');
+                } else {
+                    vibrationToggle.classList.remove('enabled');
+                    vibrationToggle.classList.add('muted');
+                    vibrationIconPath.setAttribute('d', 'M12 6a6 6 0 00-6 6v3.586l-2-2L3.414 15l4.586 4.586A2 2 0 009 20h6a2 2 0 002-2v-6c0-3.313-2.687-6-6-6z');
+                }
+            }
+
+            // --------------------------------------
+            //            Animations & Haptics
+            // --------------------------------------
+            
+            function createSparkles(x, y) {
+                const themeColors = themes[currentTheme];
+                const particleColor = themeColors ? themeColors.counter : '#a0aec0'; 
+                
+                const particleCount = 5; 
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    particle.style.setProperty('--particle-color', particleColor);
+                    
+                    const size = Math.random() * 5 + 2; 
+                    const angle = Math.random() * Math.PI * 2; 
+                    const distance = Math.random() * 40 + 10; 
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    
+                    animationContainer.appendChild(particle);
+                    
+                    // Trigger animation by setting transform/opacity after append
+                    requestAnimationFrame(() => {
+                        particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+                        particle.style.opacity = '0'; 
+                    });
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 800); 
+                }
+            }
+
+            function vibrate(ms) {
+                if (isVibrationEnabled && navigator.vibrate) {
+                    navigator.vibrate(ms);
+                }
+            }
+            
+            // --------------------------------------
+            //            Utility Features
+            // --------------------------------------
+
+            function updateDocumentTitle() {
+                document.title = `آجر - ${currentDhikr} (${formatNumberDisplay(count)})`;
+            }
+
+            // Function to format numbers based on user preference
+            function formatNumberDisplay(number) {
+                if (useArabicNumerals) {
+                    const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+                    return String(number).split('').map(digit => {
+                        return arabicNumerals[parseInt(digit)] || digit; 
+                    }).join('');
+                } else {
+                    return String(number);
+                }
+            }
+
+            // --------------------------------------
+            //                 Start
+            // --------------------------------------
+            initApp();
+        });
+    </script>
+</body>
+</html>
