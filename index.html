@@ -8,27 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color-default: #2f363f;
-            --secondary-color-default: #4a5568;
+            --primary-color-default: #1a365d;
+            --secondary-color-default: #2d3748;
             --accent-color-default: #cbd5e0;
             --text-color-default: #e2e8f0;
-            --counter-color-default: #a0aec0;
-            --reset-color-default: #ef4444;
-            --add-color-default: #3b82f6;
-            --vibration-color-default: #f97316;
+            --counter-color-default: #90cdf4;
+            --reset-color-default: #e53e3e;
+            --add-color-default: #3182ce;
+            --vibration-color-default: #dd6b20;
             --card-bg-default: rgba(255,255,255,.08);
             --border-color-default: rgba(255,255,255,.1);
             --modal-bg-default: rgba(0,0,0,.5);
-            --dua-icon-color: #10b981;
-            --completed-color: #10b981;
+            --dua-icon-color: #38a169;
+            --completed-color: #38a169;
             --category-bg-default: rgba(255,255,255,.05);
-            --light-primary-color: #f1f5f9;
-            --light-secondary-color: #e2e8f0;
-            --light-text-color: #1e293b;
-            --light-accent-color: #334155;
-            --light-card-bg: rgba(255,255,255,.8);
+            --light-primary-color: #f7fafc;
+            --light-secondary-color: #edf2f7;
+            --light-text-color: #2d3748;
+            --light-accent-color: #4a5568;
+            --light-card-bg: rgba(255,255,255,.9);
             --light-border-color: rgba(0,0,0,.1);
-            --light-modal-bg: rgba(255,255,255,.7);
+            --light-modal-bg: rgba(255,255,255,.8);
             --light-category-bg: #fff;
             --theme-primary: var(--primary-color-default);
             --theme-secondary: var(--secondary-color-default);
@@ -44,30 +44,30 @@
             --category-bg: var(--category-bg-default);
             --icon-size: 24px;
             
-            /* New Theme Colors */
-            --theme-purple-primary: #4c1d95;
-            --theme-purple-secondary: #7c3aed;
-            --theme-purple-accent: #c4b5fd;
+            /* New Theme Colors - More Calm */
+            --theme-purple-primary: #553c9a;
+            --theme-purple-secondary: #6b46c1;
+            --theme-purple-accent: #d6bcfa;
             
-            --theme-blue-primary: #1e3a8a;
-            --theme-blue-secondary: #3b82f6;
-            --theme-blue-accent: #93c5fd;
+            --theme-blue-primary: #2c5282;
+            --theme-blue-secondary: #4299e1;
+            --theme-blue-accent: #bee3f8;
             
-            --theme-green-primary: #065f46;
-            --theme-green-secondary: #10b981;
-            --theme-green-accent: #a7f3d0;
+            --theme-green-primary: #276749;
+            --theme-green-secondary: #48bb78;
+            --theme-green-accent: #c6f6d5;
             
-            --theme-rose-primary: #881337;
-            --theme-rose-secondary: #f43f5e;
-            --theme-rose-accent: #fda4af;
+            --theme-rose-primary: #97266d;
+            --theme-rose-secondary: #ed64a6;
+            --theme-rose-accent: #fed7e2;
             
-            --theme-sand-primary: #a78b5d;
-            --theme-sand-secondary: #d4b885;
-            --theme-sand-accent: #f0e6d2;
+            --theme-sand-primary: #b7791f;
+            --theme-sand-secondary: #ecc94b;
+            --theme-sand-accent: #fefcbf;
             
-            --theme-ocean-primary: #0e4a6e;
-            --theme-ocean-secondary: #1e7ea8;
-            --theme-ocean-accent: #8ecae6;
+            --theme-ocean-primary: #234e52;
+            --theme-ocean-secondary: #38b2ac;
+            --theme-ocean-accent: #b2f5ea;
         }
 
         * {
@@ -83,7 +83,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px;
-            padding-bottom: 80px; /* Space for tab bar */
+            padding-bottom: 80px;
             transition: background-color .5s ease, color .5s ease;
             overflow-x: hidden;
             text-align: right;
@@ -540,11 +540,38 @@
             transform: scale(.95);
         }
 
+        .bookmark-position-button {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: var(--completed-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: transform 0.2s ease;
+        }
+
+        .bookmark-position-button:hover {
+            transform: scale(1.05);
+        }
+
+        .bookmark-position-button:active {
+            transform: scale(0.95);
+        }
+
         .quick-jump-button {
             position: fixed;
-            bottom: 90px;
-            left: 20px;
-            background-color: var(--completed-color);
+            top: 140px;
+            right: 20px;
+            background-color: var(--theme-add);
             color: white;
             border: none;
             border-radius: 50%;
@@ -567,32 +594,84 @@
             transform: scale(0.95);
         }
 
-        /* Floating Back Button */
-        .floating-back-button {
+        .quick-jump-label {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--theme-add);
+            top: 195px;
+            right: 15px;
+            font-size: 0.7rem;
             color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: rgba(0,0,0,0.7);
+            padding: 3px 8px;
+            border-radius: 10px;
             z-index: 1001;
-            transition: transform 0.2s ease;
+            text-align: center;
+            width: 60px;
         }
 
-        .floating-back-button:hover {
+        /* Prayer Times Section */
+        .prayer-times-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .prayer-time-card {
+            background-color: rgba(255,255,255,.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--theme-border-color);
+            transition: all 0.3s ease;
+        }
+
+        .prayer-time-card.active {
+            background-color: rgba(74, 222, 128, 0.2);
+            border-color: rgba(74, 222, 128, 0.5);
             transform: scale(1.05);
         }
 
-        .floating-back-button:active {
-            transform: scale(0.95);
+        .prayer-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--theme-accent);
+            margin-bottom: 5px;
+        }
+
+        .prayer-time {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--theme-counter);
+        }
+
+        .location-info {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--theme-accent);
+        }
+
+        .time-format-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .format-btn {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 15px;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--theme-text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.8rem;
+        }
+
+        .format-btn.active {
+            background-color: var(--theme-add);
+            color: white;
         }
 
         /* Statistics Section */
@@ -749,25 +828,28 @@
             transform: scale(1.1);
         }
 
-        .theme-default { background: linear-gradient(135deg, #2f363f, #4a5568); }
-        .theme-purple { background: linear-gradient(135deg, #4c1d95, #7c3aed); }
-        .theme-blue { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
-        .theme-green { background: linear-gradient(135deg, #065f46, #10b981); }
-        .theme-rose { background: linear-gradient(135deg, #881337, #f43f5e); }
-        .theme-sand { background: linear-gradient(135deg, #a78b5d, #d4b885); }
-        .theme-ocean { background: linear-gradient(135deg, #0e4a6e, #1e7ea8); }
+        .theme-default { background: linear-gradient(135deg, #1a365d, #2d3748); }
+        .theme-purple { background: linear-gradient(135deg, #553c9a, #6b46c1); }
+        .theme-blue { background: linear-gradient(135deg, #2c5282, #4299e1); }
+        .theme-green { background: linear-gradient(135deg, #276749, #48bb78); }
+        .theme-rose { background: linear-gradient(135deg, #97266d, #ed64a6); }
+        .theme-sand { background: linear-gradient(135deg, #b7791f, #ecc94b); }
+        .theme-ocean { background: linear-gradient(135deg, #234e52, #38b2ac); }
 
-        .charity-footer {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: .75rem;
+        .charity-section {
+            background-color: rgba(255,255,255,.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border: 1px solid var(--theme-border-color);
             text-align: center;
+        }
+
+        .charity-text {
+            font-size: 0.8rem;
             color: var(--theme-accent);
-            opacity: .6;
-            font-weight: 500;
-            position: relative;
-            z-index: 5;
-            width: 100%;
+            opacity: 0.8;
+            line-height: 1.5;
         }
 
         .modal {
@@ -958,8 +1040,8 @@
                 font-size: 4.8rem;
             }
             .counter-button {
-                width: 150px;
-                height: 150px;
+                width: 140px;
+                height: 140px;
                 font-size: 1.2rem;
             }
             .dhikr-name {
@@ -979,20 +1061,39 @@
             .tab-button .tab-label {
                 font-size: 0.65rem;
             }
-            .floating-back-button {
+            .bookmark-position-button, .quick-jump-button {
                 width: 45px;
                 height: 45px;
-                top: 15px;
+            }
+            .bookmark-position-button {
+                top: 70px;
                 right: 15px;
             }
             .quick-jump-button {
-                width: 45px;
-                height: 45px;
-                bottom: 85px;
-                left: 15px;
+                top: 125px;
+                right: 15px;
+            }
+            .quick-jump-label {
+                top: 175px;
+                right: 10px;
+                font-size: 0.65rem;
+                width: 55px;
             }
             .quran-ayat-container {
                 font-size: 1.4rem;
+            }
+            .prayer-times-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:400px){
+            .prayer-times-grid {
+                grid-template-columns: 1fr;
+            }
+            .counter-button {
+                width: 130px;
+                height: 130px;
             }
         }
     </style>
@@ -1081,6 +1182,24 @@
             </div>
         </div>
         
+        <div class="tab-content" id="prayer-tab">
+            <div class="location-info" id="location-info">
+                جاري تحديد الموقع...
+            </div>
+            <div class="time-format-toggle">
+                <button class="format-btn active" data-format="12">12 ساعة</button>
+                <button class="format-btn" data-format="24">24 ساعة</button>
+            </div>
+            <div class="prayer-times-grid" id="prayer-times-grid">
+                <!-- سيتم تعبئة مواقيت الصلاة ديناميكياً -->
+            </div>
+            <div class="charity-section">
+                <div class="charity-text">
+                    هذا التطبيق صدقة جارية لصاحبه ووالديه
+                </div>
+            </div>
+        </div>
+        
         <div class="tab-content" id="statistics-tab">
             <div class="statistics-grid">
                 <div class="stat-card">
@@ -1148,14 +1267,6 @@
                 </div>
                 
                 <div class="setting-item">
-                    <div class="setting-label">الصوت عند العد</div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="sound-toggle" checked>
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-                
-                <div class="setting-item">
                     <div class="setting-label">اللغة الإنجليزية</div>
                     <label class="toggle-switch">
                         <input type="checkbox" id="english-toggle">
@@ -1178,6 +1289,13 @@
                         <div class="theme-option theme-rose" data-theme="rose"></div>
                         <div class="theme-option theme-sand" data-theme="sand"></div>
                         <div class="theme-option theme-ocean" data-theme="ocean"></div>
+                    </div>
+                </div>
+                
+                <div class="charity-section">
+                    <div class="charity-text">
+                        هذا التطبيق صدقة جارية لصاحبه ووالديه وأهل بيته
+                        <br>اللهم تقبل منهم وأجعل هذا العمل في ميزان حسناتهم
                     </div>
                 </div>
             </div>
@@ -1210,13 +1328,12 @@
             </svg>
             <span class="tab-label">القرآن</span>
         </button>
-        <button class="tab-button" data-tab="statistics-tab">
+        <button class="tab-button" data-tab="prayer-tab">
             <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span class="tab-label">إحصائيات</span>
+            <span class="tab-label">مواقيت</span>
         </button>
         <button class="tab-button" data-tab="settings-tab">
             <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1234,12 +1351,20 @@
         </svg>
     </button>
     
+    <!-- Bookmark Position Button -->
+    <button class="bookmark-position-button" id="bookmark-position-button" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+    
     <!-- Quick Jump Button -->
     <button class="quick-jump-button" id="quick-jump-button" style="display: none;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
     </button>
+    <div class="quick-jump-label" id="quick-jump-label" style="display: none;">آخر موضع</div>
     
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
@@ -1288,10 +1413,6 @@
             </div>
         </div>
     </div>
-    
-    <div class="charity-footer">
-        <p>اللهم اجعل هذا العمل صدقة جارية</p>
-    </div>
 
     <script>
         // البيانات الأساسية للتطبيق
@@ -1308,6 +1429,7 @@
             timerInterval: null,
             isEnglishEnabled: false,
             lastReadPosition: null,
+            timeFormat: '12', // 12 or 24 hour format
             achievements: [
                 { id: 1, name: 'مبتدئ', description: 'أكمل 10 أذكار', completed: false, target: 10 },
                 { id: 2, name: 'منتظم', description: 'أكمل 50 ذكرًا', completed: false, target: 50 },
@@ -1352,7 +1474,7 @@
                 duas: [
                     { id: 1, arabic: 'أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ', translation: 'أعوذ بالله من الشيطان الرجيم' },
                     { id: 2, arabic: 'اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ', translation: 'آية الكرسي' },
-                    { id: 3, arabic: 'آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ كُلٌّ آمَنَ بِاللّهِ وَمَلآئِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لاَ نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ وَقَالُواْ سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ', translation: 'آخر آيتين من سورة البقرة' },
+                    { id: 3, arabic: 'آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ كُلٌّ آمَنَ بِاللّهِ وَمَلآئِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لاَ نُفَرِّقُ بَيْنَ أَحَدٍ mِّن رُّسُلِهِ وَقَالُواْ سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ', translation: 'آخر آيتين من سورة البقرة' },
                     { id: 4, arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ، اللَّهُ الصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ', translation: 'سورة الإخلاص' },
                     { id: 5, arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ', translation: 'سورة الفلق' },
                     { id: 6, arabic: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ، مَلِكِ النَّاسِ، إِلَهِ النَّاسِ، مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ، الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ، مِنَ الْجِنَّةِ وَ النَّاسِ', translation: 'سورة الناس' },
@@ -1377,6 +1499,9 @@
         // API للقرآن الكريم
         const QURAN_API_BASE = 'https://api.alquran.cloud/v1';
         
+        // API لمواقيت الصلاة (Aladhan API)
+        const PRAYER_API_BASE = 'https://api.aladhan.com/v1';
+        
         // تهيئة التطبيق عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
@@ -1388,6 +1513,7 @@
             updateStatistics();
             updateGoalProgress();
             renderAchievements();
+            loadPrayerTimes();
         });
 
         // تهيئة التطبيق
@@ -1431,6 +1557,9 @@
             // زر الرجوع العائم
             document.getElementById('floating-back-button').addEventListener('click', goBack);
 
+            // زر حفظ الموضع
+            document.getElementById('bookmark-position-button').addEventListener('click', bookmarkCurrentPosition);
+
             // زر الانتقال السريع
             document.getElementById('quick-jump-button').addEventListener('click', quickJumpToBookmark);
 
@@ -1445,7 +1574,6 @@
             // الإعدادات
             document.getElementById('dark-mode-toggle').addEventListener('change', toggleDarkMode);
             document.getElementById('vibration-toggle').addEventListener('change', toggleVibration);
-            document.getElementById('sound-toggle').addEventListener('change', toggleSound);
             document.getElementById('english-toggle').addEventListener('change', toggleEnglish);
             document.getElementById('daily-goal-input').addEventListener('change', setDailyGoal);
 
@@ -1460,6 +1588,14 @@
             // التنقل بين الآيات
             document.getElementById('prev-ayah-button').addEventListener('click', goToPrevAyah);
             document.getElementById('next-ayah-button').addEventListener('click', goToNextAyah);
+
+            // تنسيق الوقت
+            document.querySelectorAll('.format-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    changeTimeFormat(format, this);
+                });
+            });
         }
 
         // تحميل البيانات من localStorage
@@ -1474,6 +1610,7 @@
             const savedTimerSeconds = localStorage.getItem('timerSeconds');
             const savedEnglishEnabled = localStorage.getItem('englishEnabled');
             const savedLastReadPosition = localStorage.getItem('lastReadPosition');
+            const savedTimeFormat = localStorage.getItem('timeFormat');
 
             if (savedCounter) appData.counter = parseInt(savedCounter);
             if (savedCurrentDhikr) appData.currentDhikr = savedCurrentDhikr;
@@ -1485,6 +1622,7 @@
             if (savedTimerSeconds) appData.timerSeconds = parseInt(savedTimerSeconds);
             if (savedEnglishEnabled) appData.isEnglishEnabled = JSON.parse(savedEnglishEnabled);
             if (savedLastReadPosition) appData.lastReadPosition = JSON.parse(savedLastReadPosition);
+            if (savedTimeFormat) appData.timeFormat = savedTimeFormat;
 
             updateCounterDisplay();
             updateTargetDisplay();
@@ -1492,6 +1630,14 @@
             
             // تحديث تبديل اللغة الإنجليزية
             document.getElementById('english-toggle').checked = appData.isEnglishEnabled;
+            
+            // تحديث تنسيق الوقت
+            document.querySelectorAll('.format-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-format') === appData.timeFormat) {
+                    btn.classList.add('active');
+                }
+            });
         }
 
         // حفظ البيانات في localStorage
@@ -1506,6 +1652,7 @@
             localStorage.setItem('timerSeconds', appData.timerSeconds);
             localStorage.setItem('englishEnabled', JSON.stringify(appData.isEnglishEnabled));
             localStorage.setItem('lastReadPosition', JSON.stringify(appData.lastReadPosition));
+            localStorage.setItem('timeFormat', appData.timeFormat);
         }
 
         // تبديل التبويبات
@@ -1527,10 +1674,14 @@
             // إظهار/إخفاء الأزرار العائمة
             if (tabId === 'quran-tab' && appData.selectedSurah) {
                 document.getElementById('floating-back-button').style.display = 'flex';
+                document.getElementById('bookmark-position-button').style.display = 'flex';
                 document.getElementById('quick-jump-button').style.display = 'flex';
+                document.getElementById('quick-jump-label').style.display = 'block';
             } else {
                 document.getElementById('floating-back-button').style.display = 'none';
+                document.getElementById('bookmark-position-button').style.display = 'none';
                 document.getElementById('quick-jump-button').style.display = 'none';
+                document.getElementById('quick-jump-label').style.display = 'none';
             }
         }
 
@@ -1548,11 +1699,6 @@
             // الاهتزاز إذا كان مفعلاً
             if (document.getElementById('vibration-toggle').checked && navigator.vibrate) {
                 navigator.vibrate(50);
-            }
-            
-            // الصوت إذا كان مفعلاً
-            if (document.getElementById('sound-toggle').checked) {
-                // يمكن إضافة صوت هنا
             }
             
             // التحقق من تحقيق الهدف
@@ -1830,7 +1976,9 @@
             
             // إظهار الأزرار العائمة
             document.getElementById('floating-back-button').style.display = 'flex';
+            document.getElementById('bookmark-position-button').style.display = 'flex';
             document.getElementById('quick-jump-button').style.display = 'flex';
+            document.getElementById('quick-jump-label').style.display = 'block';
             
             try {
                 // تحميل النص العربي
@@ -1901,6 +2049,18 @@
             saveData();
         }
 
+        // حفظ الموضع الحالي
+        function bookmarkCurrentPosition() {
+            if (appData.selectedSurah) {
+                appData.lastReadPosition = {
+                    surahId: appData.selectedSurah.number,
+                    ayahId: appData.currentAyah
+                };
+                saveData();
+                showToast('تم حفظ الموضع الحالي');
+            }
+        }
+
         // الانتقال إلى الآية السابقة
         function goToPrevAyah() {
             if (appData.currentAyah > 1) {
@@ -1957,8 +2117,144 @@
                 document.getElementById('quran-reader-view').style.display = 'none';
                 document.getElementById('quran-surah-list').style.display = 'block';
                 document.getElementById('floating-back-button').style.display = 'none';
+                document.getElementById('bookmark-position-button').style.display = 'none';
                 document.getElementById('quick-jump-button').style.display = 'none';
+                document.getElementById('quick-jump-label').style.display = 'none';
             }
+        }
+
+        // تحميل مواقيت الصلاة
+        async function loadPrayerTimes() {
+            const locationInfo = document.getElementById('location-info');
+            const prayerTimesGrid = document.getElementById('prayer-times-grid');
+            
+            locationInfo.innerHTML = '<span class="loading-spinner"></span> جاري تحديد الموقع...';
+            prayerTimesGrid.innerHTML = '';
+            
+            try {
+                // الحصول على الموقع الجغرافي
+                const position = await getCurrentPosition();
+                const { latitude, longitude } = position.coords;
+                
+                // جلب مواقيت الصلاة
+                const today = new Date();
+                const dateString = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+                
+                const response = await fetch(`${PRAYER_API_BASE}/timings/${dateString}?latitude=${latitude}&longitude=${longitude}&method=2`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    displayPrayerTimes(data.data, latitude, longitude);
+                } else {
+                    throw new Error('Failed to load prayer times');
+                }
+            } catch (error) {
+                console.error('Error loading prayer times:', error);
+                locationInfo.innerHTML = 'تعذر تحديد الموقع. تأكد من تفعيل خدمة الموقع';
+                prayerTimesGrid.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--theme-accent);">عذراً، تعذر تحميل مواقيت الصلاة. يرجى المحاولة لاحقاً.</div>';
+            }
+        }
+
+        // الحصول على الموقع الحالي
+        function getCurrentPosition() {
+            return new Promise((resolve, reject) => {
+                if (!navigator.geolocation) {
+                    reject(new Error('Geolocation is not supported'));
+                    return;
+                }
+                
+                navigator.geolocation.getCurrentPosition(resolve, reject, {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 60000
+                });
+            });
+        }
+
+        // عرض مواقيت الصلاة
+        function displayPrayerTimes(prayerData, lat, lng) {
+            const locationInfo = document.getElementById('location-info');
+            const prayerTimesGrid = document.getElementById('prayer-times-grid');
+            const timings = prayerData.timings;
+            
+            // تحديث معلومات الموقع
+            locationInfo.textContent = `موقعك الحالي: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+            
+            // تعريف أوقات الصلوات
+            const prayers = [
+                { name: 'الفجر', time: timings.Fajr, key: 'Fajr' },
+                { name: 'الشروق', time: timings.Sunrise, key: 'Sunrise' },
+                { name: 'الظهر', time: timings.Dhuhr, key: 'Dhuhr' },
+                { name: 'العصر', time: timings.Asr, key: 'Asr' },
+                { name: 'المغرب', time: timings.Maghrib, key: 'Maghrib' },
+                { name: 'العشاء', time: timings.Isha, key: 'Isha' }
+            ];
+            
+            // الحصول على الوقت الحالي
+            const now = new Date();
+            const currentTime = now.getHours() * 60 + now.getMinutes();
+            let nextPrayerIndex = -1;
+            
+            // البحث عن الصلاة التالية
+            prayers.forEach((prayer, index) => {
+                const [hours, minutes] = prayer.time.split(':');
+                const prayerTime = parseInt(hours) * 60 + parseInt(minutes);
+                
+                if (prayerTime > currentTime && nextPrayerIndex === -1) {
+                    nextPrayerIndex = index;
+                }
+            });
+            
+            // إذا لم نجد صلاة تالية، نعرض أول صلاة في اليوم التالي
+            if (nextPrayerIndex === -1) {
+                nextPrayerIndex = 0;
+            }
+            
+            // عرض مواقيت الصلاة
+            prayerTimesGrid.innerHTML = '';
+            prayers.forEach((prayer, index) => {
+                const isActive = index === nextPrayerIndex;
+                const formattedTime = formatPrayerTime(prayer.time);
+                
+                const prayerCard = document.createElement('div');
+                prayerCard.className = `prayer-time-card ${isActive ? 'active' : ''}`;
+                prayerCard.innerHTML = `
+                    <div class="prayer-name">${prayer.name}</div>
+                    <div class="prayer-time">${formattedTime}</div>
+                `;
+                
+                prayerTimesGrid.appendChild(prayerCard);
+            });
+        }
+
+        // تنسيق وقت الصلاة
+        function formatPrayerTime(time) {
+            if (appData.timeFormat === '12') {
+                // تحويل إلى تنسيق 12 ساعة
+                const [hours, minutes] = time.split(':');
+                let hour = parseInt(hours);
+                const ampm = hour >= 12 ? 'م' : 'ص';
+                hour = hour % 12 || 12;
+                return `${hour}:${minutes} ${ampm}`;
+            } else {
+                // تنسيق 24 ساعة
+                return time;
+            }
+        }
+
+        // تغيير تنسيق الوقت
+        function changeTimeFormat(format, button) {
+            appData.timeFormat = format;
+            
+            // تحديث الأزرار النشطة
+            document.querySelectorAll('.format-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            // إعادة تحميل مواقيت الصلاة
+            loadPrayerTimes();
+            saveData();
         }
 
         // تصفير عدد الأذكار اليومية
@@ -2124,12 +2420,6 @@
 
         // تبديل الاهتزاز
         function toggleVibration() {
-            // يتم التعامل مع هذا في دالة incrementCounter
-            saveData();
-        }
-
-        // تبديل الصوت
-        function toggleSound() {
             // يتم التعامل مع هذا في دالة incrementCounter
             saveData();
         }
