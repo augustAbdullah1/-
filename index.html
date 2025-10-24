@@ -192,6 +192,12 @@
             z-index: 1000;
         }
 
+        .tab-bar.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(20px);
+        }
+
         .tab-button {
             display: flex;
             flex-direction: column;
@@ -481,6 +487,13 @@
             margin-bottom: 15px;
             position: relative;
             padding-right: 40px;
+            transition: background-color 0.3s ease;
+        }
+
+        .quran-ayat.bookmarked {
+            background-color: rgba(56, 161, 105, 0.1);
+            border-radius: 5px;
+            padding: 5px;
         }
 
         .quran-ayat-number {
@@ -540,11 +553,12 @@
             transform: scale(.95);
         }
 
-        .bookmark-position-button {
+        /* أزرار القرآن العائمة */
+        .quran-exit-button {
             position: fixed;
-            top: 80px;
-            right: 20px;
-            background-color: var(--completed-color);
+            top: 20px;
+            left: 20px;
+            background-color: var(--theme-reset);
             color: white;
             border: none;
             border-radius: 50%;
@@ -555,22 +569,29 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1001;
+            z-index: 1002;
             transition: transform 0.2s ease;
         }
 
-        .bookmark-position-button:hover {
+        .quran-exit-button:hover {
             transform: scale(1.05);
         }
 
-        .bookmark-position-button:active {
+        .quran-exit-button:active {
             transform: scale(0.95);
         }
 
-        .quick-jump-button {
+        .quran-floating-buttons {
             position: fixed;
-            top: 140px;
+            top: 20px;
             right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .quran-floating-button {
             background-color: var(--theme-add);
             color: white;
             border: none;
@@ -582,15 +603,14 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1001;
             transition: transform 0.2s ease;
         }
 
-        .quick-jump-button:hover {
+        .quran-floating-button:hover {
             transform: scale(1.05);
         }
 
-        .quick-jump-button:active {
+        .quran-floating-button:active {
             transform: scale(0.95);
         }
 
@@ -1061,23 +1081,9 @@
             .tab-button .tab-label {
                 font-size: 0.65rem;
             }
-            .bookmark-position-button, .quick-jump-button {
+            .quran-floating-button, .quran-exit-button {
                 width: 45px;
                 height: 45px;
-            }
-            .bookmark-position-button {
-                top: 70px;
-                right: 15px;
-            }
-            .quick-jump-button {
-                top: 125px;
-                right: 15px;
-            }
-            .quick-jump-label {
-                top: 175px;
-                right: 10px;
-                font-size: 0.65rem;
-                width: 55px;
             }
             .quran-ayat-container {
                 font-size: 1.4rem;
@@ -1303,7 +1309,7 @@
     </div>
     
     <!-- Tab Bar -->
-    <div class="tab-bar">
+    <div class="tab-bar" id="tab-bar">
         <button class="tab-button active" data-tab="counter-tab">
             <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -1344,27 +1350,28 @@
         </button>
     </div>
     
-    <!-- Floating Back Button -->
-    <button class="floating-back-button" id="floating-back-button" style="display: none;">
+    <!-- زر الخروج من السورة -->
+    <button class="quran-exit-button" id="quran-exit-button" style="display: none;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
     </button>
     
-    <!-- Bookmark Position Button -->
-    <button class="bookmark-position-button" id="bookmark-position-button" style="display: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-        </svg>
-    </button>
-    
-    <!-- Quick Jump Button -->
-    <button class="quick-jump-button" id="quick-jump-button" style="display: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-    </button>
-    <div class="quick-jump-label" id="quick-jump-label" style="display: none;">آخر موضع</div>
+    <!-- أزرار القرآن العائمة -->
+    <div class="quran-floating-buttons" id="quran-floating-buttons" style="display: none;">
+        <button class="quran-floating-button" id="bookmark-position-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+        <button class="quran-floating-button" id="quick-jump-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+        </button>
+        <div class="quick-jump-label" id="quick-jump-label">آخر موضع</div>
+    </div>
     
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
@@ -1453,48 +1460,8 @@
             { id: 9, name: 'سبحان الله العظيم', arabic: 'سبحان الله العظيم', count: 0 }
         ];
 
-        // بيانات الأدعية (أكثر من 200 دعاء)
-        const duasData = [
-            {
-                id: 1,
-                name: 'أذكار الصباح',
-                duas: [
-                    { id: 1, arabic: 'أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ', translation: 'أعوذ بالله من الشيطان الرجيم' },
-                    { id: 2, arabic: 'اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ', translation: 'آية الكرسي' },
-                    { id: 3, arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ، اللَّهُ الصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ', translation: 'سورة الإخلاص' },
-                    { id: 4, arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ', translation: 'سورة الفلق' },
-                    { id: 5, arabic: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ، مَلِكِ النَّاسِ، إِلَهِ النَّاسِ، مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ، الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ، مِنَ الْجِنَّةِ وَ النَّاسِ', translation: 'سورة الناس' },
-                    { id: 6, arabic: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لا إِلَهَ إِلا اللَّهُ وَحْدَهُ لا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ', translation: 'أصبحنا وأصبح الملك لله' },
-                    { id: 7, arabic: 'اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلائِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لا إِلَهَ إِلا أَنْتَ وَحْدَكَ لا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ', translation: 'دعاء الصباح' }
-                ]
-            },
-            {
-                id: 2,
-                name: 'أذكار المساء',
-                duas: [
-                    { id: 1, arabic: 'أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ', translation: 'أعوذ بالله من الشيطان الرجيم' },
-                    { id: 2, arabic: 'اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ', translation: 'آية الكرسي' },
-                    { id: 3, arabic: 'آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ كُلٌّ آمَنَ بِاللّهِ وَمَلآئِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لاَ نُفَرِّقُ بَيْنَ أَحَدٍ mِّن رُّسُلِهِ وَقَالُواْ سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ', translation: 'آخر آيتين من سورة البقرة' },
-                    { id: 4, arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ، اللَّهُ الصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ', translation: 'سورة الإخلاص' },
-                    { id: 5, arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ', translation: 'سورة الفلق' },
-                    { id: 6, arabic: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ، مَلِكِ النَّاسِ، إِلَهِ النَّاسِ، مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ، الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ، مِنَ الْجِنَّةِ وَ النَّاسِ', translation: 'سورة الناس' },
-                    { id: 7, arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لا إِلَهَ إِلا اللَّهُ وَحْدَهُ لا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ', translation: 'أمسينا وأمسى الملك لله' }
-                ]
-            },
-            {
-                id: 3,
-                name: 'أدعية متنوعة',
-                duas: [
-                    { id: 1, arabic: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', translation: 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار' },
-                    { id: 2, arabic: 'رَبِّ اجْعَلْنِي مُقِيمَ الصَّلاةِ وَمِن ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ', translation: 'رب اجعلني مقيم الصلاة ومن ذريتي ربنا وتقبل دعاء' },
-                    { id: 3, arabic: 'رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ', translation: 'ربنا اغفر لي ولوالدي وللمؤمنين يوم يقوم الحساب' },
-                    { id: 4, arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إِلا أَنْتَ', translation: 'دعاء سيد الاستغفار' },
-                    { id: 5, arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً', translation: 'اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً' },
-                    { id: 6, arabic: 'اللَّهُمَّ اهْدِنِي فِيمَنْ هَدَيْتَ، وَعَافِنِي فِيمَنْ عَافَيْتَ، وَتَوَلَّنِي فِيمَنْ تَوَلَّيْتَ، وَبَارِكْ لِي فِيمَا أَعْطَيْتَ، وَقِنِي شَرَّ مَا قَضَيْتَ', translation: 'دعاء القنوت' }
-                ]
-            },
-            // يمكن إضافة المزيد من الفئات والأدعية هنا لتصل إلى أكثر من 200 دعاء
-        ];
+        // API للأدعية (مجاني)
+        const DUAS_API_BASE = 'https://api.hadith.gading.dev/books';
 
         // API للقرآن الكريم
         const QURAN_API_BASE = 'https://api.alquran.cloud/v1';
@@ -1508,7 +1475,7 @@
             setupEventListeners();
             loadData();
             renderDhikrList();
-            renderDuasCategories();
+            loadDuasCategories();
             loadQuranSurahs();
             updateStatistics();
             updateGoalProgress();
@@ -1554,8 +1521,8 @@
             document.getElementById('confirm-reset-button').addEventListener('click', resetCounter);
             document.getElementById('cancel-reset-button').addEventListener('click', closeResetConfirmModal);
 
-            // زر الرجوع العائم
-            document.getElementById('floating-back-button').addEventListener('click', goBack);
+            // زر الخروج من السورة
+            document.getElementById('quran-exit-button').addEventListener('click', exitQuranView);
 
             // زر حفظ الموضع
             document.getElementById('bookmark-position-button').addEventListener('click', bookmarkCurrentPosition);
@@ -1673,15 +1640,13 @@
 
             // إظهار/إخفاء الأزرار العائمة
             if (tabId === 'quran-tab' && appData.selectedSurah) {
-                document.getElementById('floating-back-button').style.display = 'flex';
-                document.getElementById('bookmark-position-button').style.display = 'flex';
-                document.getElementById('quick-jump-button').style.display = 'flex';
-                document.getElementById('quick-jump-label').style.display = 'block';
+                document.getElementById('tab-bar').classList.add('hidden');
+                document.getElementById('quran-exit-button').style.display = 'flex';
+                document.getElementById('quran-floating-buttons').style.display = 'flex';
             } else {
-                document.getElementById('floating-back-button').style.display = 'none';
-                document.getElementById('bookmark-position-button').style.display = 'none';
-                document.getElementById('quick-jump-button').style.display = 'none';
-                document.getElementById('quick-jump-label').style.display = 'none';
+                document.getElementById('tab-bar').classList.remove('hidden');
+                document.getElementById('quran-exit-button').style.display = 'none';
+                document.getElementById('quran-floating-buttons').style.display = 'none';
             }
         }
 
@@ -1863,12 +1828,35 @@
             });
         }
 
-        // عرض فئات الأدعية
-        function renderDuasCategories() {
+        // تحميل فئات الأدعية من API
+        async function loadDuasCategories() {
+            const duasCategoryList = document.getElementById('duas-category-list');
+            duasCategoryList.innerHTML = '<div style="text-align: center; padding: 20px;"><span class="loading-spinner"></span> جاري تحميل الأدعية...</div>';
+            
+            try {
+                // استخدام API مجاني للأدعية (مثال)
+                const response = await fetch('https://api.hadith.gading.dev/books');
+                const data = await response.json();
+                
+                if (data.data) {
+                    renderDuasCategories(data.data);
+                } else {
+                    // إذا فشل API، استخدم البيانات المحلية
+                    renderLocalDuasCategories();
+                }
+            } catch (error) {
+                console.error('Error loading duas:', error);
+                // استخدام البيانات المحلية كبديل
+                renderLocalDuasCategories();
+            }
+        }
+
+        // عرض فئات الأدعية من API
+        function renderDuasCategories(categories) {
             const duasCategoryList = document.getElementById('duas-category-list');
             duasCategoryList.innerHTML = '';
             
-            duasData.forEach(category => {
+            categories.forEach(category => {
                 const categoryItem = document.createElement('div');
                 categoryItem.className = 'dua-category-item';
                 categoryItem.innerHTML = `
@@ -1880,6 +1868,38 @@
                 
                 categoryItem.addEventListener('click', () => {
                     showDuasInCategory(category);
+                });
+                
+                duasCategoryList.appendChild(categoryItem);
+            });
+        }
+
+        // عرض فئات الأدعية المحلية
+        function renderLocalDuasCategories() {
+            const duasCategoryList = document.getElementById('duas-category-list');
+            duasCategoryList.innerHTML = '';
+            
+            const localCategories = [
+                { id: 1, name: 'أذكار الصباح' },
+                { id: 2, name: 'أذكار المساء' },
+                { id: 3, name: 'أدعية متنوعة' },
+                { id: 4, name: 'أدعية القرآن' },
+                { id: 5, name: 'أدعية النبي ﷺ' },
+                { id: 6, name: 'أدعية الاستغفار' }
+            ];
+            
+            localCategories.forEach(category => {
+                const categoryItem = document.createElement('div');
+                categoryItem.className = 'dua-category-item';
+                categoryItem.innerHTML = `
+                    <span>${category.name}</span>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                `;
+                
+                categoryItem.addEventListener('click', () => {
+                    showLocalDuasInCategory(category);
                 });
                 
                 duasCategoryList.appendChild(categoryItem);
@@ -1901,12 +1921,51 @@
                 </svg>
             `;
             backButton.addEventListener('click', () => {
-                renderDuasCategories();
+                loadDuasCategories();
             });
             duasCategoryList.appendChild(backButton);
             
+            // عرض رسالة تجريبية
+            const messageItem = document.createElement('div');
+            messageItem.className = 'dua-category-item';
+            messageItem.style.flexDirection = 'column';
+            messageItem.style.alignItems = 'flex-end';
+            messageItem.innerHTML = `
+                <div style="font-size: 1.2rem; margin-bottom: 10px; text-align: right; line-height: 1.6;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                <div style="font-size: 0.9rem; color: var(--theme-accent); opacity: 0.8; text-align: right;">هذا قسم ${category.name}. في النسخة الكاملة سيتم تحميل الأدعية من API.</div>
+            `;
+            
+            duasCategoryList.appendChild(messageItem);
+        }
+
+        // عرض الأدعية المحلية في فئة محددة
+        function showLocalDuasInCategory(category) {
+            const duasCategoryList = document.getElementById('duas-category-list');
+            duasCategoryList.innerHTML = '';
+            
+            // إضافة زر الرجوع
+            const backButton = document.createElement('div');
+            backButton.className = 'dua-category-item';
+            backButton.innerHTML = `
+                <span>رجوع</span>
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            `;
+            backButton.addEventListener('click', () => {
+                renderLocalDuasCategories();
+            });
+            duasCategoryList.appendChild(backButton);
+            
+            // بيانات أدعية محلية
+            const localDuas = [
+                { arabic: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', translation: 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار' },
+                { arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إِلا أَنْتَ', translation: 'دعاء سيد الاستغفار' },
+                { arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً', translation: 'اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً' }
+            ];
+            
             // عرض الأدعية
-            category.duas.forEach(dua => {
+            localDuas.forEach(dua => {
                 const duaItem = document.createElement('div');
                 duaItem.className = 'dua-category-item';
                 duaItem.style.flexDirection = 'column';
@@ -1974,11 +2033,10 @@
             quranSurahList.style.display = 'none';
             quranReaderView.style.display = 'flex';
             
-            // إظهار الأزرار العائمة
-            document.getElementById('floating-back-button').style.display = 'flex';
-            document.getElementById('bookmark-position-button').style.display = 'flex';
-            document.getElementById('quick-jump-button').style.display = 'flex';
-            document.getElementById('quick-jump-label').style.display = 'block';
+            // إخفاء شريط التبويبات وإظهار الأزرار العائمة
+            document.getElementById('tab-bar').classList.add('hidden');
+            document.getElementById('quran-exit-button').style.display = 'flex';
+            document.getElementById('quran-floating-buttons').style.display = 'flex';
             
             try {
                 // تحميل النص العربي
@@ -1995,6 +2053,16 @@
                 console.error('Error loading surah content:', error);
                 document.getElementById('quran-page').innerHTML = '<div style="text-align: center; padding: 20px; color: var(--theme-accent);">عذراً، تعذر تحميل الآيات. يرجى المحاولة لاحقاً.</div>';
             }
+        }
+
+        // الخروج من عرض السورة
+        function exitQuranView() {
+            appData.selectedSurah = null;
+            document.getElementById('quran-reader-view').style.display = 'none';
+            document.getElementById('quran-surah-list').style.display = 'block';
+            document.getElementById('tab-bar').classList.remove('hidden');
+            document.getElementById('quran-exit-button').style.display = 'none';
+            document.getElementById('quran-floating-buttons').style.display = 'none';
         }
 
         // عرض صفحة القرآن
@@ -2052,12 +2120,21 @@
         // حفظ الموضع الحالي
         function bookmarkCurrentPosition() {
             if (appData.selectedSurah) {
-                appData.lastReadPosition = {
+                // إزالة أي إشارة سابقة لنفس السورة
+                appData.bookmarkedAyat = appData.bookmarkedAyat.filter(b => b.surahId !== appData.selectedSurah.number);
+                
+                // إضافة الإشارة الجديدة
+                appData.bookmarkedAyat.push({
                     surahId: appData.selectedSurah.number,
-                    ayahId: appData.currentAyah
-                };
+                    ayahId: appData.currentAyah,
+                    timestamp: new Date().toISOString()
+                });
+                
                 saveData();
                 showToast('تم حفظ الموضع الحالي');
+                
+                // تحديث عرض الصفحة
+                displayQuranPage();
             }
         }
 
@@ -2107,19 +2184,6 @@
             } catch (error) {
                 console.error('Error loading surah by ID:', error);
                 showToast('عذراً، تعذر تحميل السورة');
-            }
-        }
-
-        // الرجوع من عرض السورة إلى قائمة السور
-        function goBack() {
-            if (appData.selectedSurah) {
-                appData.selectedSurah = null;
-                document.getElementById('quran-reader-view').style.display = 'none';
-                document.getElementById('quran-surah-list').style.display = 'block';
-                document.getElementById('floating-back-button').style.display = 'none';
-                document.getElementById('bookmark-position-button').style.display = 'none';
-                document.getElementById('quick-jump-button').style.display = 'none';
-                document.getElementById('quick-jump-label').style.display = 'none';
             }
         }
 
