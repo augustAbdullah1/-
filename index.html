@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
+        /* جميع الأنماط الأصلية تبقى كما هي */
         :root {
             --primary-color-default: #1a365d;
             --secondary-color-default: #2d3748;
@@ -45,21 +46,29 @@
             --icon-size: 24px;
             
             /* New Theme Colors - More Calm */
-            --theme-purple-primary: #6d28d9;
-            --theme-purple-secondary: #8b5cf6;
-            --theme-purple-accent: #c4b5fd;
+            --theme-purple-primary: #553c9a;
+            --theme-purple-secondary: #6b46c1;
+            --theme-purple-accent: #d6bcfa;
             
-            --theme-blue-primary: #1e40af;
-            --theme-blue-secondary: #3b82f6;
-            --theme-blue-accent: #bfdbfe;
+            --theme-blue-primary: #2c5282;
+            --theme-blue-secondary: #4299e1;
+            --theme-blue-accent: #bee3f8;
             
-            --theme-rose-primary: #be185d;
-            --theme-rose-secondary: #ec4899;
-            --theme-rose-accent: #fbcfe8;
+            --theme-green-primary: #276749;
+            --theme-green-secondary: #48bb78;
+            --theme-green-accent: #c6f6d5;
             
-            --theme-ocean-primary: #0f766e;
-            --theme-ocean-secondary: #14b8a6;
-            --theme-ocean-accent: #99f6e4;
+            --theme-rose-primary: #97266d;
+            --theme-rose-secondary: #ed64a6;
+            --theme-rose-accent: #fed7e2;
+            
+            --theme-sand-primary: #b7791f;
+            --theme-sand-secondary: #ecc94b;
+            --theme-sand-accent: #fefcbf;
+            
+            --theme-ocean-primary: #234e52;
+            --theme-ocean-secondary: #38b2ac;
+            --theme-ocean-accent: #b2f5ea;
         }
 
         * {
@@ -108,10 +117,22 @@
             --theme-accent: var(--theme-blue-accent);
         }
 
+        body.theme-green {
+            --theme-primary: var(--theme-green-primary);
+            --theme-secondary: var(--theme-green-secondary);
+            --theme-accent: var(--theme-green-accent);
+        }
+
         body.theme-rose {
             --theme-primary: var(--theme-rose-primary);
             --theme-secondary: var(--theme-rose-secondary);
             --theme-accent: var(--theme-rose-accent);
+        }
+        
+        body.theme-sand {
+            --theme-primary: var(--theme-sand-primary);
+            --theme-secondary: var(--theme-sand-secondary);
+            --theme-accent: var(--theme-sand-accent);
         }
         
         body.theme-ocean {
@@ -297,6 +318,28 @@
             box-shadow: 0 3px 8px rgba(0,0,0,.3);
         }
 
+        /* Reset Button Position - Moved below counter */
+        .reset-counter-button {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: var(--theme-reset);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .reset-counter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
         .bottom-controls {
             display: flex;
             flex-direction: column;
@@ -378,7 +421,7 @@
             stroke: var(--dua-icon-color);
         }
 
-        /* Quran Section - Fullscreen Design */
+        /* Quran Section - Original Design */
         .quran-surah-list {
             display: flex;
             flex-direction: column;
@@ -414,16 +457,12 @@
 
         .quran-reader-view {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
-            z-index: 2000;
-            padding: 20px;
-            overflow-y: auto;
             flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-bottom: 20px;
         }
 
         .quran-page {
@@ -439,7 +478,6 @@
             min-height: 500px;
             margin-bottom: 15px;
             border: 1px solid #d4b98a;
-            flex-grow: 1;
         }
 
         .quran-page-header {
@@ -538,7 +576,7 @@
             transform: scale(.95);
         }
 
-        /* Quran Exit Button - Floating */
+        /* أزرار القرآن العائمة */
         .quran-exit-button {
             position: fixed;
             top: 20px;
@@ -554,7 +592,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 2001;
+            z-index: 1002;
             transition: transform 0.2s ease;
         }
 
@@ -564,6 +602,53 @@
 
         .quran-exit-button:active {
             transform: scale(0.95);
+        }
+
+        .quran-floating-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .quran-floating-button {
+            background-color: var(--theme-add);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .quran-floating-button:hover {
+            transform: scale(1.05);
+        }
+
+        .quran-floating-button:active {
+            transform: scale(0.95);
+        }
+
+        .quick-jump-label {
+            position: fixed;
+            top: 195px;
+            right: 15px;
+            font-size: 0.7rem;
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            padding: 3px 8px;
+            border-radius: 10px;
+            z-index: 1001;
+            text-align: center;
+            width: 60px;
         }
 
         /* Prayer Times Section */
@@ -698,6 +783,79 @@
             margin: 5px;
         }
 
+        /* Profile Tab - New */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--theme-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--theme-primary);
+            margin-bottom: 15px;
+            border: 4px solid var(--theme-border-color);
+            overflow: hidden;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--theme-accent);
+            margin-bottom: 10px;
+        }
+
+        .profile-bio {
+            font-size: 0.9rem;
+            color: var(--theme-text);
+            opacity: 0.8;
+            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .profile-stat {
+            background-color: rgba(255,255,255,.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--theme-border-color);
+        }
+
+        .profile-stat-value {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--theme-counter);
+            margin-bottom: 5px;
+        }
+
+        .profile-stat-label {
+            font-size: .7rem;
+            color: var(--theme-accent);
+            opacity: .8;
+        }
+
         /* Settings Section */
         .settings-section {
             display: flex;
@@ -787,10 +945,41 @@
         }
 
         .theme-default { background: linear-gradient(135deg, #1a365d, #2d3748); }
-        .theme-purple { background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
-        .theme-blue { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-        .theme-rose { background: linear-gradient(135deg, #be185d, #ec4899); }
-        .theme-ocean { background: linear-gradient(135deg, #0f766e, #14b8a6); }
+        .theme-purple { background: linear-gradient(135deg, #553c9a, #6b46c1); }
+        .theme-blue { background: linear-gradient(135deg, #2c5282, #4299e1); }
+        .theme-green { background: linear-gradient(135deg, #276749, #48bb78); }
+        .theme-rose { background: linear-gradient(135deg, #97266d, #ed64a6); }
+        .theme-sand { background: linear-gradient(135deg, #b7791f, #ecc94b); }
+        .theme-ocean { background: linear-gradient(135deg, #234e52, #38b2ac); }
+
+        /* Color Picker */
+        .color-picker {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: var(--category-bg);
+            border-radius: 15px;
+            border: 1px solid var(--theme-border-color);
+        }
+
+        .color-picker.active {
+            display: flex;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
 
         .charity-section {
             background-color: rgba(255,255,255,.05);
@@ -838,6 +1027,31 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
+        }
+
+        /* Cancel Button at Top Right */
+        .modal-cancel-top {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            color: var(--theme-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .modal-cancel-top:hover {
+            background-color: rgba(255,255,255,0.1);
         }
 
         @keyframes fadeInModal {
@@ -983,127 +1197,65 @@
             color: var(--theme-accent);
         }
 
-        /* Profile Section */
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--theme-accent);
-        }
-
-        .profile-info {
-            flex: 1;
-        }
-
-        .profile-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .profile-bio {
-            font-size: 0.9rem;
-            color: var(--theme-accent);
-            opacity: 0.8;
-        }
-
-        .profile-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .profile-stat {
+        /* Live Ranking System */
+        .ranking-section {
             background-color: rgba(255,255,255,.05);
             padding: 15px;
             border-radius: 12px;
-            text-align: center;
+            margin: 15px 0;
             border: 1px solid var(--theme-border-color);
         }
 
-        .profile-stat-value {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--theme-counter);
-            margin-bottom: 5px;
-        }
-
-        .profile-stat-label {
-            font-size: .7rem;
+        .ranking-title {
+            font-size: 1.1rem;
+            font-weight: 700;
             color: var(--theme-accent);
-            opacity: .8;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
-        /* Leaderboard */
-        .leaderboard-section {
+        .ranking-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
         }
 
-        .leaderboard-item {
+        .ranking-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background-color: var(--category-bg);
-            border-radius: 12px;
+            padding: 10px 15px;
+            background-color: rgba(255,255,255,.05);
+            border-radius: 10px;
             border: 1px solid var(--theme-border-color);
-            gap: 12px;
         }
 
-        .leaderboard-rank {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: var(--theme-add);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-        }
-
-        .leaderboard-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-
-        .leaderboard-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .leaderboard-name {
-            font-weight: 600;
-        }
-
-        .leaderboard-count {
+        .ranking-position {
             font-weight: 700;
             color: var(--theme-counter);
+            min-width: 25px;
+            text-align: center;
         }
 
-        /* UI Customization */
+        .ranking-name {
+            flex-grow: 1;
+            text-align: right;
+            margin: 0 10px;
+        }
+
+        .ranking-count {
+            font-weight: 700;
+            color: var(--theme-accent);
+        }
+
+        .ranking-you {
+            background-color: rgba(56, 161, 105, 0.2);
+            border-color: rgba(56, 161, 105, 0.5);
+        }
+
+        /* Custom UI Toggles */
         .ui-customization {
             display: flex;
             flex-direction: column;
@@ -1111,25 +1263,68 @@
             margin-top: 10px;
         }
 
-        .ui-toggle {
+        .ui-toggle-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border: 1px solid var(--theme-border-color);
+        }
+
+        /* Animation for theme-specific features */
+        .animated-prayer-beads {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background-color: rgba(255,255,255,.05);
-            border-radius: 10px;
-        }
-
-        .ui-toggle-label {
-            flex: 1;
-            font-size: 0.9rem;
-        }
-
-        /* Reset Button Position */
-        .reset-counter-container {
-            margin-top: 15px;
-            display: flex;
             justify-content: center;
+            opacity: 0.7;
+        }
+
+        .bead {
+            width: 6px;
+            height: 6px;
+            background-color: var(--theme-accent);
+            border-radius: 50%;
+            position: absolute;
+            animation: bead-float 3s infinite ease-in-out;
+        }
+
+        .bead:nth-child(1) { animation-delay: 0s; top: 5px; left: 5px; }
+        .bead:nth-child(2) { animation-delay: 0.5s; top: 5px; right: 5px; }
+        .bead:nth-child(3) { animation-delay: 1s; bottom: 5px; left: 5px; }
+        .bead:nth-child(4) { animation-delay: 1.5s; bottom: 5px; right: 5px; }
+
+        @keyframes bead-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .gradient-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .pattern-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
         }
 
         @media (max-width:600px){
@@ -1166,18 +1361,15 @@
             .tab-button .tab-label {
                 font-size: 0.65rem;
             }
+            .quran-floating-button, .quran-exit-button {
+                width: 45px;
+                height: 45px;
+            }
             .quran-ayat-container {
                 font-size: 1.4rem;
             }
             .prayer-times-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .profile-image {
-                width: 70px;
-                height: 70px;
-            }
-            .profile-name {
-                font-size: 1.2rem;
             }
         }
 
@@ -1188,9 +1380,6 @@
             .counter-button {
                 width: 130px;
                 height: 130px;
-            }
-            .profile-stats {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -1208,19 +1397,16 @@
                 <div class="dhikr-name" id="dhikr-name">استغفر الله</div>
                 <div class="target-display" id="target-display">الهدف: لا يوجد</div>
                 <button class="counter-button" id="counter-button">آجر</button>
-                <div class="reset-counter-container">
-                    <button class="base-control reset-button" id="reset-button">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
-                            <path d="M20 12v-1c0-4.42-3.58-8-8-8S4 6.58 4 11s3.58 8 8 8c.7 0 1.39-.08 2.05-.24"/>
-                            <path d="M19 16l3 3-3 3"/>
-                            <path d="M22 19h-5"/>
-                        </svg>
-                        <span>تصفير العداد</span>
-                    </button>
-                </div>
+                <button class="reset-counter-button" id="reset-counter-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                    </svg>
+                    إعادة التعيين
+                </button>
             </div>
-            <div class="bottom-controls" id="counter-controls">
-                <div class="control-row" id="select-dhikr-row">
+            <div class="bottom-controls">
+                <div class="control-row">
                     <button class="base-control" id="select-dhikr-button" style="flex: 1;">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
@@ -1236,13 +1422,19 @@
                         <span>تعيين الهدف</span>
                     </button>
                 </div>
-                <div class="control-row" id="add-dhikr-row">
+                <div class="control-row">
                     <button class="base-control" id="add-dhikr-button" style="flex: 1; background-color: var(--theme-add); color: white;">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                         <span>أضف ذكر</span>
+                    </button>
+                    <button class="base-control" id="last-dhikr-button" style="flex: 1;">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+                            <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/>
+                        </svg>
+                        <span>آخر ذكر</span>
                     </button>
                 </div>
             </div>
@@ -1330,19 +1522,19 @@
                 </div>
             </div>
             
+            <div class="ranking-section">
+                <h3 style="margin-bottom: 10px;">التصنيف المباشر</h3>
+                <div class="ranking-list" id="ranking-list">
+                    <!-- سيتم تعبئة التصنيف ديناميكياً -->
+                </div>
+            </div>
+            
             <div class="daily-timer">
                 <h3 style="margin-bottom: 10px;">مؤتمر الورد اليومي</h3>
                 <div class="timer-display" id="daily-timer">00:00:00</div>
                 <div class="timer-controls">
                     <button class="base-control" id="start-timer-button">بدء</button>
                     <button class="base-control reset-button" id="reset-timer-button">إعادة تعيين</button>
-                </div>
-            </div>
-            
-            <div class="leaderboard-section">
-                <h3 style="margin-bottom: 10px;">تصنيف المستخدمين</h3>
-                <div id="leaderboard-list">
-                    <!-- سيتم تعبئة التصنيف ديناميكياً -->
                 </div>
             </div>
             
@@ -1356,22 +1548,24 @@
         
         <div class="tab-content" id="profile-tab">
             <div class="profile-section">
-                <div class="profile-header">
-                    <img src="https://via.placeholder.com/80" alt="صورة المستخدم" class="profile-image" id="profile-image">
-                    <div class="profile-info">
-                        <div class="profile-name" id="profile-name">المستخدم</div>
-                        <div class="profile-bio" id="profile-bio">أضف نبذة عن نفسك</div>
-                    </div>
+                <div class="profile-picture" id="profile-picture">
+                    <span>👤</span>
                 </div>
+                <div class="profile-name" id="profile-name">المستخدم</div>
+                <div class="profile-bio" id="profile-bio">مرحباً! أنا مستخدم تطبيق آجر</div>
                 
                 <div class="profile-stats">
                     <div class="profile-stat">
-                        <div class="profile-stat-value" id="profile-today">0</div>
-                        <div class="profile-stat-label">اليوم</div>
+                        <div class="profile-stat-value" id="profile-total-count">0</div>
+                        <div class="profile-stat-label">مجموع الأذكار</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-value" id="profile-total">0</div>
-                        <div class="profile-stat-label">الإجمالي</div>
+                        <div class="profile-stat-value" id="profile-streak">0</div>
+                        <div class="profile-stat-label">يوم متتالي</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-value" id="profile-level">1</div>
+                        <div class="profile-stat-label">المستوى</div>
                     </div>
                     <div class="profile-stat">
                         <div class="profile-stat-value" id="profile-rank">-</div>
@@ -1380,11 +1574,11 @@
                 </div>
                 
                 <button class="base-control" id="edit-profile-button">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                     </svg>
-                    <span>تعديل الملف الشخصي</span>
+                    تعديل الملف الشخصي
                 </button>
             </div>
         </div>
@@ -1408,11 +1602,35 @@
                 </div>
                 
                 <div class="setting-item">
-                    <div class="setting-label">اللغة الإنجليزية</div>
+                    <div class="setting-label">تخصيص الواجهة</div>
                     <label class="toggle-switch">
-                        <input type="checkbox" id="english-toggle">
+                        <input type="checkbox" id="customize-ui-toggle">
                         <span class="toggle-slider"></span>
                     </label>
+                </div>
+                
+                <div class="ui-customization" id="ui-customization" style="display: none;">
+                    <div class="ui-toggle-item">
+                        <div class="setting-label">زر آخر ذكر</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="last-dhikr-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="ui-toggle-item">
+                        <div class="setting-label">زر تحديد الهدف</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="set-goal-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="ui-toggle-item">
+                        <div class="setting-label">زر إضافة ذكر</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="add-dhikr-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
                 </div>
                 
                 <div class="setting-item">
@@ -1426,36 +1644,22 @@
                         <div class="theme-option theme-default active" data-theme="default"></div>
                         <div class="theme-option theme-purple" data-theme="purple"></div>
                         <div class="theme-option theme-blue" data-theme="blue"></div>
+                        <div class="theme-option theme-green" data-theme="green"></div>
                         <div class="theme-option theme-rose" data-theme="rose"></div>
                         <div class="theme-option theme-ocean" data-theme="ocean"></div>
                     </div>
                 </div>
                 
                 <div class="setting-item">
-                    <div class="setting-label">تخصيص الواجهة</div>
-                    <div class="ui-customization">
-                        <div class="ui-toggle">
-                            <div class="ui-toggle-label">إظهار زر اختيار الذكر</div>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="show-select-dhikr" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="ui-toggle">
-                            <div class="ui-toggle-label">إظهار زر تعيين الهدف</div>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="show-set-target" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="ui-toggle">
-                            <div class="ui-toggle-label">إظهار زر إضافة ذكر</div>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="show-add-dhikr" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                    </div>
+                    <div class="setting-label">منتقي الألوان</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="color-picker-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div class="color-picker" id="color-picker">
+                    <!-- سيتم تعبئة خيارات الألوان ديناميكياً -->
                 </div>
                 
                 <div class="charity-section">
@@ -1501,12 +1705,20 @@
             </svg>
             <span class="tab-label">مواقيت</span>
         </button>
+        <button class="tab-button" data-tab="statistics-tab">
+            <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            <span class="tab-label">الإحصائيات</span>
+        </button>
         <button class="tab-button" data-tab="profile-tab">
             <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span class="tab-label">الملف</span>
+            <span class="tab-label">الملف الشخصي</span>
         </button>
         <button class="tab-button" data-tab="settings-tab">
             <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1524,18 +1736,32 @@
         </svg>
     </button>
     
+    <!-- أزرار القرآن العائمة -->
+    <div class="quran-floating-buttons" id="quran-floating-buttons" style="display: none;">
+        <button class="quran-floating-button" id="bookmark-position-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+        <button class="quran-floating-button" id="quick-jump-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+        </button>
+        <div class="quick-jump-label" id="quick-jump-label">آخر موضع</div>
+    </div>
+    
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
     
     <!-- Modals -->
     <div class="modal" id="select-dhikr-modal">
         <div class="modal-content">
+            <button class="modal-cancel-top" id="close-dhikr-modal">✕</button>
             <div class="modal-title">اختر ذكرًا</div>
             <div id="dhikr-list">
                 <!-- سيتم تعبئة قائمة الأذكار ديناميكياً -->
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-button modal-cancel" id="close-dhikr-modal">إغلاق</button>
             </div>
         </div>
     </div>
@@ -1553,10 +1779,8 @@
     
     <div class="modal" id="add-dhikr-modal">
         <div class="modal-content">
-            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <div class="modal-title">إضافة ذكر جديد</div>
-                <button class="modal-button modal-cancel" id="cancel-add-dhikr-button" style="padding: 5px 10px; font-size: 0.8rem;">إلغاء</button>
-            </div>
+            <button class="modal-cancel-top" id="cancel-add-dhikr-button">✕</button>
+            <div class="modal-title">إضافة ذكر جديد</div>
             <input type="text" id="new-dhikr-name" class="add-modal-input" placeholder="اسم الذكر" dir="rtl">
             <div class="modal-buttons">
                 <button class="modal-button modal-confirm" id="confirm-add-dhikr-button">إضافة</button>
@@ -1573,19 +1797,28 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal" id="edit-profile-modal">
         <div class="modal-content">
             <div class="modal-title">تعديل الملف الشخصي</div>
-            <input type="text" id="profile-name-input" class="add-modal-input" placeholder="اسم المستخدم" dir="rtl">
-            <textarea id="profile-bio-input" class="add-modal-input" placeholder="نبذة عنك" dir="rtl" style="height: 100px; resize: vertical;"></textarea>
-            <input type="file" id="profile-image-input" class="add-modal-input" accept="image/*">
+            <input type="text" id="edit-profile-name" class="add-modal-input" placeholder="الاسم" dir="rtl">
+            <textarea id="edit-profile-bio" class="add-modal-input" placeholder="نبذة عنك" rows="3" dir="rtl"></textarea>
             <div class="modal-buttons">
-                <button class="modal-button modal-confirm" id="confirm-profile-button">حفظ</button>
-                <button class="modal-button modal-cancel" id="cancel-profile-button">إلغاء</button>
+                <button class="modal-button modal-confirm" id="confirm-edit-profile-button">حفظ</button>
+                <button class="modal-button modal-cancel" id="cancel-edit-profile-button">إلغاء</button>
             </div>
         </div>
     </div>
+
+    <!-- Theme-specific elements -->
+    <div class="animated-prayer-beads" id="prayer-beads">
+        <div class="bead"></div>
+        <div class="bead"></div>
+        <div class="bead"></div>
+        <div class="bead"></div>
+    </div>
+    <div class="gradient-light" id="gradient-light"></div>
+    <div class="pattern-background" id="pattern-background"></div>
 
     <script>
         // البيانات الأساسية للتطبيق
@@ -1600,19 +1833,8 @@
             timerRunning: false,
             timerSeconds: 0,
             timerInterval: null,
-            isEnglishEnabled: false,
             lastReadPosition: null,
             timeFormat: '12', // 12 or 24 hour format
-            profile: {
-                name: 'المستخدم',
-                bio: 'أضف نبذة عن نفسك',
-                image: 'https://via.placeholder.com/80'
-            },
-            uiSettings: {
-                showSelectDhikr: true,
-                showSetTarget: true,
-                showAddDhikr: true
-            },
             achievements: [
                 { id: 1, name: 'مبتدئ', description: 'أكمل 10 أذكار', completed: false, target: 10 },
                 { id: 2, name: 'منتظم', description: 'أكمل 50 ذكرًا', completed: false, target: 50 },
@@ -1621,13 +1843,21 @@
                 { id: 5, name: 'قارئ', description: 'حدد 5 آيات', completed: false, target: 5 },
                 { id: 6, name: 'حافظ', description: 'حدد 10 آيات', completed: false, target: 10 }
             ],
-            leaderboard: [
-                { id: 1, name: 'أحمد', count: 1250, image: 'https://via.placeholder.com/40' },
-                { id: 2, name: 'محمد', count: 980, image: 'https://via.placeholder.com/40' },
-                { id: 3, name: 'فاطمة', count: 750, image: 'https://via.placeholder.com/40' },
-                { id: 4, name: 'خالد', count: 620, image: 'https://via.placeholder.com/40' },
-                { id: 5, name: 'سارة', count: 510, image: 'https://via.placeholder.com/40' }
-            ]
+            profile: {
+                name: "المستخدم",
+                bio: "مرحباً! أنا مستخدم تطبيق آجر",
+                totalCount: 0,
+                streak: 0,
+                level: 1,
+                rank: "-"
+            },
+            settings: {
+                showLastDhikr: true,
+                showSetGoal: true,
+                showAddDhikr: true
+            },
+            // بيانات المستخدمين الحقيقيين للتطبيق
+            users: []
         };
 
         // بيانات الأذكار
@@ -1702,6 +1932,94 @@
                         translation: 'اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً'
                     }
                 ]
+            },
+            // إضافة المزيد من الأدعية
+            {
+                id: 4,
+                name: 'أدعية الاستيقاظ',
+                duas: [
+                    {
+                        id: 401,
+                        arabic: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ',
+                        translation: 'الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور'
+                    },
+                    {
+                        id: 402,
+                        arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ',
+                        translation: 'اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك المصير'
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: 'أدعية قبل النوم',
+                duas: [
+                    {
+                        id: 501,
+                        arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
+                        translation: 'باسمك اللهم أموت وأحيا'
+                    },
+                    {
+                        id: 502,
+                        arabic: 'اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ',
+                        translation: 'اللهم قني عذابك يوم تبعث عبادك'
+                    }
+                ]
+            },
+            {
+                id: 6,
+                name: 'أدعية دخول المسجد',
+                duas: [
+                    {
+                        id: 601,
+                        arabic: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',
+                        translation: 'اللهم افتح لي أبواب رحمتك'
+                    }
+                ]
+            },
+            {
+                id: 7,
+                name: 'أدعية الخروج من المسجد',
+                duas: [
+                    {
+                        id: 701,
+                        arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ',
+                        translation: 'اللهم إني أسألك من فضلك'
+                    }
+                ]
+            },
+            {
+                id: 8,
+                name: 'أدعية السفر',
+                duas: [
+                    {
+                        id: 801,
+                        arabic: 'سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ',
+                        translation: 'سبحان الذي سخر لنا هذا وما كنا له مقرنين وإنا إلى ربنا لمنقلبون'
+                    }
+                ]
+            },
+            {
+                id: 9,
+                name: 'أدعية الهم والغم',
+                duas: [
+                    {
+                        id: 901,
+                        arabic: 'اللَّهُمَّ إِنِّي عَبْدُكَ، وَابْنُ عَبْدِكَ، وَابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَدًا مِنْ خَلْقِكَ، أَوِ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الْغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجَلَاءَ حُزْنِي، وَذَهَابَ هَمِّي',
+                        translation: 'اللهم إني عبدك، وابن عبدك، وابن أمتك، ناصيتي بيدك، ماض في حكمك، عدل في قضاؤك، أسألك بكل اسم هو لك سميت به نفسك، أو أنزلته في كتابك، أو علمته أحداً من خلقك، أو استأثرت به في علم الغيب عندك، أن تجعل القرآن ربيع قلبي، ونور صدري، وجلاء حزني، وذهاب همي'
+                    }
+                ]
+            },
+            {
+                id: 10,
+                name: 'أدعية الشفاء',
+                duas: [
+                    {
+                        id: 1001,
+                        arabic: 'أَسْأَلُ اللَّهَ الْعَظِيمَ رَبَّ الْعَرْشِ الْعَظِيمِ أَنْ يَشْفِيَكَ',
+                        translation: 'أسأل الله العظيم رب العرش العظيم أن يشفيك'
+                    }
+                ]
             }
         ];
 
@@ -1717,15 +2035,17 @@
             setupEventListeners();
             loadData();
             renderDhikrList();
-            loadDuasCategories();
+            loadDuasCategories(); // تحميل الأدعية المحلية بدلاً من API
             loadQuranSurahs();
             updateStatistics();
             updateGoalProgress();
             renderAchievements();
             loadPrayerTimes();
-            renderLeaderboard();
-            updateProfile();
-            updateUIElements();
+            initializeProfile();
+            initializeRanking();
+            initializeColorPicker();
+            setupThemeFeatures();
+            updateCustomUIButtons();
         });
 
         // تهيئة التطبيق
@@ -1751,11 +2071,14 @@
             // زر العداد
             document.getElementById('counter-button').addEventListener('click', incrementCounter);
 
+            // زر إعادة التعيين أسفل العداد
+            document.getElementById('reset-counter-button').addEventListener('click', showResetConfirmModal);
+
             // أزرار التحكم
             document.getElementById('select-dhikr-button').addEventListener('click', showDhikrModal);
             document.getElementById('set-target-button').addEventListener('click', showTargetModal);
             document.getElementById('add-dhikr-button').addEventListener('click', showAddDhikrModal);
-            document.getElementById('reset-button').addEventListener('click', showResetConfirmModal);
+            document.getElementById('last-dhikr-button').addEventListener('click', showLastDhikr);
 
             // أزرار الإغلاق في النوافذ المنبثقة
             document.getElementById('close-dhikr-modal').addEventListener('click', closeDhikrModal);
@@ -1769,6 +2092,12 @@
             // زر الخروج من السورة
             document.getElementById('quran-exit-button').addEventListener('click', exitQuranView);
 
+            // زر حفظ الموضع
+            document.getElementById('bookmark-position-button').addEventListener('click', bookmarkCurrentPosition);
+
+            // زر الانتقال السريع
+            document.getElementById('quick-jump-button').addEventListener('click', quickJumpToBookmark);
+
             // البحث في الأدعية والقرآن
             document.getElementById('duas-search-input').addEventListener('input', filterDuas);
             document.getElementById('quran-search-input').addEventListener('input', filterQuran);
@@ -1780,8 +2109,13 @@
             // الإعدادات
             document.getElementById('dark-mode-toggle').addEventListener('change', toggleDarkMode);
             document.getElementById('vibration-toggle').addEventListener('change', toggleVibration);
-            document.getElementById('english-toggle').addEventListener('change', toggleEnglish);
             document.getElementById('daily-goal-input').addEventListener('change', setDailyGoal);
+
+            // تخصيص الواجهة
+            document.getElementById('customize-ui-toggle').addEventListener('change', toggleCustomizeUI);
+            document.getElementById('last-dhikr-toggle').addEventListener('change', toggleLastDhikrButton);
+            document.getElementById('set-goal-toggle').addEventListener('change', toggleSetGoalButton);
+            document.getElementById('add-dhikr-toggle').addEventListener('change', toggleAddDhikrButton);
 
             // اختيار الثيم
             document.querySelectorAll('.theme-option').forEach(option => {
@@ -1790,6 +2124,9 @@
                     changeTheme(theme);
                 });
             });
+
+            // منتقي الألوان
+            document.getElementById('color-picker-toggle').addEventListener('change', toggleColorPicker);
 
             // التنقل بين الآيات
             document.getElementById('prev-ayah-button').addEventListener('click', goToPrevAyah);
@@ -1805,13 +2142,8 @@
 
             // الملف الشخصي
             document.getElementById('edit-profile-button').addEventListener('click', showEditProfileModal);
-            document.getElementById('confirm-profile-button').addEventListener('click', saveProfile);
-            document.getElementById('cancel-profile-button').addEventListener('click', closeEditProfileModal);
-
-            // تخصيص الواجهة
-            document.getElementById('show-select-dhikr').addEventListener('change', toggleUIElement);
-            document.getElementById('show-set-target').addEventListener('change', toggleUIElement);
-            document.getElementById('show-add-dhikr').addEventListener('change', toggleUIElement);
+            document.getElementById('confirm-edit-profile-button').addEventListener('click', confirmEditProfile);
+            document.getElementById('cancel-edit-profile-button').addEventListener('click', hideEditProfileModal);
         }
 
         // تحميل البيانات من localStorage
@@ -1824,11 +2156,11 @@
             const savedDhikrData = localStorage.getItem('dhikrData');
             const savedAchievements = localStorage.getItem('achievements');
             const savedTimerSeconds = localStorage.getItem('timerSeconds');
-            const savedEnglishEnabled = localStorage.getItem('englishEnabled');
             const savedLastReadPosition = localStorage.getItem('lastReadPosition');
             const savedTimeFormat = localStorage.getItem('timeFormat');
             const savedProfile = localStorage.getItem('profile');
-            const savedUISettings = localStorage.getItem('uiSettings');
+            const savedSettings = localStorage.getItem('settings');
+            const savedUsers = localStorage.getItem('users');
 
             if (savedCounter) appData.counter = parseInt(savedCounter);
             if (savedCurrentDhikr) appData.currentDhikr = savedCurrentDhikr;
@@ -1838,18 +2170,15 @@
             if (savedDhikrData) Object.assign(dhikrData, JSON.parse(savedDhikrData));
             if (savedAchievements) appData.achievements = JSON.parse(savedAchievements);
             if (savedTimerSeconds) appData.timerSeconds = parseInt(savedTimerSeconds);
-            if (savedEnglishEnabled) appData.isEnglishEnabled = JSON.parse(savedEnglishEnabled);
             if (savedLastReadPosition) appData.lastReadPosition = JSON.parse(savedLastReadPosition);
             if (savedTimeFormat) appData.timeFormat = savedTimeFormat;
             if (savedProfile) appData.profile = JSON.parse(savedProfile);
-            if (savedUISettings) appData.uiSettings = JSON.parse(savedUISettings);
+            if (savedSettings) appData.settings = JSON.parse(savedSettings);
+            if (savedUsers) appData.users = JSON.parse(savedUsers);
 
             updateCounterDisplay();
             updateTargetDisplay();
             updateDailyTimerDisplay();
-            
-            // تحديث تبديل اللغة الإنجليزية
-            document.getElementById('english-toggle').checked = appData.isEnglishEnabled;
             
             // تحديث تنسيق الوقت
             document.querySelectorAll('.format-btn').forEach(btn => {
@@ -1859,10 +2188,10 @@
                 }
             });
 
-            // تحديث إعدادات الواجهة
-            document.getElementById('show-select-dhikr').checked = appData.uiSettings.showSelectDhikr;
-            document.getElementById('show-set-target').checked = appData.uiSettings.showSetTarget;
-            document.getElementById('show-add-dhikr').checked = appData.uiSettings.showAddDhikr;
+            // تحديث الإعدادات
+            document.getElementById('last-dhikr-toggle').checked = appData.settings.showLastDhikr;
+            document.getElementById('set-goal-toggle').checked = appData.settings.showSetGoal;
+            document.getElementById('add-dhikr-toggle').checked = appData.settings.showAddDhikr;
         }
 
         // حفظ البيانات في localStorage
@@ -1875,11 +2204,11 @@
             localStorage.setItem('dhikrData', JSON.stringify(dhikrData));
             localStorage.setItem('achievements', JSON.stringify(appData.achievements));
             localStorage.setItem('timerSeconds', appData.timerSeconds);
-            localStorage.setItem('englishEnabled', JSON.stringify(appData.isEnglishEnabled));
             localStorage.setItem('lastReadPosition', JSON.stringify(appData.lastReadPosition));
             localStorage.setItem('timeFormat', appData.timeFormat);
             localStorage.setItem('profile', JSON.stringify(appData.profile));
-            localStorage.setItem('uiSettings', JSON.stringify(appData.uiSettings));
+            localStorage.setItem('settings', JSON.stringify(appData.settings));
+            localStorage.setItem('users', JSON.stringify(appData.users));
         }
 
         // تبديل التبويبات
@@ -1902,9 +2231,11 @@
             if (tabId === 'quran-tab' && appData.selectedSurah) {
                 document.getElementById('tab-bar').classList.add('hidden');
                 document.getElementById('quran-exit-button').style.display = 'flex';
+                document.getElementById('quran-floating-buttons').style.display = 'flex';
             } else {
                 document.getElementById('tab-bar').classList.remove('hidden');
                 document.getElementById('quran-exit-button').style.display = 'none';
+                document.getElementById('quran-floating-buttons').style.display = 'none';
             }
         }
 
@@ -1918,6 +2249,9 @@
             if (currentDhikr) {
                 currentDhikr.count++;
             }
+            
+            // تحديث الملف الشخصي
+            appData.profile.totalCount++;
             
             // الاهتزاز إذا كان مفعلاً
             if (document.getElementById('vibration-toggle').checked && navigator.vibrate) {
@@ -1937,6 +2271,7 @@
             updateStatistics();
             updateGoalProgress();
             updateProfile();
+            updateRanking();
         }
 
         // تحديث عرض العداد
@@ -2048,6 +2383,12 @@
             updateCounterDisplay();
             closeResetConfirmModal();
             saveData();
+        }
+
+        // عرض آخر ذكر
+        function showLastDhikr() {
+            // في التطبيق الحقيقي، سيعرض هنا آخر ذكر تم استخدامه
+            showToast('عرض آخر ذكر');
         }
 
         // عرض رسالة toast
@@ -2227,6 +2568,7 @@
             // إخفاء شريط التبويبات وإظهار الأزرار العائمة
             document.getElementById('tab-bar').classList.add('hidden');
             document.getElementById('quran-exit-button').style.display = 'flex';
+            document.getElementById('quran-floating-buttons').style.display = 'flex';
             
             try {
                 // تحميل النص العربي
@@ -2252,15 +2594,7 @@
             document.getElementById('quran-surah-list').style.display = 'block';
             document.getElementById('tab-bar').classList.remove('hidden');
             document.getElementById('quran-exit-button').style.display = 'none';
-            
-            // حفظ الموضع الحالي تلقائياً
-            if (appData.selectedSurah) {
-                appData.lastReadPosition = {
-                    surahId: appData.selectedSurah.number,
-                    ayahId: appData.currentAyah
-                };
-                saveData();
-            }
+            document.getElementById('quran-floating-buttons').style.display = 'none';
         }
 
         // عرض صفحة القرآن
@@ -2315,6 +2649,27 @@
             saveData();
         }
 
+        // حفظ الموضع الحالي
+        function bookmarkCurrentPosition() {
+            if (appData.selectedSurah) {
+                // إزالة أي إشارة سابقة لنفس السورة
+                appData.bookmarkedAyat = appData.bookmarkedAyat.filter(b => b.surahId !== appData.selectedSurah.number);
+                
+                // إضافة الإشارة الجديدة
+                appData.bookmarkedAyat.push({
+                    surahId: appData.selectedSurah.number,
+                    ayahId: appData.currentAyah,
+                    timestamp: new Date().toISOString()
+                });
+                
+                saveData();
+                showToast('تم حفظ الموضع الحالي');
+                
+                // تحديث عرض الصفحة
+                displayQuranPage();
+            }
+        }
+
         // الانتقال إلى الآية السابقة
         function goToPrevAyah() {
             if (appData.currentAyah > 1) {
@@ -2329,6 +2684,38 @@
             if (surah && appData.currentAyah + 10 <= surah.ayahs.length) {
                 appData.currentAyah += 10;
                 displayQuranPage();
+            }
+        }
+
+        // الانتقال السريع إلى الموضع المحفوظ
+        function quickJumpToBookmark() {
+            if (appData.lastReadPosition && appData.selectedSurah) {
+                // إذا كنا في نفس السورة، انتقل إلى الموضع المحفوظ
+                if (appData.lastReadPosition.surahId === appData.selectedSurah.number) {
+                    appData.currentAyah = appData.lastReadPosition.ayahId;
+                    displayQuranPage();
+                    showToast('تم الانتقال إلى آخر موضع قمت بقراءته');
+                } else {
+                    // إذا كنا في سورة مختلفة، انتقل إلى السورة المحفوظة
+                    loadSurahById(appData.lastReadPosition.surahId);
+                }
+            } else {
+                showToast('لا يوجد موضع محفوظ');
+            }
+        }
+
+        // تحميل سورة بالرقم
+        async function loadSurahById(surahId) {
+            try {
+                const response = await fetch(`${QURAN_API_BASE}/surah/${surahId}`);
+                const data = await response.json();
+                
+                if (data.code === 200 && data.data) {
+                    showSurahAyat(data.data);
+                }
+            } catch (error) {
+                console.error('Error loading surah by ID:', error);
+                showToast('عذراً، تعذر تحميل السورة');
             }
         }
 
@@ -2527,27 +2914,6 @@
             });
         }
 
-        // عرض التصنيف
-        function renderLeaderboard() {
-            const leaderboardList = document.getElementById('leaderboard-list');
-            leaderboardList.innerHTML = '';
-            
-            appData.leaderboard.forEach((user, index) => {
-                const leaderboardItem = document.createElement('div');
-                leaderboardItem.className = 'leaderboard-item';
-                leaderboardItem.innerHTML = `
-                    <div class="leaderboard-rank">${index + 1}</div>
-                    <div class="leaderboard-user">
-                        <img src="${user.image}" alt="${user.name}" class="leaderboard-avatar">
-                        <div class="leaderboard-name">${user.name}</div>
-                    </div>
-                    <div class="leaderboard-count">${user.count}</div>
-                `;
-                
-                leaderboardList.appendChild(leaderboardItem);
-            });
-        }
-
         // التحقق من الإنجازات
         function checkAchievements() {
             const totalCount = dhikrData.reduce((sum, dhikr) => sum + dhikr.count, 0);
@@ -2614,7 +2980,7 @@
                     saveData();
                 }, 1000);
             } else {
-                // إيقاف المؤقت
+                // إوقف المؤقت
                 appData.timerRunning = false;
                 startButton.textContent = 'بدء';
                 clearInterval(appData.timerInterval);
@@ -2654,20 +3020,6 @@
             saveData();
         }
 
-        // تبديل اللغة الإنجليزية
-        function toggleEnglish() {
-            appData.isEnglishEnabled = document.getElementById('english-toggle').checked;
-            
-            if (appData.isEnglishEnabled) {
-                showToast('English language enabled');
-                // هنا يمكن إضافة ترجمة للواجهة
-            } else {
-                showToast('English language disabled');
-            }
-            
-            saveData();
-        }
-
         // تعيين الهدف اليومي
         function setDailyGoal() {
             const goalInput = document.getElementById('daily-goal-input');
@@ -2684,7 +3036,7 @@
         // تغيير الثيم
         function changeTheme(theme) {
             // إزالة جميع ثيمات الألوان
-            document.body.classList.remove('theme-purple', 'theme-blue', 'theme-rose', 'theme-ocean');
+            document.body.classList.remove('theme-purple', 'theme-blue', 'theme-green', 'theme-rose', 'theme-sand', 'theme-ocean');
             
             // إضافة الثيم المحدد إذا لم يكن الافتراضي
             if (theme !== 'default') {
@@ -2697,96 +3049,205 @@
             });
             document.querySelector(`.theme-option[data-theme="${theme}"]`).classList.add('active');
             
+            // إعداد ميزات السمة
+            setupThemeFeatures();
+            
             saveData();
+        }
+
+        // إعداد ميزات السمة
+        function setupThemeFeatures() {
+            // إخفاء جميع الميزات أولاً
+            document.getElementById('prayer-beads').style.display = 'none';
+            document.getElementById('gradient-light').style.display = 'none';
+            document.getElementById('pattern-background').style.display = 'none';
+            
+            // تطبيق الميزات حسب السمة
+            const theme = document.body.classList.toString().match(/theme-(\w+)/);
+            if (theme) {
+                switch(theme[1]) {
+                    case 'purple':
+                        document.getElementById('prayer-beads').style.display = 'flex';
+                        break;
+                    case 'blue':
+                        document.getElementById('gradient-light').style.display = 'block';
+                        break;
+                    case 'green':
+                        document.getElementById('pattern-background').style.display = 'block';
+                        break;
+                    case 'rose':
+                        // يمكن إضافة ميزة خاصة لهذه السمة
+                        break;
+                    case 'ocean':
+                        // يمكن إضافة ميزة خاصة لهذه السمة
+                        break;
+                }
+            }
+        }
+
+        // تبديل تخصيص الواجهة
+        function toggleCustomizeUI() {
+            const uiCustomization = document.getElementById('ui-customization');
+            if (this.checked) {
+                uiCustomization.style.display = 'flex';
+            } else {
+                uiCustomization.style.display = 'none';
+            }
+        }
+
+        // تبديل زر آخر ذكر
+        function toggleLastDhikrButton() {
+            appData.settings.showLastDhikr = this.checked;
+            updateCustomUIButtons();
+            saveData();
+        }
+
+        // تبديل زر تحديد الهدف
+        function toggleSetGoalButton() {
+            appData.settings.showSetGoal = this.checked;
+            updateCustomUIButtons();
+            saveData();
+        }
+
+        // تبديل زر إضافة ذكر
+        function toggleAddDhikrButton() {
+            appData.settings.showAddDhikr = this.checked;
+            updateCustomUIButtons();
+            saveData();
+        }
+
+        // تحديث أزرار تخصيص الواجهة
+        function updateCustomUIButtons() {
+            document.getElementById('last-dhikr-button').style.display = 
+                appData.settings.showLastDhikr ? 'flex' : 'none';
+            document.getElementById('set-target-button').style.display = 
+                appData.settings.showSetGoal ? 'flex' : 'none';
+            document.getElementById('add-dhikr-button').style.display = 
+                appData.settings.showAddDhikr ? 'flex' : 'none';
+        }
+
+        // تبديل منتقي الألوان
+        function toggleColorPicker() {
+            const colorPicker = document.getElementById('color-picker');
+            if (this.checked) {
+                colorPicker.classList.add('active');
+            } else {
+                colorPicker.classList.remove('active');
+            }
+        }
+
+        // تهيئة منتقي الألوان
+        function initializeColorPicker() {
+            const colorPicker = document.getElementById('color-picker');
+            const colors = ['#1a365d', '#2d3748', '#553c9a', '#2c5282', '#276749', '#97266d', '#234e52', '#b7791f', '#dd6b20', '#3182ce', '#38a169'];
+            
+            colors.forEach(color => {
+                const colorOption = document.createElement('div');
+                colorOption.className = 'color-option';
+                colorOption.style.backgroundColor = color;
+                colorOption.addEventListener('click', () => applyCustomColor(color));
+                colorPicker.appendChild(colorOption);
+            });
+        }
+
+        // تطبيق لون مخصص
+        function applyCustomColor(color) {
+            // في التطبيق الحقيقي، سيتم تطبيق اللون المخصص على الواجهة
+            document.documentElement.style.setProperty('--theme-primary', color);
+            showToast(`تم تطبيق اللون: ${color}`);
+        }
+
+        // تهيئة الملف الشخصي
+        function initializeProfile() {
+            updateProfile();
         }
 
         // تحديث الملف الشخصي
         function updateProfile() {
             document.getElementById('profile-name').textContent = appData.profile.name;
             document.getElementById('profile-bio').textContent = appData.profile.bio;
-            document.getElementById('profile-image').src = appData.profile.image;
-            
-            // تحديث الإحصائيات
-            document.getElementById('profile-today').textContent = appData.counter;
-            document.getElementById('profile-total').textContent = dhikrData.reduce((sum, dhikr) => sum + dhikr.count, 0);
-            
-            // تحديث التصنيف
-            const userRank = appData.leaderboard.findIndex(user => user.name === appData.profile.name) + 1;
-            document.getElementById('profile-rank').textContent = userRank > 0 ? userRank : '-';
+            document.getElementById('profile-total-count').textContent = appData.profile.totalCount;
+            document.getElementById('profile-streak').textContent = appData.profile.streak;
+            document.getElementById('profile-level').textContent = appData.profile.level;
+            document.getElementById('profile-rank').textContent = appData.profile.rank;
         }
 
         // عرض نافذة تعديل الملف الشخصي
         function showEditProfileModal() {
-            document.getElementById('profile-name-input').value = appData.profile.name;
-            document.getElementById('profile-bio-input').value = appData.profile.bio;
             document.getElementById('edit-profile-modal').style.display = 'flex';
+            document.getElementById('edit-profile-name').value = appData.profile.name;
+            document.getElementById('edit-profile-bio').value = appData.profile.bio;
         }
 
-        // إغلاق نافذة تعديل الملف الشخصي
-        function closeEditProfileModal() {
+        // إخفاء نافذة تعديل الملف الشخصي
+        function hideEditProfileModal() {
             document.getElementById('edit-profile-modal').style.display = 'none';
         }
 
-        // حفظ الملف الشخصي
-        function saveProfile() {
-            const name = document.getElementById('profile-name-input').value.trim();
-            const bio = document.getElementById('profile-bio-input').value.trim();
-            const imageInput = document.getElementById('profile-image-input');
+        // تأكيد تعديل الملف الشخصي
+        function confirmEditProfile() {
+            const name = document.getElementById('edit-profile-name').value.trim();
+            const bio = document.getElementById('edit-profile-bio').value.trim();
             
             if (name) {
                 appData.profile.name = name;
                 appData.profile.bio = bio;
-                
-                // معالجة صورة الملف الشخصي
-                if (imageInput.files && imageInput.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        appData.profile.image = e.target.result;
-                        updateProfile();
-                        saveData();
-                        closeEditProfileModal();
-                        showToast('تم حفظ الملف الشخصي بنجاح');
-                    };
-                    reader.readAsDataURL(imageInput.files[0]);
-                } else {
-                    updateProfile();
-                    saveData();
-                    closeEditProfileModal();
-                    showToast('تم حفظ الملف الشخصي بنجاح');
-                }
+                updateProfile();
+                saveData();
+                showToast('تم تحديث الملف الشخصي');
+                hideEditProfileModal();
             } else {
                 showToast('يرجى إدخال اسم المستخدم');
             }
         }
 
-        // تبديل عناصر الواجهة
-        function toggleUIElement(event) {
-            const elementId = event.target.id;
-            const isVisible = event.target.checked;
-            
-            switch(elementId) {
-                case 'show-select-dhikr':
-                    appData.uiSettings.showSelectDhikr = isVisible;
-                    document.getElementById('select-dhikr-row').style.display = isVisible ? 'flex' : 'none';
-                    break;
-                case 'show-set-target':
-                    appData.uiSettings.showSetTarget = isVisible;
-                    document.getElementById('set-target-button').style.display = isVisible ? 'flex' : 'none';
-                    break;
-                case 'show-add-dhikr':
-                    appData.uiSettings.showAddDhikr = isVisible;
-                    document.getElementById('add-dhikr-row').style.display = isVisible ? 'flex' : 'none';
-                    break;
+        // تهيئة نظام التصنيف
+        function initializeRanking() {
+            // إذا لم تكن هناك بيانات مستخدمين، ننشئ بيانات تجريبية
+            if (appData.users.length === 0) {
+                appData.users = [
+                    { name: "أحمد", count: 1250 },
+                    { name: "فاطمة", count: 980 },
+                    { name: "محمد", count: 750 },
+                    { name: appData.profile.name, count: appData.profile.totalCount },
+                    { name: "سارة", count: 450 }
+                ];
+                saveData();
             }
-            
-            saveData();
+            updateRanking();
         }
 
-        // تحديث عناصر الواجهة بناءً على الإعدادات
-        function updateUIElements() {
-            document.getElementById('select-dhikr-row').style.display = appData.uiSettings.showSelectDhikr ? 'flex' : 'none';
-            document.getElementById('set-target-button').style.display = appData.uiSettings.showSetTarget ? 'flex' : 'none';
-            document.getElementById('add-dhikr-row').style.display = appData.uiSettings.showAddDhikr ? 'flex' : 'none';
+        // تحديث التصنيف
+        function updateRanking() {
+            const rankingList = document.getElementById('ranking-list');
+            rankingList.innerHTML = '';
+            
+            // تحديث عدد أذكار المستخدم الحالي
+            const currentUserIndex = appData.users.findIndex(user => user.name === appData.profile.name);
+            if (currentUserIndex !== -1) {
+                appData.users[currentUserIndex].count = appData.profile.totalCount;
+            }
+            
+            // ترتيب المستخدمين تنازلياً حسب عدد الأذكار
+            const sortedUsers = [...appData.users].sort((a, b) => b.count - a.count);
+            
+            // تحديث ترتيب المستخدم الحالي
+            const userRank = sortedUsers.findIndex(user => user.name === appData.profile.name) + 1;
+            appData.profile.rank = userRank;
+            
+            // عرض أول 5 مستخدمين
+            sortedUsers.slice(0, 5).forEach((user, index) => {
+                const rankItem = document.createElement('div');
+                rankItem.className = `ranking-item ${user.name === appData.profile.name ? 'ranking-you' : ''}`;
+                rankItem.innerHTML = `
+                    <div class="ranking-position">${index + 1}</div>
+                    <div class="ranking-name">${user.name}</div>
+                    <div class="ranking-count">${user.count}</div>
+                `;
+                rankingList.appendChild(rankItem);
+            });
+            
+            updateProfile();
         }
     </script>
 </body>
